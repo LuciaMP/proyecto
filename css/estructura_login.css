@@ -1,0 +1,100 @@
+@font-face {
+    font-family: Acme;
+    src: url("../fonts/Acme-Regular.ttf");
+}
+
+@font-face {
+	font-family: Courgette;
+    src: url("../fonts/Courgette-Regular.ttf");
+}
+
+html{
+	background-color: #003886;
+}
+
+*{
+	font-family: 'Acme';
+	box-sizing: border-box;
+}
+
+.acme {
+	font-family: 'acme';
+}
+
+.cour{
+	font-family: 'Courgette';
+}
+header{
+	position: relative;
+	width: 80%;
+	height: 125px;
+	margin: auto;
+}
+
+main {
+	position: relative;
+	width: 80%;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#logo{
+	
+	width: 275px;	
+}
+
+.pestanas{
+	width: 50%;
+	float: left;
+	height: 60px;
+	font-size: 20px;
+}
+
+#datos {
+	width: 100%;
+	float: left;
+}
+
+.cajas_datos{
+	width: 50%;
+	float: left;
+	height: 65px;
+}
+
+.datos_largos{
+	width: 100%;
+}
+
+.contenedor{
+	background-color: white;
+    border: 1px solid grey;
+    text-align: center;
+    padding-top: 2%;
+    font-size: 14px;
+}
+
+.botones {
+	background-color: #BDBDBD;
+}
+
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+
+@media only screen and (min-width: 768px) {
+	
+	#logo{
+		width: 341px;	
+	}
+
+	#contenedor{
+		width: 60%;
+	}
+	
+	header{
+		height: 165px;
+	}
+}
