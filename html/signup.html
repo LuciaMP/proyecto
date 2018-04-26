@@ -1,0 +1,22 @@
+<form id="formulario" action="..\php\signup.php" method="POST" onsubmit="validarDatos(event)">
+    <input type="text" class="cajas_datos datos_largos" id="nick" name="nick" placeholder="Nombre de Usuario*" />
+    <input type="password" class="cajas_datos" id="password" name="password" placeholder="Contraseña*" />
+    <input type="password" class="cajas_datos" id="v_password" name="v_password" placeholder="Varificar contraseña*" />
+    <input type="email" class="cajas_datos datos_largos" id="correo" name="correo" placeholder="Correo electrónico*" />
+    <input type="text" class="cajas_datos" id="fechan" name="fechan" placeholder="Fecha de Nacimiento*" onfocus="(this.type='date') " />
+    <select name="sexo" class="cajas_datos">
+        <option value="" selected>Sexo*</option>
+        <option value="Femenino">Femenino</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Otro">Otro</option>
+    </select>
+    <select name="ciudad" class="cajas_datos">
+        <option value="" selected>Ciudad*</option>
+        <option value="Madrid">Madrid</option>
+        <option value="Barcelona">Barcelona</option>
+        <option value="Sevilla">Sevilla</option>
+    </select>
+    <div class="cajas_datos contenedor"><input type="checkbox" id="condiciones" name="condiciones" />He leído y acepto la política de privacidad.*</div>
+    <input type="submit" name="Enviar" id="registrar" class="cajas_datos botones" value="Registrarse" />
+    <input type="reset" name="Borrar" class="cajas_datos botones" value="Borrar" />
+</form>
