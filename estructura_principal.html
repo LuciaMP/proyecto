@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Inicio</title>
+		<meta charset="UTF-8">
+		<meta charset="ISO-8859-1">
+		<link rel="stylesheet" type="text/css" href="css\estructura_principal.css">	
+		<script type="text/javascript" src="javascript\jquery.js"></script>
+		<script type="text/javascript" src="javascript\funciones.js"></script>
+		<script type="text/javascript" src="javascript\estructura_principal.js"></script>
+		<?php
+			include("php/funciones.php");
+            logueado();
+		?>
+	</head>
+	<body>
+		<header>
+			<div id="user_zona">
+				<a href="estructura_principal.html">
+					<img src="media\logo.png" id="logo" alt="Logo Principal">
+				</a>
+				<a href="php\logout.php"><button id="logout">LOG OUT</button></a>
+				<a href="html\estructura_login.html"><button id="login">Entra o Regístrate</button></a>
+			</div>
+			<nav id="nav">
+				<ul id="menu">
+                    <a href="#inicio"><li>INICIO</li></a>
+					<a href="#juegos"><li>JUEGOS</li></a>
+					<a href="#conocenos"><li>CONÓCENOS</li></a>
+				</ul>
+				<input id="buscador" type="search" />
+			</nav>
+		</header>
+		<main>
+			<aside>
+			</aside>
+			<section id="principal">
+			</section>
+		</main>
+	</body>
+	<footer>
+		<div id="footer_izquierda">
+			<a href="estructura_principal.html">
+				<img src="media\logomini.png" id="logomini" alt="Logo">
+			</a>
+		</div>
+		<div id="footer_centro">
+			<ul id="menu_footer">
+				<li><a href="#">ConÃ³cenos</a></li>
+				<li><a href="html\estructura_login.html">Log-In</a></li>
+				<li><a href="html\estructura_login.html">Sign-Up</a></li>
+			</ul>
+		</div>
+		<div id="footer_derecha">
+			<div class="iconos"><img src="media\facebook.png" alt="Facebook"></div>
+			<div class="iconos"><img src="media\twitter.png" alt="Twitter"></div>
+			<div class="iconos"><img src="media\rss.png" alt="RSS"></div>
+		</div>
+		<div id="copy">
+		</div>
+	</footer>
+</html>
