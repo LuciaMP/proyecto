@@ -15,7 +15,7 @@
 		$registro = mysqli_fetch_assoc($resultado);
 		if($registro['PASSWORD'] != $password){
 			echo '<script>
-            alert("Contraseña incorrecta.");
+            alert("ContraseÃ±a incorrecta.");
             window.location.href = "../html/estructura_login.html";
             </script>';
 		}
