@@ -85,6 +85,7 @@ nav{
 	height: 35px;
 	float: right;
 	font-weight: bold;
+	font-size: 10px;
 	margin: 5px;
 	background: #EEEEEE;
 }
@@ -190,6 +191,7 @@ nav{
 	list-style-type: none;
 	padding: 0px;
 	margin: 0px;
+	height: 100%;
 	font-size: 90%;
     display: flex;
     justify-content: center;
@@ -199,7 +201,6 @@ nav{
 #menu_footer li {
 	width: 100px;
     float: left;
-    margin: 10px 0px 0px 0px;
 }
 
 #menu_footer li a {
@@ -283,6 +284,7 @@ nav{
 	#login, #logout{
 		width: 100px;
 		height: 40px;
+		font-size: 13px;
 	}
 
 	#footer_izquierda {
