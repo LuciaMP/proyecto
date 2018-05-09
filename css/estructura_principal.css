@@ -1,3 +1,12 @@
+/* Ajustes generales */
+html{
+	background-color: #003886;
+}
+
+*{
+	font-family: 'Acme';
+	box-sizing: border-box;
+}
 /* Tipos de letra */
 @font-face {
     font-family: Acme;
@@ -10,15 +19,6 @@
 
 .cour{
 	font-family: 'Courgette';
-}
-/* Ajustes generales */
-html{
-	background-color: #003886;
-}
-
-*{
-	font-family: 'Acme';
-	box-sizing: border-box;
 }
 /* Estructura principal */
 .ajustes-estructura {
@@ -101,7 +101,8 @@ nav{
 	border-radius: 20px;
 	background-image: url("../media/lupa.ico");
 	background-repeat: no-repeat;
-	background-position: center
+	background-position: center;
+	color: #003886;
 }
 
 #buscador:focus{
@@ -246,6 +247,17 @@ nav{
 	    justify-content: center;
 	    align-items: center;
 	}
+
+	#buscador{
+		width: 30%;
+		background-position: left;
+		padding: 0px 5px 0px 25px;
+		
+	}
+
+	#buscador:focus{
+		background-image: url("../media/lupa.ico");
+	}
 }
 
 @media only screen and (min-width: 768px) {
@@ -344,10 +356,5 @@ nav{
 		height: 7.5%;
 		font-weight: bold;
 		background: #EEEEEE;
-	}
-
-	#buscador{
-		width: 30%;
-		background-position: left;
 	}
 }

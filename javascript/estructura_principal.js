@@ -32,6 +32,7 @@ function ocultar(){
 }
 
 function menu(){
+	var place = document.getElementById("buscador").getAttribute("placeholder");
 	if(window.innerWidth <= 600 && document.getElementById("desplegable") == null){
 		var desplegable = document.createElement('ul');
 		desplegable.setAttribute("id","desplegable");

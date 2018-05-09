@@ -1,3 +1,4 @@
+/* Tipos de letra */
 @font-face {
     font-family: Acme;
     src: url("../fonts/Acme-Regular.ttf");
@@ -6,6 +7,14 @@
 @font-face {
 	font-family: Courgette;
     src: url("../fonts/Courgette-Regular.ttf");
+}
+
+.acme {
+	font-family: 'acme';
+}
+
+.cour{
+	font-family: 'Courgette';
 }
 
 html{
@@ -17,13 +26,6 @@ html{
 	box-sizing: border-box;
 }
 
-.acme {
-	font-family: 'acme';
-}
-
-.cour{
-	font-family: 'Courgette';
-}
 header{
 	position: relative;
 	width: 80%;
