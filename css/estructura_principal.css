@@ -1,15 +1,7 @@
+/* Tipos de letra */
 @font-face {
     font-family: Acme;
     src: url("../fonts/Acme-Regular.ttf");
-}
-
-html{
-	background-color: #003886;
-}
-
-*{
-	font-family: 'Acme';
-	box-sizing: border-box;
 }
 
 .acme {
@@ -19,27 +11,35 @@ html{
 .cour{
 	font-family: 'Courgette';
 }
+/* Ajustes generales */
+html{
+	background-color: #003886;
+}
+
+*{
+	font-family: 'Acme';
+	box-sizing: border-box;
+}
+/* Estructura principal */
+.ajustes-estructura {
+	max-width: 1400px;
+	min-width: 300px;
+	width: 80%;
+	margin: auto;
+	position: relative;
+}
 
 header{
-	position: relative;
-	width: 80%;
 	height: 165px;
-	margin: auto;
 }
 
 main {
-	position: relative;
-	width: 80%;
-	margin: auto;
 	display: flex;
 }
 
 footer {
-	position: relative;
-	width: 80%;
 	height: 125px;
 	border: 1px solid black;
-	margin: auto;
 	margin-top: 20px;
 }
 
@@ -197,7 +197,7 @@ nav{
 }
 
 #menu_footer li {
-	width: 20%;
+	width: 100px;
     float: left;
     margin: 10px 0px 0px 0px;
 }
@@ -210,7 +210,7 @@ nav{
 }
 
 .iconos{
-	width: 16%;
+	width: 55px;
 	text-align: center;
 }
 
