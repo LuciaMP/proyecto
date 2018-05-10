@@ -15,8 +15,20 @@ function asignarOyentesEvento(){
         if (i == 0) {
             x[i].style.backgroundColor = '#E0A92C';    
         }
-        x[i].addEventListener('click',cambiarFondo,false);
-    }	
+		x[i].addEventListener('click',cambiarFondo,false);
+	}	
+	$('#buscador').keyup(function(e) {
+		if(e.keyCode == 13) {
+			cargarDiv("#principal","busqueda.html");
+			$.post("../php/busqueda.php",$('#buscador').serialize(),function(data) {
+				var $ul = $('#busqueda');
+				for(var i = 0; i < data.length; i++){
+					var $li = $('<li>'+ data[i] +'</li>')
+					$ul.append($li);
+				}
+			});
+		}
+	});
 }
 
 function cambiarFondo(evento){
