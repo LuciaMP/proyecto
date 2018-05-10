@@ -44,7 +44,6 @@ function ocultar(){
 }
 
 function menu(){
-	var place = document.getElementById("buscador").getAttribute("placeholder");
 	if(window.innerWidth <= 600 && document.getElementById("desplegable") == null){
 		var desplegable = document.createElement('ul');
 		desplegable.setAttribute("id","desplegable");
@@ -57,6 +56,9 @@ function menu(){
 		var hijo = document.getElementById("menu");
 		hijo.style.display = "none";
 		lista.appendChild(hijo);
+		$(lista).click(function() {
+			$(hijo).toggle();
+		});
 	}
 	else if(window.innerWidth > 600 && document.getElementById("desplegable") != null){
 		var nav = document.getElementById("nav");

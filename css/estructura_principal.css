@@ -119,6 +119,7 @@ nav{
     float: left;
 	background: #EEEEEE;
 	height: 100%;
+	cursor: pointer;
 }
 
 #desplegable li {
@@ -144,10 +145,6 @@ nav{
 	border: 1px solid rgba(121, 121, 121, 1);
 	height: 40px;
 	color: black;
-}
-
-#desplegable:hover #menu{
-    display: block !important;
 }
 
 /**/
