@@ -19,13 +19,12 @@ function asignarOyentesEvento(){
 	}	
 	$('#buscador').keyup(function(e) {
 		if(e.keyCode == 13) {
-			cargarDiv("#principal","busqueda.html");
-			$.post("../php/busqueda.php",$('#buscador').serialize(),function(data) {
+			cargarDiv("#principal","html/busqueda.html");
+			$.post("php/busqueda.php",$('#buscador').serialize(),function(datos) {
+                var dato_objeto = JSON.parse(datos);
 				var $ul = $('#busqueda');
-				for(var i = 0; i < data.length; i++){
-					var $li = $('<li>'+ data[i] +'</li>')
-					$ul.append($li);
-				}
+				var $li = $('<li>'+ dato_objeto.titulo +'</li>')
+				$ul.append($li);
 			});
 		}
 	});

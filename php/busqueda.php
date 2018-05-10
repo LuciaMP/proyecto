@@ -10,19 +10,19 @@
         $numero=count($palabras); 
         if ($numero == 1) { 
             //SI SOLO HAY UNA PALABRA DE BUSQUEDA SE ESTABLECE UNA INSTRUCION CON LIKE 
-            $sql="SELECT TITULO FROM JUEGOS WHERE TITULO LIKE '%$busqueda%' LIMIT 10"; 
+            $sql="SELECT NOMBRE FROM JUEGOS WHERE NOMBRE LIKE '%$busqueda%' LIMIT 10"; 
         } 
         else { 
             //SI HAY UNA FRASE SE UTILIZA EL ALGORTIMO DE BUSQUEDA AVANZADO DE MATCH AGAINST 
             //busqueda de frases con mas de una palabra y un algoritmo especializado 
-            $sql="SELECT TITULO MATCH (TITULO) AGAINST ( '$busqueda' ) AS Score FROM JUEGOS WHERE MATCH (TITULO) AGAINST ('$busqueda') ORDER BY Score DESC LIMIT 10"; 
+            $sql="SELECT NOMBRE MATCH (NOMBRE) AGAINST ( '$busqueda' ) AS Score FROM JUEGOS WHERE MATCH (NOMBRE) AGAINST ('$busqueda') ORDER BY Score DESC LIMIT 10"; 
         } 
-        $resultado = mysqli_query($conexion,$sql); 
+        $resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla juegos.</p>'); 
         $registro=mysqli_fetch_assoc($resultado);
         $datos = array();
         foreach($registro as $indice => $titulo) { 
             //Mostramos los titulos de los juegos o lo que deseemos... 
-            $datos[] = $titulo;
+            $datos['titulo'] = $titulo;
         }
         echo json_encode($datos);
     }
