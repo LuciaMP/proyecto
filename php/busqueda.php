@@ -5,24 +5,12 @@
     mysqli_select_db($conexion,'proyecto') or die ('<p>Imposible conectar con la Base de Datos.</p>');
     //DEBO PREPARAR LOS TEXTOS QUE VOY A BUSCAR si la cadena existe 
     if ($busqueda != ''){ 
-        //CUENTA EL NUMERO DE PALABRAS 
-        $palabras=explode(" ",$busqueda); 
-        $numero=count($palabras); 
-        if ($numero == 1) { 
-            //SI SOLO HAY UNA PALABRA DE BUSQUEDA SE ESTABLECE UNA INSTRUCION CON LIKE 
-            $sql="SELECT NOMBRE FROM JUEGOS WHERE NOMBRE LIKE '%$busqueda%' LIMIT 10"; 
-        } 
-        else { 
-            //SI HAY UNA FRASE SE UTILIZA EL ALGORTIMO DE BUSQUEDA AVANZADO DE MATCH AGAINST 
-            //busqueda de frases con mas de una palabra y un algoritmo especializado 
-            $sql="SELECT NOMBRE MATCH (NOMBRE) AGAINST ( '$busqueda' ) AS Score FROM JUEGOS WHERE MATCH (NOMBRE) AGAINST ('$busqueda') ORDER BY Score DESC LIMIT 10"; 
-        } 
+        $sql = "SELECT NOMBRE FROM JUEGOS WHERE NOMBRE LIKE '%$busqueda%' LIMIT 20";
         $resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla juegos.</p>'); 
-        $registro=mysqli_fetch_assoc($resultado);
         $datos = array();
-        foreach($registro as $indice => $titulo) { 
+        while ($registro = mysqli_fetch_assoc($resultado)) { 
             //Mostramos los titulos de los juegos o lo que deseemos... 
-            $datos['titulo'] = $titulo;
+            $datos[] = $registro["NOMBRE"];
         }
         echo json_encode($datos);
     }

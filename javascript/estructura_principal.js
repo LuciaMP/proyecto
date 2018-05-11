@@ -23,8 +23,10 @@ function asignarOyentesEvento(){
 			$.post("php/busqueda.php",$('#buscador').serialize(),function(datos) {
                 var dato_objeto = JSON.parse(datos);
 				var $ul = $('#busqueda');
-				var $li = $('<li>'+ dato_objeto.titulo +'</li>')
-				$ul.append($li);
+				for (var i = 0; i < dato_objeto.length; i++) {
+					var $li = $('<li>'+ dato_objeto[i] +'</li>');
+					$ul.append($li);
+				}
 			});
 		}
 	});
