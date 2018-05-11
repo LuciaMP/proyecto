@@ -1,0 +1,22 @@
+<form id="formulario" action="..\php\modificacionUsuario.php" method="POST" onsubmit="validarDatos(event)">
+    <fieldset>
+        <legend>Datos de usuario:</legend>
+        <label for="nick">Nombre de usuario: </label><input type="text" id="nick" name="nick" disabled />
+        <label for="password">Contraseña: </label><input type="password" id="password" name="password" />
+        <label for="correo">Correo electrónico: </label><input type="email" id="correo" name="correo" />
+        <label for="fechan">Fecha de nacimiento: </label><input type="text" id="fechan" name="fechan" disabled />
+        <label for="sexo">Sexo: </label><select name="sexo" id="sexo">
+            <option value="" selected>Sexo*</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Otro">Otro</option>
+        </select>
+        <label for="ciudad">Ciudad: </label><select name="ciudad" id="ciudad">
+            <option value="" selected>Ciudad*</option>
+            <option value="Madrid">Madrid</option>
+            <option value="Barcelona">Barcelona</option>
+            <option value="Sevilla">Sevilla</option>
+        </select>
+        <input type="submit" name="guardar" id="guardar" value="Guardar" disabled/>
+    </fieldset>
+ </form>
