@@ -13,7 +13,7 @@ function activarPestanas(){
             x[i].style.backgroundColor = '#E0A92C';    
         }
         x[i].addEventListener('click',accionPestanas,false);
-    }	
+    }   
 }
 
 function accionPestanas(evento){

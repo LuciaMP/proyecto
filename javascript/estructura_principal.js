@@ -3,6 +3,8 @@ function inicializar() {
 	if (document.readyState == 'complete') {
 		asignarOyentesEvento();
         menu();
+        buscar();
+        activarPestanas();
         window.onresize = function(){
 		  menu();
         }
@@ -17,6 +19,9 @@ function asignarOyentesEvento(){
         }
 		x[i].addEventListener('click',cambiarFondo,false);
 	}	
+}
+
+function buscar(){
 	$('#buscador').keyup(function(e) {
 		if(e.keyCode == 13) {
 			cargarDiv("#principal","html/busqueda.html");
@@ -39,9 +44,46 @@ function cambiarFondo(evento){
     evento.target.style.backgroundColor = '#E0A92C'
 }
 
+function activarPestanas(){
+    x=document.getElementById('menu').getElementsByTagName('li');
+    for(i=0;i<x.length;i++){
+        if (i == 0) {
+            x[i].style.backgroundColor = '#E0A92C';    
+        }
+        x[i].addEventListener('click',accionPestanas,false);
+    }	
+}
+
+function accionPestanas(evento){
+    for(i=0;i<x.length;i++){
+        x[i].style.backgroundColor = '#EEEEEE';
+        if (x[i].id == evento.target.id) {
+            pos = i;
+        }
+    }
+    evento.target.style.backgroundColor = '#E0A92C';
+    switch (pos) {
+        case 0:
+            cargarDiv('#principal','html/novedades.html');
+            break;
+        case 1:
+            cargarDiv('#principal','html/juegos.html');
+            break;
+    	case 2:
+            cargarDiv('#principal','html/cuenta.html');
+            break;
+        case 3:
+            cargarDiv('#principal','html/conocenos.html');
+            break;
+        default:
+            cargarDiv('#principal','html/novedades.html');
+    }
+}
+
 function ocultar(){
 	$('#login').hide();
 	$('#logout').show();
+	$('#cuenta').show();
 }
 
 function menu(){

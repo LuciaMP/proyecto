@@ -90,8 +90,8 @@ nav{
 	background: #EEEEEE;
 }
 
-#logout{
-	display: none;
+.ocultar{
+	display: none !important;
 }
 
 #buscador{
