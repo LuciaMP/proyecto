@@ -12,13 +12,49 @@ function inicializar() {
 }
 
 function asignarOyentesEvento(){
-    x=document.getElementById('menu').getElementsByTagName('li');
+    var x=document.getElementById('menu').getElementsByTagName('li');
     for(i=0;i<x.length;i++){
         if (i == 0) {
             x[i].style.backgroundColor = '#E0A92C';    
         }
+        else {
+        	x[i].style.backgroundColor = '#EEEEEE';
+        }
 		x[i].addEventListener('click',cambiarFondo,false);
+		x[i].addEventListener('click',accionPestanas,false);
+		cargarDiv('#principal','html/novedades.html');
 	}	
+}
+
+function cambiarFondo(evento){
+	var x=document.getElementById('menu').getElementsByTagName('li');
+    for(i=0;i<x.length;i++){
+        x[i].style.backgroundColor = '#EEEEEE';
+    }
+    evento.target.style.backgroundColor = '#E0A92C'
+}
+
+function accionPestanas(evento){
+	var x=document.getElementById('menu').getElementsByTagName('li');
+    for(i=0;i<x.length;i++){
+        if (x[i].id == evento.target.id) {
+            pos = i;
+        }
+    }
+    switch (pos) {
+        case 0:
+            cargarDiv('#principal','html/novedades.html');
+            break;
+        case 1:
+            cargarDiv('#principal','html/juegos.html');
+            break;
+    	case 2:
+            cargarDiv('#principal','html/cuenta.html');
+            break;
+        case 3:
+            cargarDiv('#principal','html/conocenos.html');
+            break;
+    }
 }
 
 function buscar(){
@@ -35,49 +71,6 @@ function buscar(){
 			});
 		}
 	});
-}
-
-function cambiarFondo(evento){
-    for(i=0;i<x.length;i++){
-        x[i].style.backgroundColor = '#EEEEEE';
-    }
-    evento.target.style.backgroundColor = '#E0A92C'
-}
-
-function activarPestanas(){
-    x=document.getElementById('menu').getElementsByTagName('li');
-    for(i=0;i<x.length;i++){
-        if (i == 0) {
-            x[i].style.backgroundColor = '#E0A92C';    
-        }
-        x[i].addEventListener('click',accionPestanas,false);
-    }	
-}
-
-function accionPestanas(evento){
-    for(i=0;i<x.length;i++){
-        x[i].style.backgroundColor = '#EEEEEE';
-        if (x[i].id == evento.target.id) {
-            pos = i;
-        }
-    }
-    evento.target.style.backgroundColor = '#E0A92C';
-    switch (pos) {
-        case 0:
-            cargarDiv('#principal','html/novedades.html');
-            break;
-        case 1:
-            cargarDiv('#principal','html/juegos.html');
-            break;
-    	case 2:
-            cargarDiv('#principal','html/cuenta.html');
-            break;
-        case 3:
-            cargarDiv('#principal','html/conocenos.html');
-            break;
-        default:
-            cargarDiv('#principal','html/novedades.html');
-    }
 }
 
 function ocultar(){
