@@ -31,7 +31,7 @@
             mysqli_query($conexion,$sql);
             if (mysqli_errno($conexion) == 0){
                 echo '<script>
-                    alert("Usuario'.strtolower($_REQUEST['nick']).' creado con éxito.");
+                    alert("Usuario '.strtolower($_REQUEST['nick']).' creado con éxito.");
                     window.location.href = "../html/estructura_login.html";
                     </script>';
             }

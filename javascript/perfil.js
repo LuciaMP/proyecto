@@ -19,5 +19,5 @@ function rellenarDatos() {
     $("#correo").val(dato.email);
     $("#fechan").val(dato.fechan);
     $("#sexo").val(dato.sexo);
-    $("#ciudads").val(dato.ciudad);
+    $("#ciudad").val(dato.ciudad);
 }

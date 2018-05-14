@@ -82,8 +82,7 @@ function accionPestanas(evento){
 
 function ocultar(){
 	$('#login').hide();
-	$('#logout').show();
-	$('#cuenta').show();
+	$('.ocultar').show();
 }
 
 function menu(){
