@@ -5,15 +5,8 @@ $(document).ready(function() {
 	});
 });
 
-function getData() {
-    $.post("php/datosUsuario.php",function(datos) {
-        var dato_objeto = JSON.parse(datos);
-        return dato_objeto;
-    });
-}
-
 function rellenarDatos() {
-    var dato = getData();
+    var dato = getData("php/datosUsuario.php");
     $("#nick").val(dato.nick);
     $("#password").val(dato.password);
     $("#correo").val(dato.email);

@@ -60,14 +60,12 @@ function buscar(){
 	$('#buscador').keyup(function(e) {
 		if(e.keyCode == 13) {
 			cargarDiv("#principal","html/juegos.html");
-			$.post("php/busqueda.php",$('#buscador').serialize(),function(datos) {
-                var dato_objeto = JSON.parse(datos);
-				var $ul = $('#juegos');
-				for (var i = 0; i < dato_objeto.length; i++) {
-					var $li = $('<li>'+ dato_objeto[i] +'</li>');
-					$ul.append($li);
-				}
-			});
+			var dato_objeto = getData("php/busqueda.php",$('#buscador').serialize());
+			var $ul = $('#juegos');
+			for (var i = 0; i < dato_objeto.length; i++) {
+				var $li = $('<li>'+ dato_objeto[i] +'</li>');
+				$ul.append($li);
+			}
 		}
 	});
 }
