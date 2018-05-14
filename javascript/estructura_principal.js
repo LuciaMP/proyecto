@@ -1,16 +1,16 @@
 document.addEventListener('readystatechange', inicializar, false);
 function inicializar() {
 	if (document.readyState == 'complete') {
-		asignarOyentesEvento();
-        menu();
+		asignarEventoMenu();
+        crearDesplegable();
         buscar();
         window.onresize = function(){
-		  menu();
+		  crearDesplegable();
         }
 	}
 }
 
-function asignarOyentesEvento(){
+function asignarEventoMenu(){
     var x=document.getElementById('menu').getElementsByTagName('li');
     for(i=0;i<x.length;i++){
         if (i == 0) {
@@ -59,10 +59,10 @@ function accionPestanas(evento){
 function buscar(){
 	$('#buscador').keyup(function(e) {
 		if(e.keyCode == 13) {
-			cargarDiv("#principal","html/busqueda.html");
+			cargarDiv("#principal","html/juegos.html");
 			$.post("php/busqueda.php",$('#buscador').serialize(),function(datos) {
                 var dato_objeto = JSON.parse(datos);
-				var $ul = $('#busqueda');
+				var $ul = $('#juegos');
 				for (var i = 0; i < dato_objeto.length; i++) {
 					var $li = $('<li>'+ dato_objeto[i] +'</li>');
 					$ul.append($li);
@@ -77,7 +77,7 @@ function ocultar(){
 	$('.ocultar').show();
 }
 
-function menu(){
+function crearDesplegable(){
 	if(window.innerWidth <= 600 && document.getElementById("desplegable") == null){
 		var desplegable = document.createElement('ul');
 		desplegable.setAttribute("id","desplegable");
