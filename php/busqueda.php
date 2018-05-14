@@ -6,11 +6,16 @@
     //DEBO PREPARAR LOS TEXTOS QUE VOY A BUSCAR si la cadena existe 
     if ($busqueda != ''){ 
         $sql = "SELECT NOMBRE FROM JUEGOS WHERE NOMBRE LIKE '%$busqueda%' LIMIT 20";
-        $resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla juegos.</p>'); 
-        $datos = array();
-        while ($registro = mysqli_fetch_assoc($resultado)) { 
-            //Mostramos los titulos de los juegos o lo que deseemos... 
-            $datos[] = $registro["NOMBRE"];
+        $resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla juegos.</p>');
+        $datos = array(); 
+        if(mysqli_num_rows($resultado) == 0){
+            $datos[] = "No se han encontrado coincidencias.";
+        } 
+        else{
+            while ($registro = mysqli_fetch_assoc($resultado)) { 
+                //Mostramos los titulos de los juegos o lo que deseemos... 
+                $datos[] = $registro["NOMBRE"];
+            }
         }
         echo json_encode($datos);
     }

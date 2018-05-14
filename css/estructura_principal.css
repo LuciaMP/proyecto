@@ -91,7 +91,7 @@ nav{
 }
 
 .ocultar{
-	display: none !important;
+	display: none;
 }
 
 #buscador{
