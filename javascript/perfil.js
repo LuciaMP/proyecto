@@ -6,7 +6,7 @@ $(document).ready(function() {
 });
 
 function rellenarDatos() {
-    var dato = getData("php/datosUsuario.php");
+    var dato = JSON.parse(getData("php/datosUsuario.php"));
     $("#nick").val(dato.nick);
     $("#password").val(dato.password);
     $("#correo").val(dato.email);
