@@ -4,7 +4,6 @@ function inicializar() {
 		asignarOyentesEvento();
         menu();
         buscar();
-        activarPestanas();
         window.onresize = function(){
 		  menu();
         }
@@ -22,7 +21,7 @@ function asignarOyentesEvento(){
         }
 		x[i].addEventListener('click',cambiarFondo,false);
 		x[i].addEventListener('click',accionPestanas,false);
-		cargarDiv('#principal','html/novedades.html');
+		cargarDiv('#principal','html/cuenta.html');
 	}	
 }
 

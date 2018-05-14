@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $usuario = $_SESSION['nick'];
     //cadena de conexion 
     include('C:\xampp\seguridad\mysql.inc.php');
