@@ -4,14 +4,22 @@ function cargarDiv(div,url) {
 }
 
 function getData(url,dato) {
+	var dato_objeto = new Object();
+	var entra = false;
 	if (dato == undefined) {
 		$.post(url,function(datos) {
-	        return datos;
+	        dato_objeto = JSON.parse(datos);
+	        //alert(dato_objeto.nick);
+	        entra = true;
 	    });
 	}
 	else {
 		$.post(url,dato,function(datos) {
-	        return datos;
+	        dato_objeto = JSON.parse(datos);
+	        //alert(dato_objeto[0]);
+	        entra = true;
 	    });
 	}
+	//alert(entra);
+	return dato_objeto;
 }
