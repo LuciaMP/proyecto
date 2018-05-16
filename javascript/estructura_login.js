@@ -35,27 +35,3 @@ function accionPestanas(evento){
             cargarDiv('#datos','login.html');
     }
 }
-
-function validarDatos(evento){
-	if(!validar()){
-		if(!$('#nick').val().match(/^[A-Za-z0-9_-]{5,20}$/)){
-			alert("Nombre de Usuario inválido.");
-			evento.preventDefault();
-		}
-		if(!$('#password').val().match(/((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[_-]).{8,16})/)){
-		//if(!$('#password').val().match(/^[A-Za-z0-9_-]{5,20}$/)){
-			alert("Contraseña inválida.");
-			evento.preventDefault();
-			if($('#v_password').length != 0){
-				if($('#password').val() != $('#v_password').val()){
-					alert("Las contraseñas no coinciden.");
-					evento.preventDefault();
-				}
-			}
-		}
-	}
-	else{
-		alert("Todos los campos son obligatorios.");
-		evento.preventDefault();
-	}
-}

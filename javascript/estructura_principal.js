@@ -30,36 +30,30 @@ function cambiarFondo(evento){
     for(i=0;i<x.length;i++){
         x[i].style.backgroundColor = '#EEEEEE';
     }
-    evento.target.style.backgroundColor = '#E0A92C'
+    if (typeof(evento) == "object") {
+    	evento.target.style.backgroundColor = '#E0A92C';
+    }
+    else {
+    	$("#"+evento).css("background-color","#E0A92C");
+    }
 }
 
 function accionPestanas(evento){
 	var x=document.getElementById('menu').getElementsByTagName('li');
+	evento.preventDefault();
     for(i=0;i<x.length;i++){
         if (x[i].id == evento.target.id) {
             pos = i;
         }
     }
-    switch (pos) {
-        case 0:
-            cargarDiv('#principal','html/novedades.html');
-            break;
-        case 1:
-            cargarDiv('#principal','html/juegos.html');
-            break;
-    	case 2:
-            cargarDiv('#principal','html/cuenta.html');
-            break;
-        case 3:
-            cargarDiv('#principal','html/conocenos.html');
-            break;
-    }
+    cargarDiv('#principal',evento.target.parentNode.getAttribute('href'));
 }
 
 function buscar(){
 	$('#buscador').keyup(function(e) {
 		if(e.keyCode == 13) {
 			cargarDiv("#principal","html/juegos.html");
+			cambiarFondo("menu_juegos");
 			//var dato_objeto = getData("php/busqueda.php",$('#buscador').serialize());
 			$.post("php/busqueda.php",$('#buscador').serialize(),function(datos) {
                 var dato_objeto = JSON.parse(datos);
@@ -103,4 +97,32 @@ function crearDesplegable(){
 		nav.appendChild(menu);
 		nav.removeChild(desplegable);
 	}
+}
+
+function modificarUsuario(evento){
+	evento.preventDefault();
+	var texto = $("#guardar").val();
+	var parametros = {
+            "nick" : $('#nick').val(),
+            "password" : $('#password').val(),
+            "correo" : $('#correo').val(),
+            "sexo" : $('#sexo').val(),
+            "ciudad" : $('#ciudad').val(),
+    };
+    $.ajax({
+            data:  parametros,
+            url:   'php/modificacionUsuario.php',
+            type:  'post',
+            beforeSend: function () {
+                $("#guardar").val("Procesando...");
+                $("#nick").removeAttr("disabled");
+       	 		$("#fechan").removeAttr("disabled");
+            },
+            success:  function (respuesta) {
+                alert(respuesta);
+                $("#nick").attr("disabled","disabled");
+       	 		$("#fechan").attr("disabled","disabled");
+                $("#guardar").val(texto);
+            }
+    });
 }
