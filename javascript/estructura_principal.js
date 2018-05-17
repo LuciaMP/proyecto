@@ -21,8 +21,8 @@ function asignarEventoMenu(){
         }
 		x[i].addEventListener('click',cambiarFondo,false);
 		x[i].addEventListener('click',accionPestanas,false);
-		cargarDiv('#principal','html/novedades.html');
-	}	
+	}
+	cargarDiv('#principal','html/novedades.html');	
 }
 
 function cambiarFondo(evento){
