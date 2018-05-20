@@ -1,12 +1,7 @@
-$(document).ready(function() {
-    alert($('#juegos').has('li').length);
-    if($('#juegos').has('li').length == 0){
-        $('#buscador').keyup(function(e) {
-            if(e.keyCode != 13){
-                mostrarJuegosPrimeraVez();
-            }
-        });
-    }    
+$(function() {
+    if ($("#juegos li").length == 0) {
+        mostrarJuegosPrimeraVez();
+    }
 });
 
 function mostrarJuegosPrimeraVez() {
@@ -29,7 +24,8 @@ function crearLista(parametros){
             var $ul = $('#juegos');
             $ul.empty();
             for (var i = 0; i < dato_objeto.juegos.length; i++) {
-                var $li = $('<li>'+ dato_objeto.juegos[i] +'</li>');
+                var $li = $('<li id="'+dato_objeto.juegos[i]+'">'+ dato_objeto.juegos[i] +'</li>');
+                $li.addEventListener('click',verJuego,false);
                 $ul.append($li);
             }
             for (var i = 0; i < dato_objeto.paginas.length; i++) {
@@ -42,5 +38,25 @@ function crearLista(parametros){
                 botones[i].addEventListener('click', mostrarJuegos, false);
             }
         }
+    });
+}
+
+function verJuego (evento) {
+    cargarDiv('#principal','html/juego.html');
+    $.ajax({
+            data:  {"juego" : evento.id},
+            url:   'php/detallesJuego.php',
+            type:  'post',
+            beforeSend: function () {
+                $("#guardar").val("Procesando...");
+                $("#nick").removeAttr("disabled");
+                $("#fechan").removeAttr("disabled");
+            },
+            success:  function (respuesta) {
+                var datos_juegos = JSON.parse(respuesta);
+                $("#imagen_juego").attr("src",datos_juegos);
+                $("titulo_juego").text(datos_juegos.nombre);
+                $("desc_juego").text(datos_juegos.descripcion);
+            }
     });
 }

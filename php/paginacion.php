@@ -35,7 +35,7 @@
     }
 
     if(mysqli_num_rows($resultado) == 0){
-        $datos['juegos'][] = "No se han encontrado coincidencias.";
+        $datos['juegos'][] = "No hay juegos.";
     } 
     else{
         while ($registro = mysqli_fetch_assoc($resultado)) { 

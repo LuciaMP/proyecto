@@ -58,6 +58,7 @@ function buscar(){
 			$.post("php/busqueda.php",$('#buscador').serialize(),function(datos) {
                 var dato_objeto = JSON.parse(datos);
 				var $ul = $('#juegos');
+				$ul.empty();
 				for (var i = 0; i < dato_objeto.length; i++) {
 					var $li = $('<li>'+ dato_objeto[i] +'</li>');
 					$ul.append($li);
