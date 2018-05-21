@@ -21,22 +21,19 @@ function crearLista(parametros){
         type:  'post',
         success:  function (respuesta) {
             var dato_objeto = JSON.parse(respuesta);
-            var $section = $('section');
-            $section.empty();
+            var section = $('section');
+            section.empty();
             for (var i = 0; i < dato_objeto.datos.length; i++) {
-                var $div = $('<div id="'+dato_objeto.datos[i].NOMBRE+'">');
-                $section.append($div);
-                var $img = $('<img src="'+dato_objeto.datos[i].CARATULA+'"">');
-                $div.append($img);
-                var $h2 = $('<h2>'+dato_objeto.datos[i].NOMBRE+'</h2>');
-                $div.append($h2);
+                var div = '<div id="' + dato_objeto.datos[i].IDJUEGO + '">';
+                div += '<img src="' + dato_objeto.datos[i].CARATULA + '"">';
+                div +='<h2>'+ dato_objeto.datos[i].NOMBRE + '</h2>';
+                section.append(div);
             }
             $("#principal div").css({
                 "cursor": "pointer",
                 "cursor": "hand",
                 "margin": "15px 0px 15px 0px",
-                "background-color": "#BDBDBD",
-                "list-style": "none"
+                "background-color": "#BDBDBD"
             });
             $("#principal div").css(
                 "cursor","pointer");
@@ -46,8 +43,8 @@ function crearLista(parametros){
             }
 
             for (var i = 0; i < dato_objeto.paginas.length; i++) {
-                var $button = $(dato_objeto.paginas[i]);
-                $section.append($button);
+                var button = $(dato_objeto.paginas[i]);
+                section.append(button);
             }
 
             var botones = $("section button");
@@ -61,7 +58,7 @@ function crearLista(parametros){
 function verJuego (evento) {
     cargarDiv('#principal','html/juego.html');
     $.ajax({
-            data:  {"nombre" : evento.target.id},
+            data:  {"id" : evento.target.id, "tabla" : "JUEGOS"},
             url:   'php/busqueda.php',
             type:  'post',
             beforeSend: function () {

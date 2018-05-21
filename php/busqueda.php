@@ -3,21 +3,27 @@
     include('C:\xampp\seguridad\mysql.inc.php');
     mysqli_select_db($conexion,'proyecto') or die ('<p>Imposible conectar con la Base de Datos.</p>');
 
+    $tabla = $_POST["tabla"];
+
     if(isset($_POST["buscador"])){
         $busqueda = $_POST["buscador"];
     }
     else {
-        $busqueda = $_POST["nombre"];
+        $busqueda = $_POST["id"];
     }
+
     //DEBO PREPARAR LOS TEXTOS QUE VOY A BUSCAR si la cadena existe 
     if ($busqueda != ''){ 
         if (isset($_POST["buscador"])) {
             $sql = "SELECT * FROM JUEGOS WHERE NOMBRE LIKE '%$busqueda%' LIMIT 20";
         }
-        else {
-            $sql = "SELECT * FROM JUEGOS WHERE NOMBRE = '$busqueda'";
+        else if($tabla == "JUEGOS"){
+            $sql = "SELECT * FROM JUEGOS WHERE IDJUEGO = '$busqueda'";
         }
-        $resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla juegos.</p>');
+        else{
+            $sql = "SELECT * FROM NOVEDADES WHERE IDNOVEDAD = '$busqueda'";
+        }
+        $resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla.</p>');
         $datos = array();
         if(mysqli_num_rows($resultado) == 0){
             $datos[] = "No se han encontrado coincidencias.";

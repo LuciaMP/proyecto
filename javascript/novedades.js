@@ -19,35 +19,31 @@ function crearLista(parametros){
         type:  'post',
         success:  function (respuesta) {
             var dato_objeto = JSON.parse(respuesta);
-            var $section = $('section');
-            $section.empty();
+            var section = $('section');
+            section.empty();
             for (var i = 0; i < dato_objeto.datos.length; i++) {
-                var $div = $('<div id="'+dato_objeto.datos[i].IDNOVEDAD+'">');
-                $section.append($div);
-                var $img = $('<img src="'+dato_objeto.datos[i].IMAGEN+'"">');
-                $div.append($img);
-                var $h2 = $('<h2>'+dato_objeto.datos[i].TITULO+'</h2>');
-                $div.append($h2);
-                var $p = $('<p>'+dato_objeto.datos[i].CONTENIDO+'</p>');
-                $div.append($p);
+                var div = '<div id="' + dato_objeto.datos[i].IDNOVEDAD + '">';
+                div += '<img src="' + dato_objeto.datos[i].IMAGEN + '"">';
+                div +='<h2>'+ dato_objeto.datos[i].TITULO + '</h2>';
+                div +='<p>'+ dato_objeto.datos[i].CONTENIDO + '</p>';
+                section.append(div);
             }
-            $("div h2").css({
+            $("#principal div").css({
                 "cursor": "pointer",
                 "cursor": "hand",
                 "margin": "15px 0px 15px 0px",
-                "background-color": "#BDBDBD",
-                "list-style": "none"
+                "background-color": "#BDBDBD"
             });
-            $("div h2").css(
+            $("#principal div").css(
                 "cursor","pointer");
-            var novedades = $("div h2");
-            for (var i = 0; i < novedades.length; i++) {
-                novedades[i].addEventListener('click',verNovedad,false);
+            var novedad = $("#principal div");
+            for (var i = 0; i < novedad.length; i++) {
+                novedad[i].addEventListener('click',verNovedad,false);
             }
 
             for (var i = 0; i < dato_objeto.paginas.length; i++) {
-                var $button = $(dato_objeto.paginas[i]);
-                $section.append($button);
+                var button = $(dato_objeto.paginas[i]);
+                section.append(button);
             }
 
             var botones = $("section button");
@@ -61,17 +57,17 @@ function crearLista(parametros){
 function verNovedad (evento) {
     cargarDiv('#principal','html/novedad.html');
     $.ajax({
-            data:  {"nombre" : evento.id},
+            data:  {"id" : evento.target.id, "tabla" : "NOVEDADES"},
             url:   'php/busqueda.php',
             type:  'post',
             beforeSend: function () {
                 
             },
             success:  function (respuesta) {
-                var datos_juegos = JSON.parse(respuesta);
-                $("#imagen_juego").attr("src",datos_juegos.caratula);
-                $("titulo_juego").text(datos_juegos.nombre);
-                $("desc_juego").text(datos_juegos.descripcion);
+                var datos_novedades = JSON.parse(respuesta);
+                $("#imagen_novedad").attr("src",datos_novedades[0].IMAGEN);
+                $("#titulo_novedad").text(datos_novedades[0].TITULO);
+                $("#cont_novedad").text(datos_novedades[0].CONTENIDO);
             }
     });
 }
