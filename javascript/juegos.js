@@ -59,7 +59,7 @@ function crearLista(parametros){
 function verJuego (evento) {
     cargarDiv('#principal','html/juego.html');
     $.ajax({
-            data:  {"nombre" : evento.id},
+            data:  {"nombre" : evento.target.id},
             url:   'php/busqueda.php',
             type:  'post',
             beforeSend: function () {
@@ -67,9 +67,9 @@ function verJuego (evento) {
             },
             success:  function (respuesta) {
                 var datos_juegos = JSON.parse(respuesta);
-                $("#imagen_juego").attr("src",datos_juegos.caratula);
-                $("titulo_juego").text(datos_juegos.nombre);
-                $("desc_juego").text(datos_juegos.descripcion);
+                $("#imagen_juego").attr("src",datos_juegos[0].CARATULA);
+                $("#titulo_juego").text(datos_juegos[0].NOMBRE);
+                $("#desc_juego").text(datos_juegos[0].DESCRIPCION);
             }
     });
 }
