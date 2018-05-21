@@ -55,12 +55,12 @@ function buscar(){
 			cargarDiv("#principal","html/juegos.html");
 			cambiarFondo("menu_juegos");
 			//var dato_objeto = getData("php/busqueda.php",$('#buscador').serialize());
-			$.post("php/busqueda.php",$('#buscador').serialize(),function(datos) {
+			$.post("php/busqueda.php",function(datos) {
                 var dato_objeto = JSON.parse(datos);
 				var $ul = $('#juegos');
 				$ul.empty();
 				for (var i = 0; i < dato_objeto.length; i++) {
-					var $li = $('<li>'+ dato_objeto[i] +'</li>');
+					var $li = $('<li>'+ dato_objeto[i].nombre +'</li>');
 					$ul.append($li);
 				}
 			});	

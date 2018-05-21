@@ -25,9 +25,22 @@ function crearLista(parametros){
             $ul.empty();
             for (var i = 0; i < dato_objeto.juegos.length; i++) {
                 var $li = $('<li id="'+dato_objeto.juegos[i]+'">'+ dato_objeto.juegos[i] +'</li>');
-                $li.addEventListener('click',verJuego,false);
                 $ul.append($li);
             }
+            $("#juegos li").css({
+                "cursor": "pointer",
+                "cursor": "hand",
+                "margin": "15px 0px 15px 0px",
+                "background-color": "#BDBDBD",
+                "list-style": "none"
+            });
+            $("li").css(
+                "cursor","pointer");
+            var juegos = document.getElementsByTagName("li");
+            for (var i = 0; i < juegos.length; i++) {
+                juegos[i].addEventListener('click',verJuego,false);
+            }
+
             for (var i = 0; i < dato_objeto.paginas.length; i++) {
                 var $button = $(dato_objeto.paginas[i]);
                 $ul.append($button);
@@ -44,17 +57,15 @@ function crearLista(parametros){
 function verJuego (evento) {
     cargarDiv('#principal','html/juego.html');
     $.ajax({
-            data:  {"juego" : evento.id},
-            url:   'php/detallesJuego.php',
+            data:  {"nombre" : evento.id},
+            url:   'php/busqueda.php',
             type:  'post',
             beforeSend: function () {
-                $("#guardar").val("Procesando...");
-                $("#nick").removeAttr("disabled");
-                $("#fechan").removeAttr("disabled");
+                
             },
             success:  function (respuesta) {
                 var datos_juegos = JSON.parse(respuesta);
-                $("#imagen_juego").attr("src",datos_juegos);
+                $("#imagen_juego").attr("src",datos_juegos.caratula);
                 $("titulo_juego").text(datos_juegos.nombre);
                 $("desc_juego").text(datos_juegos.descripcion);
             }

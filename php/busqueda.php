@@ -1,20 +1,39 @@
 <?php 
-    $busqueda = $_POST["buscador"];
     //cadena de conexion 
     include('C:\xampp\seguridad\mysql.inc.php');
     mysqli_select_db($conexion,'proyecto') or die ('<p>Imposible conectar con la Base de Datos.</p>');
+
+    if(isset($_POST["buscador"])){
+        $busqueda = $_POST["buscador"];
+    }
+    else {
+        $busqueda = $_POST["nombre"];
+    }
     //DEBO PREPARAR LOS TEXTOS QUE VOY A BUSCAR si la cadena existe 
     if ($busqueda != ''){ 
-        $sql = "SELECT NOMBRE FROM JUEGOS WHERE NOMBRE LIKE '%$busqueda%' LIMIT 20";
+        if (isset($_POST["buscador"])) {
+            $sql = "SELECT * FROM JUEGOS WHERE NOMBRE LIKE '%$busqueda%' LIMIT 20";
+        }
+        else {
+            $sql = "SELECT * FROM JUEGOS";
+        }
         $resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla juegos.</p>');
         $datos = array(); 
         if(mysqli_num_rows($resultado) == 0){
-            $datos[] = "No se han encontrado coincidencias.";
+            $datos[] = new stdClass();
+            $datos[] -> nombre = "No se han encontrado coincidencias.";
         } 
         else{
             while ($registro = mysqli_fetch_assoc($resultado)) { 
                 //Mostramos los titulos de los juegos o lo que deseemos... 
-                $datos[] = $registro["NOMBRE"];
+                $datos[] = new stdClass();
+                $datos[] -> id = $registro["IDJUEGO"];
+                $datos[] -> nombre = $registro["NOMBRE"];
+                $datos[] -> descripcion = $registro["DESCRIPCION"];
+                $datos[] -> votos = $registro["VOTOS"];
+                $datos[] -> puntuacion = $registro["PUNTUACION"];
+                $datos[] -> nota = $registro["NOTA"];
+                $datos[] -> caratula = $registro["CARATULA"];
             }
         }
         echo json_encode($datos);
