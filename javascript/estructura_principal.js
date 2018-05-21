@@ -60,7 +60,7 @@ function buscar(){
 				var $ul = $('#juegos');
 				$ul.empty();
 				for (var i = 0; i < dato_objeto.length; i++) {
-					var $li = $('<li>'+ dato_objeto[i].nombre +'</li>');
+					var $li = $('<li>'+ dato_objeto[i].NOMBRE +'</li>');
 					$ul.append($li);
 				}
 			});	

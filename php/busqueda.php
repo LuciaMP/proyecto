@@ -15,25 +15,17 @@
             $sql = "SELECT * FROM JUEGOS WHERE NOMBRE LIKE '%$busqueda%' LIMIT 20";
         }
         else {
-            $sql = "SELECT * FROM JUEGOS";
+            $sql = "SELECT * FROM JUEGOS WHERE NOMBRE = '$busqueda'";
         }
         $resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla juegos.</p>');
-        $datos = array(); 
+        $datos = array();
         if(mysqli_num_rows($resultado) == 0){
-            $datos[] = new stdClass();
-            $datos[] -> nombre = "No se han encontrado coincidencias.";
+            $datos[] = "No se han encontrado coincidencias.";
         } 
         else{
             while ($registro = mysqli_fetch_assoc($resultado)) { 
                 //Mostramos los titulos de los juegos o lo que deseemos... 
-                $datos[] = new stdClass();
-                $datos[] -> id = $registro["IDJUEGO"];
-                $datos[] -> nombre = $registro["NOMBRE"];
-                $datos[] -> descripcion = $registro["DESCRIPCION"];
-                $datos[] -> votos = $registro["VOTOS"];
-                $datos[] -> puntuacion = $registro["PUNTUACION"];
-                $datos[] -> nota = $registro["NOTA"];
-                $datos[] -> caratula = $registro["CARATULA"];
+                $datos[] = $registro;
             }
         }
         echo json_encode($datos);
