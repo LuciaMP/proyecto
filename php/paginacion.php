@@ -4,6 +4,8 @@
 
     $tamanio_paginas = 3;
 
+    $tabla = $_POST["tabla"];
+
     if(isset($_POST["pagina"])){
         $pagina = $_POST["pagina"];
     }
@@ -13,7 +15,7 @@
 
     $empezar_desde = ($pagina-1)*$tamanio_paginas;
 
-    $sql = "SELECT NOMBRE FROM JUEGOS";
+    $sql = "SELECT * FROM $tabla";
     
     $resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla juegos.</p>');
 
@@ -21,25 +23,25 @@
 
     $total_paginas = ceil($num_filas/$tamanio_paginas);
 
-    $sql = "SELECT NOMBRE FROM JUEGOS LIMIT $empezar_desde, $tamanio_paginas";
+    $sql = "SELECT * FROM $tabla LIMIT $empezar_desde, $tamanio_paginas";
 
     $resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla juegos.</p>');
 
     $datos = array(); 
 
     $datos['paginas'] = array();
-    $datos['juegos'] = array();
+    $datos['datos'] = array();
 
     for($i = 1; $i <= $total_paginas; $i++){
         $datos['paginas'][] = "<button value='". $i . "'>" . $i . "</button>";
     }
 
     if(mysqli_num_rows($resultado) == 0){
-        $datos['juegos'][] = "No hay juegos.";
+        $datos['datos'][] = "No hay datos.";
     } 
     else{
         while ($registro = mysqli_fetch_assoc($resultado)) { 
-            $datos['juegos'][] = $registro["NOMBRE"];
+            $datos['datos'][] = $registro;
         }
     }
 

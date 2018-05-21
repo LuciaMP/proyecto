@@ -1,16 +1,14 @@
 $(function() {
-    if ($("#juegos li").length == 0) {
-        mostrarJuegosPrimeraVez();
-    }
+    mostrarNovedadPrimeraVez();
 });
 
-function mostrarJuegosPrimeraVez() {
-    var parametros = {"pagina" : 1, "tabla" : "JUEGOS"};
+function mostrarNovedadPrimeraVez() {
+    var parametros = {"pagina" : 1, "tabla" : "NOVEDADES"};
     crearLista(parametros);
 }
 
-function mostrarJuegos(event){
-    var parametros = {"pagina" : event.target.value, "tabla" : "JUEGOS"};
+function mostrarNovedades(event){
+    var parametros = {"pagina" : event.target.value, "tabla" : "NOVEDADES"};
     crearLista(parametros);
 }
 
@@ -21,42 +19,40 @@ function crearLista(parametros){
         type:  'post',
         success:  function (respuesta) {
             var dato_objeto = JSON.parse(respuesta);
-            var $ul = $('#juegos');
-            $ul.empty();
+            var $section = $('section');
+            $section.empty();
             for (var i = 0; i < dato_objeto.datos.length; i++) {
-                var $li = $('<li id="'+dato_objeto.datos[i].NOMBRE+'">'+ dato_objeto.datos[i].NOMBRE +'</li>');
-                $ul.append($li);
+                var $div = $('<div id="'+dato_objeto.datos[i].IDNOVEDAD+'">');
+                $section.append($div);
+                var $img = $('<img src="'+dato_objeto.datos[i].IMAGEN+'"">');
+                $div.append($img);
+                var $h2 = $('<h2>'+dato_objeto.datos[i].TITULO+'</h2>');
+                $div.append($h2);
+                var $p = $('<p>'+dato_objeto.datos[i].CONTENIDO+'</p>');
+                $div.append($p);
             }
-            $("#juegos li").css({
+            /*$("#novedades li").css({
                 "cursor": "pointer",
                 "cursor": "hand",
                 "margin": "15px 0px 15px 0px",
                 "background-color": "#BDBDBD",
                 "list-style": "none"
-            });
-            $("li").css(
-                "cursor","pointer");
-            var juegos = $("#juegos li");
-            for (var i = 0; i < juegos.length; i++) {
-                juegos[i].addEventListener('click',verJuego,false);
-            }
+            });*/
 
             for (var i = 0; i < dato_objeto.paginas.length; i++) {
                 var $button = $(dato_objeto.paginas[i]);
-                $ul.after($button);
+                $section.append($button);
             }
-
-            $("section").empty();
 
             var botones = $("section button");
             for (var i = 0; i < botones.length; i++) {
-                botones[i].addEventListener('click', mostrarJuegos, false);
+                botones[i].addEventListener('click', mostrarNovedades, false);
             }
         }
     });
 }
 
-function verJuego (evento) {
+/*function verNovedad (evento) {
     cargarDiv('#principal','html/juego.html');
     $.ajax({
             data:  {"nombre" : evento.id},
@@ -72,4 +68,4 @@ function verJuego (evento) {
                 $("desc_juego").text(datos_juegos.descripcion);
             }
     });
-}
+}*/
