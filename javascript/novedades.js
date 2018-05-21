@@ -31,13 +31,19 @@ function crearLista(parametros){
                 var $p = $('<p>'+dato_objeto.datos[i].CONTENIDO+'</p>');
                 $div.append($p);
             }
-            /*$("#novedades li").css({
+            $("div h2").css({
                 "cursor": "pointer",
                 "cursor": "hand",
                 "margin": "15px 0px 15px 0px",
                 "background-color": "#BDBDBD",
                 "list-style": "none"
-            });*/
+            });
+            $("div h2").css(
+                "cursor","pointer");
+            var novedades = $("div h2");
+            for (var i = 0; i < novedades.length; i++) {
+                novedades[i].addEventListener('click',verNovedad,false);
+            }
 
             for (var i = 0; i < dato_objeto.paginas.length; i++) {
                 var $button = $(dato_objeto.paginas[i]);
@@ -52,8 +58,8 @@ function crearLista(parametros){
     });
 }
 
-/*function verNovedad (evento) {
-    cargarDiv('#principal','html/juego.html');
+function verNovedad (evento) {
+    cargarDiv('#principal','html/novedad.html');
     $.ajax({
             data:  {"nombre" : evento.id},
             url:   'php/busqueda.php',
@@ -68,4 +74,4 @@ function crearLista(parametros){
                 $("desc_juego").text(datos_juegos.descripcion);
             }
     });
-}*/
+}

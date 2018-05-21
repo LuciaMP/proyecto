@@ -1,7 +1,7 @@
 $(function() {
-    if ($("#juegos li").length == 0) {
+    //if ($("#juegos li").length == 0) {
         mostrarJuegosPrimeraVez();
-    }
+    //}
 });
 
 function mostrarJuegosPrimeraVez() {
@@ -21,32 +21,34 @@ function crearLista(parametros){
         type:  'post',
         success:  function (respuesta) {
             var dato_objeto = JSON.parse(respuesta);
-            var $ul = $('#juegos');
-            $ul.empty();
+            var $section = $('section');
+            $section.empty();
             for (var i = 0; i < dato_objeto.datos.length; i++) {
-                var $li = $('<li id="'+dato_objeto.datos[i].NOMBRE+'">'+ dato_objeto.datos[i].NOMBRE +'</li>');
-                $ul.append($li);
+                var $div = $('<div id="'+dato_objeto.datos[i].NOMBRE+'">');
+                $section.append($div);
+                var $img = $('<img src="'+dato_objeto.datos[i].CARATULA+'"">');
+                $div.append($img);
+                var $h2 = $('<h2>'+dato_objeto.datos[i].NOMBRE+'</h2>');
+                $div.append($h2);
             }
-            $("#juegos li").css({
+            $("#principal div").css({
                 "cursor": "pointer",
                 "cursor": "hand",
                 "margin": "15px 0px 15px 0px",
                 "background-color": "#BDBDBD",
                 "list-style": "none"
             });
-            $("li").css(
+            $("#principal div").css(
                 "cursor","pointer");
-            var juegos = $("#juegos li");
+            var juegos = $("#principal div");
             for (var i = 0; i < juegos.length; i++) {
                 juegos[i].addEventListener('click',verJuego,false);
             }
 
             for (var i = 0; i < dato_objeto.paginas.length; i++) {
                 var $button = $(dato_objeto.paginas[i]);
-                $ul.after($button);
+                $section.append($button);
             }
-
-            $("section").empty();
 
             var botones = $("section button");
             for (var i = 0; i < botones.length; i++) {
