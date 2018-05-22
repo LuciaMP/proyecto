@@ -80,7 +80,7 @@ nav{
 	display: none;
 }
 
-#login, #logout{
+#login, #logout, #mensajes{
 	width: 60px;
 	height: 35px;
 	float: right;
