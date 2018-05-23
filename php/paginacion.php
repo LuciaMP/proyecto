@@ -17,7 +17,7 @@
 
     $sql = "SELECT * FROM $tabla";
     
-    $resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla juegos.</p>');
+    $resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla.</p>');
 
     $num_filas = mysqli_num_rows($resultado);
 
@@ -25,7 +25,7 @@
 
     $sql = "SELECT * FROM $tabla LIMIT $empezar_desde, $tamanio_paginas";
 
-    $resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla juegos.</p>');
+    $resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla.</p>');
 
     $datos = array(); 
 

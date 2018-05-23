@@ -44,9 +44,9 @@
         }
         else {
             echo '<script>
-                    alert("Error al crear el usuario. Error número: '.mysqli_errno($conexion).'");
-                    window.location.href = "../html/estructura_login.html";
-                    </script>';
+                alert("Error al crear el usuario. Error número: '.mysqli_errno($conexion).'");
+                window.location.href = "../html/estructura_login.html";
+                </script>';
         }	
     }
 
