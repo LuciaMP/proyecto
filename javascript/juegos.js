@@ -47,7 +47,7 @@ function crearLista(parametros){
                 section.append(button);
             }
 
-            var botones = $("section button");
+            var botones = $("#principal button");
             for (var i = 0; i < botones.length; i++) {
                 botones[i].addEventListener('click', mostrarJuegos, false);
             }

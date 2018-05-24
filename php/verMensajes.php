@@ -6,7 +6,7 @@
     mysqli_select_db($conexion,'proyecto') or die ('<p>Imposible conectar con la Base de Datos.</p>');
 	if(!isset($_POST['hilo'])){
 
-        $sql = "SELECT * FROM MENSAJES WHERE EMISOR = (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$emisor') AND FECHA = (SELECT MAX(FECHA) FROM MENSAJES) GROUP BY HILO";
+        $sql = "SELECT * FROM MENSAJES WHERE EMISOR = (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$emisor') GROUP BY HILO, FECHA";
        
     	$resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla.</p>');
 

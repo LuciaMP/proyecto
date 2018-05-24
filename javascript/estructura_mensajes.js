@@ -38,17 +38,32 @@ function accionPestanas(evento){
     }
 }
 
-function enviarMensaje() {
-    var parametros = {
+function enviarMensaje(evento) {
+    var hilo = $('#hilo').val();
+
+    if(typeof hilo == 'undefined'){
+        var parametros = {
             "receptor" : $('#receptor').val(),
             "asunto" : $('#asunto').val(),
             "mensaje" : $('#mensaje').val()
-    };
+        };
+    }
+    else{
+        var parametros = {
+            "mensaje" : $('#mensaje').val(),
+            "hilo" : hilo
+        };
+    }
+
     $.ajax({
             data:  parametros,
             url:   '../php/mensajeria.php',
             type:  'post',
+            success:  function (respuesta) {
+
+            }
     });
+    
 }
 
 function mostrarMensajes() {
@@ -59,7 +74,7 @@ function mostrarMensajes() {
             var html = '<div id="'+ datos_mensajes[i].IDMENSAJE + '">';
             html += '<p>'+ datos_mensajes[i].RECEPTOR + '</p>';
             html += '<p>'+ datos_mensajes[i].ASUNTO + '</p>';
-            html += '<input id="hilo" value="' + datos_mensajes[i].HILO + '" hidden />';
+            html += '<input id="hilo_'+datos_mensajes[i].IDMENSAJE+'" value="' + datos_mensajes[i].HILO + '" hidden />';
             div.append(html);
         }
 
@@ -70,10 +85,8 @@ function mostrarMensajes() {
     });
 }
 
-// MISMO ID, CAMBIAR VAR HILO
-function verMensaje() {
-    var hilo = $('#hilo').val();
-    alert(hilo);
+function verMensaje(evento) {
+    var hilo = $('#hilo_'+evento.target.id).val();
     $('#mensajes').empty();
 
     $.ajax({
@@ -83,18 +96,17 @@ function verMensaje() {
         success:  function (respuesta) {
             var mensajes = JSON.parse(respuesta);
             var div = $('#mensaje_nuevo');
-            html += '<hr>';
+            var html = '<p>'+ mensajes[0].ASUNTO + '</p><hr>';
+            div.append(html);
             for(var i = 0; i < mensajes.length; i++) {
-                var html = '<p>'+ mensajes[i].ASUNTO + '</p>';
-                html += '<p>'+ mensajes[i].EMISOR + '</p>';
+                var html = '<p>'+ mensajes[i].EMISOR + '</p>';
                 html += '<p>'+ mensajes[i].RECEPTOR + '</p>';
                 html += '<p>'+ mensajes[i].MENSAJE + '</p>';
                 html += '<hr>';
                 div.append(html);
             }
 
-
-            html = '<form action="#" method="POST" onsubmit="enviarMensaje()">';
+            html = '<form action="#" method="POST" onsubmit="enviarMensaje(event)">';
             html += '<textarea name="mensaje" id="mensaje" cols="45" rows="5"></textarea>';
             html += '<input id="hilo" value="' + hilo + '" hidden />';
             html += '<input type="submit" name="enviar" id="enviar" value="Enviar"></form>';
