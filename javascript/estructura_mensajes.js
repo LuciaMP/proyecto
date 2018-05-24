@@ -39,9 +39,9 @@ function accionPestanas(evento){
 }
 
 function enviarMensaje(evento) {
-    var hilo = $('#hilo').val();
-
-    if(typeof hilo == 'undefined'){
+    var hilo = evento.target.id;
+    evento.preventDefault();
+    if(hilo == 'formulario_mensajes_nuevos'){
         var parametros = {
             "receptor" : $('#receptor').val(),
             "asunto" : $('#asunto').val(),
@@ -60,7 +60,7 @@ function enviarMensaje(evento) {
             url:   '../php/mensajeria.php',
             type:  'post',
             success:  function (respuesta) {
-
+                alert(respuesta);
             }
     });
     
@@ -70,23 +70,28 @@ function mostrarMensajes() {
     $.post("../php/verMensajes.php",function(datos) {
         var datos_mensajes = JSON.parse(datos);
         var div = $('#mensajes');
-        for(var i = 0; i < datos_mensajes.length; i++) {
-            var html = '<div id="'+ datos_mensajes[i].IDMENSAJE + '">';
-            html += '<p>'+ datos_mensajes[i].RECEPTOR + '</p>';
-            html += '<p>'+ datos_mensajes[i].ASUNTO + '</p>';
-            html += '<input id="hilo_'+datos_mensajes[i].IDMENSAJE+'" value="' + datos_mensajes[i].HILO + '" hidden />';
+        var html;
+        if (typeof datos_mensajes[0].HILO == "undefined") {
+            html = '<h3>'+datos_mensajes[0]+'<h3>';
             div.append(html);
         }
-
-        var mensajes = $("#mensajes div");
-        for (var i = 0; i < mensajes.length; i++) {
-            mensajes[i].addEventListener('click',verMensaje,false);
+        else {
+            for(var i = 0; i < datos_mensajes.length; i++) {
+                html = '<div id="'+ datos_mensajes[i].HILO + '">';
+                html += '<p>'+ datos_mensajes[i].ASUNTO + '</p>';
+                html += '<p>'+ datos_mensajes[i].RECEPTOR + '</p></div>';
+                div.append(html);
+            }
+            var mensajes = $("#mensajes div");
+            for (var i = 0; i < mensajes.length; i++) {
+                mensajes[i].addEventListener('click',verMensaje,false);
+            }
         }
     });
 }
 
 function verMensaje(evento) {
-    var hilo = $('#hilo_'+evento.target.id).val();
+    var hilo = evento.target.id || evento.target.parentElement.id;
     $('#mensajes').empty();
 
     $.ajax({
@@ -95,20 +100,19 @@ function verMensaje(evento) {
         type:  'post',
         success:  function (respuesta) {
             var mensajes = JSON.parse(respuesta);
-            var div = $('#mensaje_nuevo');
+            var div = $('#mensajes');
             var html = '<p>'+ mensajes[0].ASUNTO + '</p><hr>';
             div.append(html);
             for(var i = 0; i < mensajes.length; i++) {
-                var html = '<p>'+ mensajes[i].EMISOR + '</p>';
+                html = '<p>'+ mensajes[i].EMISOR + '</p>';
                 html += '<p>'+ mensajes[i].RECEPTOR + '</p>';
                 html += '<p>'+ mensajes[i].MENSAJE + '</p>';
                 html += '<hr>';
                 div.append(html);
             }
 
-            html = '<form action="#" method="POST" onsubmit="enviarMensaje(event)">';
+            html = '<form action="#" method="POST" id="'+hilo+'" onsubmit="enviarMensaje(event);verMensaje(event)">';
             html += '<textarea name="mensaje" id="mensaje" cols="45" rows="5"></textarea>';
-            html += '<input id="hilo" value="' + hilo + '" hidden />';
             html += '<input type="submit" name="enviar" id="enviar" value="Enviar"></form>';
             div.append(html);
         }

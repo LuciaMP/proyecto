@@ -36,7 +36,7 @@ function crearLista(parametros){
             });
             $("#principal div").css(
                 "cursor","pointer");
-            var novedad = $("#principal div");
+            var novedad = $("#principal *:nth-child(n)");
             for (var i = 0; i < novedad.length; i++) {
                 novedad[i].addEventListener('click',verNovedad,false);
             }
@@ -56,8 +56,9 @@ function crearLista(parametros){
 
 function verNovedad (evento) {
     cargarDiv('#principal','html/novedad.html');
+    var id = evento.target.id || evento.target.parentElement.id;
     $.ajax({
-            data:  {"id" : evento.target.id, "tabla" : "NOVEDADES"},
+            data:  {"id" : id, "tabla" : "NOVEDADES"},
             url:   'php/busqueda.php',
             type:  'post',
             beforeSend: function () {

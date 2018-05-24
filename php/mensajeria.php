@@ -20,36 +20,24 @@
         $sql = "INSERT INTO MENSAJES (ASUNTO, EMISOR, RECEPTOR, MENSAJE, HILO, FECHA) VALUES ('$asunto', (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$emisor'), (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$receptor'), '$mensaje', '$hilo', CURDATE())";
         mysqli_query($conexion,$sql);
         if (mysqli_errno($conexion) == 0){
-            echo '<script>
-                alert("El mensaje se envió exitosamente a '.$receptor.'.");
-                window.location.href = "../html/estructura_mensajes.html";
-                </script>';
+            echo 'El mensaje se envió exitosamente a '.$receptor.'.';
         }
         else {
-            echo '<script>
-                alert("Error al enviar el mensaje. Error número: '.mysqli_errno($conexion).'");
-                window.location.href = "../html/estructura_mensajes.html";
-                </script>';
+            echo '<Error al enviar el mensaje. Error número: '.mysqli_errno($conexion).'.';
         }   
     }
     else{
         $hilo = $_POST['hilo'];
 
-        $sql = "INSERT INTO MENSAJES (ASUNTO, EMISOR, RECEPTOR, MENSAJE, HILO, FECHA) SELECT ASUNTO, EMISOR, RECEPTOR, '$mensaje', '$hilo', CURDATE() FROM MENSAJES WHERE HILO = '$hilo'";
+        $sql = "INSERT INTO MENSAJES (ASUNTO, EMISOR, RECEPTOR, MENSAJE, HILO, FECHA) SELECT ASUNTO, EMISOR, RECEPTOR, '$mensaje', '$hilo', CURDATE() FROM MENSAJES WHERE HILO = '$hilo' LIMIT 1";
 
         mysqli_query($conexion,$sql);
         if (mysqli_errno($conexion) == 0){
-            echo '<script>
-                alert("El mensaje se envió exitosamente.");
-                window.location.href = "../html/estructura_mensajes.html";
-                </script>';
+            echo 'El mensaje se envió exitosamente.';
             //echo $hilo;
         }
         else {
-            echo '<script>
-                alert("Error al enviar el mensaje. Error número: '.mysqli_errno($conexion).'");
-                window.location.href = "../html/estructura_mensajes.html";
-                </script>';
+            echo 'Error al enviar el mensaje. Error número: '.mysqli_errno($conexion).'.';
         }   
     }
 	mysqli_close($conexion);

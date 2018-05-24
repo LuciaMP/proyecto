@@ -37,7 +37,7 @@ function crearLista(parametros){
             });
             $("#principal div").css(
                 "cursor","pointer");
-            var juegos = $("#principal div");
+            var juegos = $("#principal *:nth-child(n)");
             for (var i = 0; i < juegos.length; i++) {
                 juegos[i].addEventListener('click',verJuego,false);
             }
@@ -57,8 +57,9 @@ function crearLista(parametros){
 
 function verJuego (evento) {
     cargarDiv('#principal','html/juego.html');
+    var id = evento.target.id || evento.target.parentElement.id;
     $.ajax({
-            data:  {"id" : evento.target.id, "tabla" : "JUEGOS"},
+            data:  {"id" : id, "tabla" : "JUEGOS"},
             url:   'php/busqueda.php',
             type:  'post',
             beforeSend: function () {

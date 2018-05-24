@@ -1,12 +1,12 @@
 <?php
     session_start();
-    $emisor = $_SESSION['nick'];
+    $usuario = $_SESSION['nick'];
     //cadena de conexion 
     include('C:\xampp\seguridad\mysql.inc.php');
     mysqli_select_db($conexion,'proyecto') or die ('<p>Imposible conectar con la Base de Datos.</p>');
 	if(!isset($_POST['hilo'])){
 
-        $sql = "SELECT * FROM MENSAJES WHERE EMISOR = (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$emisor') GROUP BY HILO, FECHA";
+        $sql = "SELECT * FROM MENSAJES WHERE EMISOR = (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$usuario') OR RECEPTOR = (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$usuario') GROUP BY HILO ORDER BY FECHA DESC";
        
     	$resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla.</p>');
 
@@ -22,7 +22,7 @@
     else{
         $hilo = $_POST['hilo'];
 
-        $sql = "SELECT * FROM MENSAJES WHERE HILO = '$hilo'";
+        $sql = "SELECT * FROM MENSAJES WHERE HILO = '$hilo' ORDER BY FECHA DESC";
        
         $resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla.</p>');
 
