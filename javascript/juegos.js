@@ -59,17 +59,66 @@ function verJuego (evento) {
     cargarDiv('#principal','html/juego.html');
     var id = evento.target.id || evento.target.parentElement.id;
     $.ajax({
-            data:  {"id" : id, "tabla" : "JUEGOS"},
-            url:   'php/busqueda.php',
-            type:  'post',
-            beforeSend: function () {
-                
-            },
-            success:  function (respuesta) {
-                var datos_juegos = JSON.parse(respuesta);
-                $("#imagen_juego").attr("src",datos_juegos[0].CARATULA);
-                $("#titulo_juego").text(datos_juegos[0].NOMBRE);
-                $("#desc_juego").text(datos_juegos[0].DESCRIPCION);
+        data:  {"id" : id, "tabla" : "JUEGOS"},
+        url:   'php/busqueda.php',
+        type:  'post',
+        beforeSend: function () {
+            
+        },
+        success:  function (respuesta) {
+            var datos_juegos = JSON.parse(respuesta);
+            $("form").attr("id",datos_juegos[0].IDJUEGO);
+            $("#imagen_juego").attr("src",datos_juegos[0].CARATULA);
+            $("#titulo_juego").text(datos_juegos[0].NOMBRE);
+            $("#desc_juego").text(datos_juegos[0].DESCRIPCION);
+            verComentarios(evento);
+        }
+    });
+
+}
+
+function enviarComentario(evento) {
+    var id = evento.target.id;
+    evento.preventDefault();
+    var parametros = {
+        "id" : id,
+        "comentario" : $('#comentario').val()
+    };
+
+    $.ajax({
+        data:  parametros,
+        url:   'php/comentarios.php',
+        type:  'post',
+        success:  function (respuesta) {
+            alert(respuesta);
+            $('form').trigger("reset");
+        }
+    });
+}
+
+// Al pulsar en el div, solo se ejecuta una vez, pero al pulsar en la imagen o en el h2, se ejecuta dos veces
+function verComentarios(evento) {
+    var id = evento.target.id || evento.target.parentElement.id;
+    $.ajax({
+        data:  {"id" : id},
+        url:   'php/verComentarios.php',
+        type:  'post',
+        success:  function (respuesta) {
+            var datos_comentarios = JSON.parse(respuesta);
+            var div = $('#comentarios');
+            if (typeof datos_comentarios[0].IDJUEGO == "undefined") {
+                html = '<h3>' + datos_comentarios[0] + '<h3>';
+                div.append(html);
             }
+            else{
+                for(var i = 0; i < datos_comentarios.length; i++) {
+                    html = '<p>'+ datos_comentarios[i].IDUSUARIO + '</p>';
+                    html += '<p>'+ datos_comentarios[i].FECHA + '</p>';
+                    html += '<p>'+ datos_comentarios[i].COMENTARIO + '</p>';
+                    html += '<hr>';
+                    div.append(html);
+                }
+            }            
+        }
     });
 }

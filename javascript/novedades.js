@@ -58,17 +58,17 @@ function verNovedad (evento) {
     cargarDiv('#principal','html/novedad.html');
     var id = evento.target.id || evento.target.parentElement.id;
     $.ajax({
-            data:  {"id" : id, "tabla" : "NOVEDADES"},
-            url:   'php/busqueda.php',
-            type:  'post',
-            beforeSend: function () {
-                
-            },
-            success:  function (respuesta) {
-                var datos_novedades = JSON.parse(respuesta);
-                $("#imagen_novedad").attr("src",datos_novedades[0].IMAGEN);
-                $("#titulo_novedad").text(datos_novedades[0].TITULO);
-                $("#cont_novedad").text(datos_novedades[0].CONTENIDO);
-            }
+        data:  {"id" : id, "tabla" : "NOVEDADES"},
+        url:   'php/busqueda.php',
+        type:  'post',
+        beforeSend: function () {
+            
+        },
+        success:  function (respuesta) {
+            var datos_novedades = JSON.parse(respuesta);
+            $("#imagen_novedad").attr("src",datos_novedades[0].IMAGEN);
+            $("#titulo_novedad").text(datos_novedades[0].TITULO);
+            $("#cont_novedad").text(datos_novedades[0].CONTENIDO);
+        }
     });
 }

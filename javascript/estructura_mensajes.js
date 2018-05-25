@@ -61,6 +61,7 @@ function enviarMensaje(evento) {
             type:  'post',
             success:  function (respuesta) {
                 alert(respuesta);
+                $('form').trigger("reset");
             }
     });
     
@@ -79,7 +80,7 @@ function mostrarMensajes() {
             for(var i = 0; i < datos_mensajes.length; i++) {
                 html = '<div id="'+ datos_mensajes[i].HILO + '">';
                 html += '<p>'+ datos_mensajes[i].ASUNTO + '</p>';
-                html += '<p>'+ datos_mensajes[i].RECEPTOR + '</p></div>';
+                html += '<p>'+ datos_mensajes[i].RECEPTOR + '</p></div><hr>';
                 div.append(html);
             }
             var mensajes = $("#mensajes div");
@@ -113,9 +114,8 @@ function verMensaje(evento) {
 
             html = '<form action="#" method="POST" id="'+hilo+'" onsubmit="enviarMensaje(event);verMensaje(event)">';
             html += '<textarea name="mensaje" id="mensaje" cols="45" rows="5"></textarea>';
-            html += '<input type="submit" name="enviar" id="enviar" value="Enviar"></form>';
+            html += '<input type="submit" name="enviar" id="enviar" class="cajas_datos botones" value="Enviar"></form>';
             div.append(html);
         }
     });
-    
 }

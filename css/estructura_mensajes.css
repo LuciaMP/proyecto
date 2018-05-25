@@ -1,0 +1,104 @@
+/* Ajustes generales */
+html {
+	background-color: #003886;
+}
+
+* {
+	font-family: 'Acme';
+	box-sizing: border-box;
+}
+/* Tipos de letra */
+@font-face {
+    font-family: Acme;
+    src: url("../fonts/Acme-Regular.ttf");
+}
+
+@font-face {
+	font-family: Courgette;
+    src: url("../fonts/Courgette-Regular.ttf");
+}
+
+.acme {
+	font-family: 'acme';
+}
+
+.cour {
+	font-family: 'Courgette';
+}
+/* Estructura principal */
+.ajustes-estructura {
+	max-width: 1400px;
+	min-width: 300px;
+	width: 80%;
+	margin: auto;
+	position: relative;
+}
+
+header {
+	height: 125px;
+}
+
+main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#logo {
+	
+	width: 275px;	
+}
+
+.pestanas {
+	width: 50%;
+	float: left;
+	height: 60px;
+	font-size: 20px;
+}
+
+/* Ponerle height para tener scroll */
+#datos {
+	width: 100%;
+	float: left;
+	background-color: #E0A92C;
+	overflow: auto;
+}
+
+.cajas_datos {
+	width: 100%;
+	float: left;
+	height: 50px;
+}
+
+textarea {
+	width: 100%;
+	height: 200px;
+}
+
+.contenedor {
+	background-color: white;
+    border: 1px solid grey;
+    text-align: center;
+    padding-top: 2%;
+    font-size: 14px;
+}
+
+.botones {
+	background-color: #BDBDBD;
+}
+
+
+@media only screen and (min-width: 768px) {
+	
+	#logo {
+		width: 341px;	
+	}
+
+	#contenedor {
+		width: 60%;
+	}
+	
+	header {
+		height: 165px;
+	}
+}
