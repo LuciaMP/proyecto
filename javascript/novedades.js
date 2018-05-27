@@ -19,31 +19,24 @@ function crearLista(parametros){
         type:  'post',
         success:  function (respuesta) {
             var dato_objeto = JSON.parse(respuesta);
-            var section = $('section');
-            section.empty();
+            var contenedor = $('#principal');
+            contenedor.empty();
             for (var i = 0; i < dato_objeto.datos.length; i++) {
                 var div = '<div id="' + dato_objeto.datos[i].IDNOVEDAD + '">';
-                div += '<img src="' + dato_objeto.datos[i].IMAGEN + '"">';
                 div +='<h2>'+ dato_objeto.datos[i].TITULO + '</h2>';
+                div += '<img src="' + dato_objeto.datos[i].IMAGEN + '"">';
                 div +='<p>'+ dato_objeto.datos[i].CONTENIDO + '</p>';
-                section.append(div);
+                contenedor.append(div);
             }
-            $("#principal div").css({
-                "cursor": "pointer",
-                "cursor": "hand",
-                "margin": "15px 0px 15px 0px",
-                "background-color": "#BDBDBD"
-            });
-            $("#principal div").css(
-                "cursor","pointer");
-            var novedad = $("#principal *:nth-child(n)");
+            var novedad = $("#principal div");
             for (var i = 0; i < novedad.length; i++) {
                 novedad[i].addEventListener('click',verNovedad,false);
+                $(novedad[i]).addClass("listas");
             }
 
             for (var i = 0; i < dato_objeto.paginas.length; i++) {
                 var button = $(dato_objeto.paginas[i]);
-                section.append(button);
+                contenedor.append(button);
             }
 
             var botones = $("#principal button");

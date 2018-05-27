@@ -3,13 +3,12 @@
     include('C:\xampp\seguridad\mysql.inc.php');
     mysqli_select_db($conexion,'proyecto') or die ('<p>Imposible conectar con la Base de Datos.</p>');
 
-    $tabla = $_POST["tabla"];
-
     if(isset($_POST["buscador"])){
         $busqueda = $_POST["buscador"];
     }
     else {
         $busqueda = $_POST["id"];
+        $tabla = $_POST["tabla"];
     }
 
     //DEBO PREPARAR LOS TEXTOS QUE VOY A BUSCAR si la cadena existe 

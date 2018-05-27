@@ -52,18 +52,27 @@ function accionPestanas(evento){
 function buscar(){
 	$('#buscador').keyup(function(e) {
 		if(e.keyCode == 13) {
-			cargarDiv("#principal","html/juegos.html");
 			cambiarFondo("menu_juegos");
 			//var dato_objeto = getData("php/busqueda.php",$('#buscador').serialize());
-			$.post("php/busqueda.php",function(datos) {
+			$.post("php/busqueda.php",$("#buscador").serialize(),function(datos) {
                 var dato_objeto = JSON.parse(datos);
-				var $ul = $('#juegos');
-				$ul.empty();
+				var contenedor = $('#principal');
+				$(contenedor).empty();
 				for (var i = 0; i < dato_objeto.length; i++) {
-					var $li = $('<li>'+ dato_objeto[i].NOMBRE +'</li>');
-					$ul.append($li);
+					var div = '<div id="' + dato_objeto[i].IDJUEGO + '">';
+					div +='<h2>'+ dato_objeto[i].NOMBRE + '</h2>';
+	                div += '<img src="' + dato_objeto[i].CARATULA + '"">';
+	                contenedor.append(div);
 				}
-			});	
+				$("#principal div").css({
+	                "cursor": "pointer",
+	                "cursor": "hand",
+	                "margin": "15px 0px 15px 0px",
+	                "background-color": "#BDBDBD"
+	            });
+	            $("#principal div").css(
+	                "cursor","pointer");
+			});
 		}
 	});
 }

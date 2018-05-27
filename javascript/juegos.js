@@ -1,7 +1,7 @@
 $(function() {
-    //if ($("#juegos li").length == 0) {
+    if ($("#principal div").length == 0) {
         mostrarJuegosPrimeraVez();
-    //}
+    }
 });
 
 function mostrarJuegosPrimeraVez() {
@@ -21,30 +21,24 @@ function crearLista(parametros){
         type:  'post',
         success:  function (respuesta) {
             var dato_objeto = JSON.parse(respuesta);
-            var section = $('section');
-            section.empty();
+            var contenedor = $('#principal');
+            contenedor.empty();
             for (var i = 0; i < dato_objeto.datos.length; i++) {
                 var div = '<div id="' + dato_objeto.datos[i].IDJUEGO + '">';
-                div += '<img src="' + dato_objeto.datos[i].CARATULA + '"">';
                 div +='<h2>'+ dato_objeto.datos[i].NOMBRE + '</h2>';
-                section.append(div);
+                div += '<img src="' + dato_objeto.datos[i].CARATULA + '"">';  
+                contenedor.append(div);
+
             }
-            $("#principal div").css({
-                "cursor": "pointer",
-                "cursor": "hand",
-                "margin": "15px 0px 15px 0px",
-                "background-color": "#BDBDBD"
-            });
-            $("#principal div").css(
-                "cursor","pointer");
-            var juegos = $("#principal *:nth-child(n)");
+            var juegos = $("#principal div");
             for (var i = 0; i < juegos.length; i++) {
                 juegos[i].addEventListener('click',verJuego,false);
+                $(juegos[i]).addClass("listas");
             }
 
             for (var i = 0; i < dato_objeto.paginas.length; i++) {
                 var button = $(dato_objeto.paginas[i]);
-                section.append(button);
+                contenedor.append(button);
             }
 
             var botones = $("#principal button");
