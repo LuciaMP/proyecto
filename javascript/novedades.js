@@ -4,13 +4,13 @@ $(function() {
 
 function mostrarNovedadPrimeraVez() {
     var parametros = {"pagina" : 1, "tabla" : "NOVEDADES"};
-    var dato_objeto = JSON.parse(llamarAjax(parametros,'php/paginacion.php',false));
+    var dato_objeto = JSON.parse(llamarAjax(parametros,'php/paginacion.php'));
     crearLista(dato_objeto);
 }
 
 function mostrarNovedades(event){
     var parametros = {"pagina" : event.target.value, "tabla" : "NOVEDADES"};
-    var dato_objeto = JSON.parse(llamarAjax(parametros,'php/paginacion.php',false));
+    var dato_objeto = JSON.parse(llamarAjax(parametros,'php/paginacion.php'));
     crearLista(dato_objeto);
 }
 
@@ -26,7 +26,7 @@ function crearLista(dato_objeto){
     }
     var novedad = $("#principal div");
     for (var i = 0; i < novedad.length; i++) {
-        novedad[i].addEventListener('click',verNovedad,false);
+        novedad[i].addEventListener('click',verNovedad);
         $(novedad[i]).addClass("listas");
     }
 
@@ -45,7 +45,7 @@ function verNovedad (evento) {
     cargarDiv('#principal','html/novedad.html');
     var id = evento.target.id || evento.target.parentElement.id;
     var parametros = {"id" : id, "tabla" : "NOVEDADES"};
-    var datos_novedades = JSON.parse(llamarAjax(parametros,'php/busqueda.php',true));
+    var datos_novedades = JSON.parse(llamarAjax(parametros,'php/busqueda.php'));
 
     $("#imagen_novedad").attr("src",datos_novedades[0].IMAGEN);
     $("#titulo_novedad").text(datos_novedades[0].TITULO);

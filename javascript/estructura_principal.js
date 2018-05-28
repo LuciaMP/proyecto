@@ -53,26 +53,28 @@ function buscar(){
 	$('#buscador').keyup(function(e) {
 		if(e.keyCode == 13) {
 			cambiarFondo("menu_juegos");
-			//var dato_objeto = getData("php/busqueda.php",$('#buscador').serialize());
-			$.post("php/busqueda.php",$("#buscador").serialize(),function(datos) {
-                var dato_objeto = JSON.parse(datos);
-				var contenedor = $('#principal');
-				$(contenedor).empty();
-				for (var i = 0; i < dato_objeto.length; i++) {
+			var dato_objeto = JSON.parse(llamarAjax($("#buscador").serialize(),'php/busqueda.php'))
+			var contenedor = $('#principal');
+			$(contenedor).empty();
+			if (typeof dato_objeto[0].IDJUEGO == "undefined") {
+	            html = '<h3>'+dato_objeto[0]+'<h3>';
+	            contenedor.append(html);
+	        }else{
+	        	for (var i = 0; i < dato_objeto.length; i++) {
 					var div = '<div id="' + dato_objeto[i].IDJUEGO + '">';
 					div +='<h2>'+ dato_objeto[i].NOMBRE + '</h2>';
 	                div += '<img src="' + dato_objeto[i].CARATULA + '"">';
 	                contenedor.append(div);
 				}
-				$("#principal div").css({
-	                "cursor": "pointer",
-	                "cursor": "hand",
-	                "margin": "15px 0px 15px 0px",
-	                "background-color": "#BDBDBD"
-	            });
-	            $("#principal div").css(
-	                "cursor","pointer");
-			});
+	        }
+			$("#principal div").css({
+                "cursor": "pointer",
+                "cursor": "hand",
+                "margin": "15px 0px 15px 0px",
+                "background-color": "#BDBDBD"
+            });
+            $("#principal div").css(
+                "cursor","pointer");
 		}
 	});
 }
@@ -119,6 +121,13 @@ function modificarUsuario(evento){
             "sexo" : $('#sexo').val(),
             "ciudad" : $('#ciudad').val(),
     };
+
+    var respuesta = llamarAjax(parametros,'php/modificacionUsuario.php');
+    alert(respuesta);
+    $("#nick").attr("disabled","disabled");
+	$("#fechan").attr("disabled","disabled");
+    $("#guardar").val(texto);
+    /*
     $.ajax({
             data:  parametros,
             url:   'php/modificacionUsuario.php',
@@ -135,4 +144,5 @@ function modificarUsuario(evento){
                 $("#guardar").val(texto);
             }
     });
+    */
 }

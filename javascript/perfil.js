@@ -6,14 +6,11 @@ $(document).ready(function() {
 });
 
 function rellenarDatos() {
-    //var dato = getData("php/datosUsuario.php");
-    $.post("php/datosUsuario.php",function(datos) {
-        var dato = JSON.parse(datos);
-        $("#nick").val(dato.nick.slice(0, dato.nick.indexOf("@")));
-        $("#password").val(dato.password);
-        $("#correo").val(dato.email);
-        $("#fechan").val(dato.fechan.split("-").reverse().join("-"));
-        $("#sexo").val(dato.sexo.toUpperCase());
-        $("#ciudad").val(dato.ciudad.charAt(0).toUpperCase() + dato.ciudad.slice(1));
-    });
+    var dato = JSON.parse(llamarAjax(null,'php/datosUsuario.php'));
+    $("#nick").val(dato.NICK.slice(0, dato.NICK.indexOf("@")));
+    $("#password").val(dato.PASSWORD);
+    $("#correo").val(dato.EMAIL);
+    $("#fechan").val(dato.FECHAN.split("-").reverse().join("-"));
+    $("#sexo").val(dato.SEXO.toUpperCase());
+    $("#ciudad").val(dato.CIUDAD.charAt(0).toUpperCase() + dato.CIUDAD.slice(1));
 }

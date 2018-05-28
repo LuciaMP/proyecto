@@ -56,13 +56,13 @@ function validarVacio(evento) {
 	return empty;
 }
 
-function llamarAjax (parametros,url,async){
+function llamarAjax (parametros,url){
     var datos;
     $.ajax({
         data:  parametros,
         url:   url,
         type:  'post',
-        async: async,
+        async: false,
         success:  function (respuesta) {
             datos = respuesta;   
         }

@@ -6,13 +6,13 @@ $(function() {
 
 function mostrarJuegosPrimeraVez() {
     var parametros = {"pagina" : 1, "tabla" : "JUEGOS"};
-    var dato_objeto = JSON.parse(llamarAjax(parametros,'php/paginacion.php',false));
+    var dato_objeto = JSON.parse(llamarAjax(parametros,'php/paginacion.php'));
     crearLista(dato_objeto);
 }
 
 function mostrarJuegos(event){
     var parametros = {"pagina" : event.target.value, "tabla" : "JUEGOS"};
-    var dato_objeto = JSON.parse(llamarAjax(parametros,'php/paginacion.php',false));
+    var dato_objeto = JSON.parse(llamarAjax(parametros,'php/paginacion.php'));
     crearLista(dato_objeto);
 }
 
@@ -44,7 +44,7 @@ function verJuego (evento) {
     cargarDiv('#principal','html/juego.html');
     var id = evento.target.id || evento.target.parentElement.id;
     var parametros = {"id" : id, "tabla" : "JUEGOS"};
-    var datos_juegos = JSON.parse(llamarAjax(parametros,'php/busqueda.php',true));
+    var datos_juegos = JSON.parse(llamarAjax(parametros,'php/busqueda.php'));
 
     $("form").attr("id",datos_juegos[0].IDJUEGO);
     $("#imagen_juego").attr("src",datos_juegos[0].CARATULA);
@@ -61,7 +61,7 @@ function enviarComentario(evento) {
         "comentario" : $('#comentario').val()
     };
 
-    var respuesta = llamarAjax(parametros,'php/comentarios.php',false);
+    var respuesta = llamarAjax(parametros,'php/comentarios.php');
     alert(respuesta);
     $('form').trigger("reset");
 }

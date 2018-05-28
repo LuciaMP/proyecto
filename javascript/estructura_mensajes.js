@@ -55,48 +55,52 @@ function enviarMensaje(evento) {
         };
     }
 
-    var respuesta = llamarAjax(parametros,'../php/mensajeria.php',false);
+    var respuesta = llamarAjax(parametros,'../php/mensajeria.php');
     alert(respuesta);
-    $('form').trigger("reset");    
+    $('form').trigger("reset");
 }
 
 function mostrarMensajes() {
-    var datos_mensajes = JSON.parse(llamarAjax(null,'../php/verMensajes.php',false));
-    var div = $('#mensajes');
-    alert(datos_mensajes[0].HILO);
-    var html;
-    if (typeof datos_mensajes[0].HILO == "undefined") {
-        html = '<h3>'+datos_mensajes[0]+'<h3>';
-        div.append(html);
-    }
-    else {
-        for(var i = 0; i < datos_mensajes.length; i++) {
-            html = '<div id="'+ datos_mensajes[i].HILO + '">';
-            html += '<p>'+ datos_mensajes[i].ASUNTO + '</p>';
-            html += '<p>'+ datos_mensajes[i].RECEPTOR + '</p></div><hr>';
+    //var datos_mensajes = JSON.parse(llamarAjax(null,'../php/verMensajes.php'));
+
+    $.post("../php/verMensajes.php",function(datos) {
+        var datos_mensajes = JSON.parse(datos);
+        var div = $('#mensajes');
+        var html;
+        if (typeof datos_mensajes[0].HILO == "undefined") {
+            html = '<h3>'+datos_mensajes[0]+'<h3>';
             div.append(html);
         }
-        var mensajes = $("#mensajes div");
-        for (var i = 0; i < mensajes.length; i++) {
-            mensajes[i].addEventListener('click',verMensaje,false);
+        else {
+            for(var i = 0; i < datos_mensajes.length; i++) {
+                html = '<div id="'+ datos_mensajes[i].HILO + '">';
+                html += '<p>'+ datos_mensajes[i].ASUNTO + '</p>';
+                html += '<p>'+ datos_mensajes[i].RECEPTOR + '</p></div><hr>';
+                div.append(html);
+            }
+            var mensajes = $("#mensajes div");
+            for (var i = 0; i < mensajes.length; i++) {
+                mensajes[i].addEventListener('click',verMensaje,false);
+            }
         }
-    }
+    });
 }
 
 function verMensaje(evento) {
-    var parametros = evento.target.id || evento.target.parentElement.id;
+    var hilo = evento.target.id || evento.target.parentElement.id;
     $('#mensajes').empty();
 
-    var mensajes = llamarAjax(parametros,'../php/verMensajes.php',false);
-    
-    var mensajes = JSON.parse(respuesta);
+    var parametros = {"hilo" : hilo};
+
+    var datos_mensajes = JSON.parse(llamarAjax(parametros,'../php/verMensajes.php'));
+
     var div = $('#mensajes');
-    var html = '<p>'+ mensajes[0].ASUNTO + '</p><hr>';
+    var html = '<p>'+ datos_mensajes[0].ASUNTO + '</p><hr>';
     div.append(html);
-    for(var i = 0; i < mensajes.length; i++) {
-        html = '<p>'+ mensajes[i].EMISOR + '</p>';
-        html += '<p>'+ mensajes[i].RECEPTOR + '</p>';
-        html += '<p>'+ mensajes[i].MENSAJE + '</p>';
+    for(var i = 0; i < datos_mensajes.length; i++) {
+        html = '<p>'+ datos_mensajes[i].EMISOR + '</p>';
+        html += '<p>'+ datos_mensajes[i].RECEPTOR + '</p>';
+        html += '<p>'+ datos_mensajes[i].MENSAJE + '</p>';
         html += '<hr>';
         div.append(html);
     }

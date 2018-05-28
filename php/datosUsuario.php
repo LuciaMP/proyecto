@@ -9,12 +9,6 @@
     $resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla juegos.</p>');
     $datos = new stdClass();
     $registro = mysqli_fetch_assoc($resultado);
-    $datos -> id = $registro["IDUSUARIO"];
-    $datos -> nick = $registro["NICK"];
-    $datos -> password = $registro["PASSWORD"];
-    $datos -> email = $registro["EMAIL"];
-    $datos -> fechan = $registro["FECHAN"];
-    $datos -> sexo = $registro["SEXO"];
-    $datos -> ciudad = $registro["CIUDAD"];
+    $datos = $registro;
     echo json_encode($datos);
 ?>
