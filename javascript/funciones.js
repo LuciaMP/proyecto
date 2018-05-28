@@ -55,3 +55,17 @@ function validarVacio(evento) {
 	});
 	return empty;
 }
+
+function llamarAjax (parametros,url,async){
+    var datos;
+    $.ajax({
+        data:  parametros,
+        url:   url,
+        type:  'post',
+        async: async,
+        success:  function (respuesta) {
+            datos = respuesta;   
+        }
+    });
+    return datos;
+}

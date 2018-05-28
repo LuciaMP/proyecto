@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $idusuario = $_SESSION['nick'];
+    $usuario = $_SESSION['nick'];
     $comentario = $_POST['comentario'];
     $idjuego = $_POST['id'];
 
@@ -8,7 +8,7 @@
     include('C:\xampp\seguridad\mysql.inc.php');
     mysqli_select_db($conexion,'proyecto') or die ('<p>Imposible conectar con la Base de Datos.</p>');
 
-    $sql = "INSERT INTO COMENTARIOS (IDJUEGO, IDUSUARIO, COMENTARIO, FECHA) VALUES ('$idjuego', (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$idusuario'), '$comentario', CURDATE())";
+    $sql = "INSERT INTO COMENTARIOS (IDJUEGO, IDUSUARIO, COMENTARIO, FECHA) VALUES ('$idjuego', (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$usuario'), '$comentario', CURDATE())";
 
     mysqli_query($conexion,$sql);
     if (mysqli_errno($conexion) == 0){
