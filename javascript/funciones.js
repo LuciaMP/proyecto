@@ -1,6 +1,23 @@
 
 function cargarDiv(div,url) {
-	$(div).load(url);
+	$.ajax({
+		data:  {},
+        url:   url,
+        type:  'post',
+        async: false,
+        success:  function (respuesta) { 
+        	$(div).html(respuesta);  
+            console.log("cargarDiv");
+        }
+    });
+	/*$(div).load(url, function(responseTxt, statusTxt, xhr){
+        if(statusTxt == "success")
+            console.log("cargarDiv");
+            return true;
+        if(statusTxt == "error")
+        	console.log("No cargado");
+            return false;
+    });*/
 }
 
 function validarDatos(evento){
@@ -65,6 +82,7 @@ function llamarAjax (parametros,url){
         async: false,
         success:  function (respuesta) {
             datos = respuesta;   
+            console.log("ajax");
         }
     });
     return datos;

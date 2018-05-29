@@ -53,7 +53,7 @@ function buscar(){
 	$('#buscador').keyup(function(e) {
 		if(e.keyCode == 13) {
 			cambiarFondo("menu_juegos");
-			var dato_objeto = JSON.parse(llamarAjax($("#buscador").serialize(),'php/busqueda.php'))
+			var dato_objeto = JSON.parse(llamarAjax($("#buscador").serialize(),'php/busqueda.php'));
 			var contenedor = $('#principal');
 			$(contenedor).empty();
 			if (typeof dato_objeto[0].IDJUEGO == "undefined") {

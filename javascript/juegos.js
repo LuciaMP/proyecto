@@ -45,12 +45,12 @@ function verJuego (evento) {
     var id = evento.target.id || evento.target.parentElement.id;
     var parametros = {"id" : id, "tabla" : "JUEGOS"};
     var datos_juegos = JSON.parse(llamarAjax(parametros,'php/busqueda.php'));
-
+    console.log("VerJuego");
+    $("#principal").append("<p>"+datos_juegos[0].NOMBRE+"</p>");
     $("form").attr("id",datos_juegos[0].IDJUEGO);
     $("#imagen_juego").attr("src",datos_juegos[0].CARATULA);
     $("#titulo_juego").text(datos_juegos[0].NOMBRE);
     $("#desc_juego").text(datos_juegos[0].DESCRIPCION);
-    verComentarios(evento);
 }
 
 function enviarComentario(evento) {
