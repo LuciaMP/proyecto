@@ -10,38 +10,6 @@ function cargarDiv(div,url) {
             console.log("cargarDiv");
         }
     });
-	/*$(div).load(url, function(responseTxt, statusTxt, xhr){
-        if(statusTxt == "success")
-            console.log("cargarDiv");
-            return true;
-        if(statusTxt == "error")
-        	console.log("No cargado");
-            return false;
-    });*/
-}
-
-function validarDatos(evento){
-	if(!validarVacio(evento)){
-		if(!$('#nick').val().match(/^[A-Za-z0-9_-]{5,20}$/)){
-			alert("Nombre de Usuario inválido.");
-			evento.preventDefault();
-		}
-		if(!$('#password').val().match(/((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[_-]).{8,16})/)){
-		//if(!$('#password').val().match(/^[A-Za-z0-9_-]{5,20}$/)){
-			alert("Contraseña inválida.");
-			evento.preventDefault();
-			if($('#v_password').length != 0){
-				if($('#password').val() != $('#v_password').val()){
-					alert("Las contraseñas no coinciden.");
-					evento.preventDefault();
-				}
-			}
-		}
-	}
-	else{
-		alert("Todos los campos son obligatorios.");
-		evento.preventDefault();
-	}
 }
 
 function validarVacio(evento) {
@@ -52,17 +20,17 @@ function validarVacio(evento) {
 	    	$(this).siblings("#requerido").remove();
 	    }
     });
-	var empty = false;
+	var empty = true;
 	$("#"+formulario+' input,'+"#"+formulario+' select').each(function() {
 		if ($(this).attr('type') != "submit" && $(this).attr('type') != "reset") {
 			if ($(this).val().length == 0 || $(this).val() == "") {
-				empty = true;
+				empty = false;
 				$(this).css("background-color","#fc9f9f");
 			}
 			if ($(this).attr("type") == "checkbox" || $(this).attr("type") == "radio") {
 				var nombre = $(this).prop("name");
 				if (!$("input[name='"+nombre+"']").is(":checked")) {
-					empty = true;
+					empty = false;
 					if (!$(this).siblings("#requerido").length) {
 						$(this).parent().append("<span id='requerido' style='color:red;font-size:10px;'>Campo requerido</span>");
 					}

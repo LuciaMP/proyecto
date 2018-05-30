@@ -35,3 +35,27 @@ function accionPestanas(evento){
             cargarDiv('#datos','login.html');
     }
 }
+
+function validarDatos_signup(evento){
+    if(validarVacio(evento)){
+        if(!$('#nick').val().match(/^[A-Za-z0-9_-]{5,20}$/)){
+            alert("El nombre de usuario debe contener entre 5 y 20 caracteres alfanuméricos, incluidos '-' y '_'");
+            return false;
+        }
+        else if(!$('#password').val().match(/((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[_-]).{8,16})/)){
+            alert("La contraseña debe contener entre 8 y 16 caracteres, incluidos '-' y '_', comenzando por un número o una letra ");
+            return false;
+        }
+        else if($('#password').val() != $('#v_password').val()) {
+            alert("Las contraseñas no coinciden.");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    else{
+        alert("Todos los campos son obligatorios.");
+        return false;
+    }
+}

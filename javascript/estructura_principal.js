@@ -110,39 +110,3 @@ function crearDesplegable(){
 		nav.removeChild(desplegable);
 	}
 }
-
-function modificarUsuario(evento){
-	evento.preventDefault();
-	var texto = $("#guardar").val();
-	var parametros = {
-            "nick" : $('#nick').val(),
-            "password" : $('#password').val(),
-            "correo" : $('#correo').val(),
-            "sexo" : $('#sexo').val(),
-            "ciudad" : $('#ciudad').val(),
-    };
-
-    var respuesta = llamarAjax(parametros,'php/modificacionUsuario.php');
-    alert(respuesta);
-    $("#nick").attr("disabled","disabled");
-	$("#fechan").attr("disabled","disabled");
-    $("#guardar").val(texto);
-    /*
-    $.ajax({
-            data:  parametros,
-            url:   'php/modificacionUsuario.php',
-            type:  'post',
-            beforeSend: function () {
-                $("#guardar").val("Procesando...");
-                $("#nick").removeAttr("disabled");
-       	 		$("#fechan").removeAttr("disabled");
-            },
-            success:  function (respuesta) {
-                alert(respuesta);
-                $("#nick").attr("disabled","disabled");
-       	 		$("#fechan").attr("disabled","disabled");
-                $("#guardar").val(texto);
-            }
-    });
-    */
-}
