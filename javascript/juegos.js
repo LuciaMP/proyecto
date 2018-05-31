@@ -46,11 +46,13 @@ function verJuego (evento) {
     var parametros = {"id" : id, "tabla" : "JUEGOS"};
     var datos_juegos = JSON.parse(llamarAjax(parametros,'php/busqueda.php'));
     console.log("VerJuego");
-    $("#principal").append("<p>"+datos_juegos[0].NOMBRE+"</p>");
+    
     $("form").attr("id",datos_juegos[0].IDJUEGO);
     $("#imagen_juego").attr("src",datos_juegos[0].CARATULA);
     $("#titulo_juego").text(datos_juegos[0].NOMBRE);
     $("#desc_juego").text(datos_juegos[0].DESCRIPCION);
+
+    verComentarios(evento);
 }
 
 function enviarComentario(evento) {
@@ -66,7 +68,6 @@ function enviarComentario(evento) {
     $('form').trigger("reset");
 }
 
-// Al pulsar en el div, solo se ejecuta una vez, pero al pulsar en la imagen o en el h2, se ejecuta dos veces
 function verComentarios(evento) {
     var id = evento.target.id || evento.target.parentElement.id;
     var parametros = {"id" : id};

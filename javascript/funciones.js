@@ -6,10 +6,11 @@ function cargarDiv(div,url) {
         type:  'post',
         async: false,
         success:  function (respuesta) { 
-        	$(div).html(respuesta);  
-            console.log("cargarDiv");
+        	$(div).html(respuesta);
         }
     });
+    /*var php = '<?php include("../php/funciones.php"); logueado(); ?>';
+	$('#principal').append(php);*/
 }
 
 function validarVacio(evento) {
@@ -49,8 +50,7 @@ function llamarAjax (parametros,url){
         type:  'post',
         async: false,
         success:  function (respuesta) {
-            datos = respuesta;   
-            console.log("ajax");
+            datos = respuesta;
         }
     });
     return datos;
