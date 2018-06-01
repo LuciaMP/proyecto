@@ -45,13 +45,15 @@ function verJuego (evento) {
     var id = evento.target.id || evento.target.parentElement.id;
     var parametros = {"id" : id, "tabla" : "JUEGOS"};
     var datos_juegos = JSON.parse(llamarAjax(parametros,'php/busqueda.php'));
-    console.log("VerJuego");
     
     $("form").attr("id",datos_juegos[0].IDJUEGO);
     $("#imagen_juego").attr("src",datos_juegos[0].CARATULA);
     $("#titulo_juego").text(datos_juegos[0].NOMBRE);
     $("#desc_juego").text(datos_juegos[0].DESCRIPCION);
+    
+    votar();
 
+    verVotaciones(id);
     verComentarios(evento);
 }
 
@@ -70,9 +72,8 @@ function enviarComentario(evento) {
 
 function verComentarios(evento) {
     var id = evento.target.id || evento.target.parentElement.id;
-    var parametros = {"id" : id};
 
-    var datos_comentarios = JSON.parse(llamarAjax(parametros,'php/verComentarios.php'));
+    var datos_comentarios = JSON.parse(llamarAjax({"id" : id},'php/verComentarios.php'));
 
     var div = $('#comentarios');
     div.empty();
@@ -89,4 +90,28 @@ function verComentarios(evento) {
             div.append(html);
         }
     }
+}
+
+function votar(){
+    $('.ratings').rating(function(vote,event){
+        var parametros = {
+            "idjuego" : $('form').attr('id'),
+            "voto" : vote
+        }
+
+        var respuesta = llamarAjax(parametros,'php/votaciones.php');
+        alert(respuesta);
+        verVotaciones($('form').attr('id'));
+    });
+}
+
+function verVotaciones(id) {
+    var votaciones = JSON.parse(llamarAjax({"id" : id},'php/verVotaciones.php'));
+
+    var div = $('#puntuaciones');
+    div.empty();
+    
+    var html = '<p>Votos: ' + votaciones.VOTOS + '</p>';
+    html += '<p>Nota: ' + votaciones.NOTA + '</p>';
+    div.append(html);
 }
