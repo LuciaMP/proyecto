@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-05-2018 a las 17:52:29
+-- Tiempo de generación: 01-06-2018 a las 14:52:45
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 7.2.5
 
@@ -36,6 +36,25 @@ CREATE TABLE `comentarios` (
   `FECHA` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `comentarios`
+--
+
+INSERT INTO `comentarios` (`IDCOMENTARIO`, `IDJUEGO`, `IDUSUARIO`, `COMENTARIO`, `FECHA`) VALUES
+(1, 1, 3, 'Hola', '2018-05-25'),
+(2, 1, 3, 'El juego mola jeje', '2018-05-25'),
+(3, 1, 3, 'Lo sÃ© jiji', '2018-05-25'),
+(4, 3, 3, 'Es el mejor juego!!!!!!', '2018-05-25'),
+(5, 10, 2, 'Prueba', '2018-05-28'),
+(6, 10, 2, 'Prueba2', '2018-05-28'),
+(7, 1, 3, 'Hola', '2018-05-30'),
+(8, 2, 2, 'A ver cuando lo sacan para ps4', '2018-06-01'),
+(9, 3, 2, 'Prueba', '2018-06-01'),
+(10, 2, 2, 'Prueba', '2018-06-01'),
+(11, 9, 2, 'Es como el Mortal Kombat', '2018-06-01'),
+(12, 9, 2, 'Pero este es mejor porque tiene superheroes', '2018-06-01'),
+(13, 9, 3, 'Jajaja', '2018-06-01');
+
 -- --------------------------------------------------------
 
 --
@@ -57,16 +76,16 @@ CREATE TABLE `juegos` (
 --
 
 INSERT INTO `juegos` (`IDJUEGO`, `NOMBRE`, `DESCRIPCION`, `VOTOS`, `PUNTUACION`, `NOTA`, `CARATULA`) VALUES
-(1, 'Mario Kart', 'Prueba', 4, 8, 10, 'media/caratulas/1.png'),
-(2, 'Medievil', 'Prueba', 2, 7, 9, '2.jpg'),
-(3, 'Fire Emblem Awakening', 'Prueba', 5, 9, 10, '3.jpg'),
-(4, 'Fire Emblem Fates', 'Prueba', 4, 9, 8, '4.jpg'),
-(5, 'Fire Emblem Echoes', 'Prueba', 9, 5, 9, '5.jpg'),
-(6, 'Nioh', 'Prueba', 6, 7, 7, '6.jpg'),
-(7, 'Crash Bandicoot', 'Prueba', 3, 6, 7, '7.jpg'),
-(8, 'Final Fantasy XV', 'Prueba', 1, 6, 8, '8.jpg'),
-(9, 'Injustice 2', 'Prueba', 1, 5, 5, '9.jpg'),
-(10, 'Nier Automata', 'Prueba', 11, 10, 10, '10.jpg');
+(1, 'Mario Kart', 'Prueba', 2, 6, 3, 'media/caratulas/1.png'),
+(2, 'Medievil', 'Prueba', 0, 0, 0, 'media/caratulas/1.png'),
+(3, 'Fire Emblem Awakening', 'Prueba', 0, 0, 0, 'media/caratulas/1.png'),
+(4, 'Fire Emblem Fates', 'Prueba', 0, 0, 0, 'media/caratulas/1.png'),
+(5, 'Fire Emblem Echoes', 'Prueba', 0, 0, 0, 'media/caratulas/1.png'),
+(6, 'Nioh', 'Prueba', 0, 0, 0, 'media/caratulas/1.png'),
+(7, 'Crash Bandicoot', 'Prueba', 0, 0, 0, 'media/caratulas/1.png'),
+(8, 'Final Fantasy XV', 'Prueba', 0, 0, 0, 'media/caratulas/1.png'),
+(9, 'Injustice 2', 'Prueba', 2, 8, 4, 'media/caratulas/1.png'),
+(10, 'Nier Automata', 'Prueba', 0, 0, 0, 'media/caratulas/1.png');
 
 -- --------------------------------------------------------
 
@@ -89,7 +108,9 @@ CREATE TABLE `mensajes` (
 --
 
 INSERT INTO `mensajes` (`IDMENSAJE`, `ASUNTO`, `EMISOR`, `RECEPTOR`, `MENSAJE`, `HILO`, `FECHA`) VALUES
-(28, 'Prueba', 3, 2, 'Hola', 1, '2018-05-24');
+(1, 'Prueba', 2, 3, 'Hola', 1, '2018-05-28'),
+(2, 'Prueba', 2, 3, 'Prueba', 1, '2018-05-28'),
+(3, 'Prueba', 2, 3, 'Hola', 1, '2018-05-28');
 
 -- --------------------------------------------------------
 
@@ -147,6 +168,27 @@ INSERT INTO `usuarios` (`IDUSUARIO`, `NICK`, `PASSWORD`, `EMAIL`, `FECHAN`, `SEX
 (4, 'prueba2@localhost', 'Prueba_2', 'prueba2@gmail.com', '1997-07-08', 'm', 'sevilla'),
 (5, '@localhost', '', '', '0000-00-00', '', '');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `votaciones`
+--
+
+CREATE TABLE `votaciones` (
+  `IDUSUARIO` int(4) NOT NULL,
+  `IDJUEGO` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `votaciones`
+--
+
+INSERT INTO `votaciones` (`IDUSUARIO`, `IDJUEGO`) VALUES
+(2, 1),
+(2, 9),
+(3, 1),
+(3, 9);
+
 --
 -- Índices para tablas volcadas
 --
@@ -186,14 +228,27 @@ ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`IDUSUARIO`);
 
 --
+-- Indices de la tabla `votaciones`
+--
+ALTER TABLE `votaciones`
+  ADD PRIMARY KEY (`IDUSUARIO`,`IDJUEGO`),
+  ADD KEY `FK_IDJUEGO` (`IDJUEGO`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `IDCOMENTARIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `mensajes`
 --
 ALTER TABLE `mensajes`
-  MODIFY `IDMENSAJE` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `IDMENSAJE` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -212,6 +267,13 @@ ALTER TABLE `comentarios`
 ALTER TABLE `mensajes`
   ADD CONSTRAINT `FKEMISOR` FOREIGN KEY (`EMISOR`) REFERENCES `usuarios` (`IDUSUARIO`),
   ADD CONSTRAINT `FKRECEPTOR` FOREIGN KEY (`RECEPTOR`) REFERENCES `usuarios` (`IDUSUARIO`);
+
+--
+-- Filtros para la tabla `votaciones`
+--
+ALTER TABLE `votaciones`
+  ADD CONSTRAINT `FK_IDJUEGO` FOREIGN KEY (`IDJUEGO`) REFERENCES `juegos` (`IDJUEGO`),
+  ADD CONSTRAINT `FK_IDUSUARIO` FOREIGN KEY (`IDUSUARIO`) REFERENCES `usuarios` (`IDUSUARIO`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
