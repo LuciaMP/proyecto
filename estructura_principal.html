@@ -5,9 +5,13 @@
 		<meta charset="UTF-8">
 		<meta charset="ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="css\estructura_principal.css">	
+		<link rel="stylesheet" type="text/css" href="css\jquery-ui.css">
+		<link rel="stylesheet" type="text/css" href="css\jquery-ui.structure.css">	
+		<link rel="stylesheet" type="text/css" href="css\jquery-ui.theme.css">		
 		<script type="text/javascript" src="javascript\jquery.js"></script>
 		<script type="text/javascript" src="javascript\estructura_principal.js"></script>
 		<script type="text/javascript" src="javascript\funciones.js"></script>
+		<script type="text/javascript" src="javascript\jquery-ui.min.js"></script>
 		<?php
 			include("php/funciones.php");
             logueado();
@@ -34,7 +38,9 @@
 			</nav>
 		</header>
 		<main class="ajustes-estructura">
-			<aside>
+			<aside id="layout">
+				<h1>Juegos destacados</h1>
+				<div></div>
 			</aside>
 			<section id="principal">
 			</section>

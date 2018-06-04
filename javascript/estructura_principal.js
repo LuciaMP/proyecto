@@ -4,6 +4,7 @@ function inicializar() {
 		asignarEventoMenu();
         crearDesplegable();
         buscar();
+        contenidoLayout();
         window.onresize = function(){
 		  crearDesplegable();
         }
@@ -53,6 +54,8 @@ function buscar(){
 	$('#buscador').keyup(function(e) {
 		if(e.keyCode == 13) {
 			cambiarFondo("menu_juegos");
+			$('#principal').empty();
+			cargarDiv('#principal','../html/juegos.html');
 			var dato_objeto = JSON.parse(llamarAjax($("#buscador").serialize(),'php/busqueda.php'));
 			var contenedor = $('#principal');
 			$(contenedor).empty();
@@ -63,18 +66,38 @@ function buscar(){
 	        	for (var i = 0; i < dato_objeto.length; i++) {
 					var div = '<div id="' + dato_objeto[i].IDJUEGO + '">';
 					div +='<h2>'+ dato_objeto[i].NOMBRE + '</h2>';
-	                div += '<img src="' + dato_objeto[i].CARATULA + '"">';
+	                div += '<img src="' + dato_objeto[i].CARATULA + '""></div>';
 	                contenedor.append(div);
 				}
 	        }
-			$("#principal div").css({
-                "cursor": "pointer",
-                "cursor": "hand",
-                "margin": "15px 0px 15px 0px",
-                "background-color": "#BDBDBD"
-            });
-            $("#principal div").css(
-                "cursor","pointer");
+			var juegos = $("#principal div");
+		    for (var i = 0; i < juegos.length; i++) {
+		        juegos[i].addEventListener('click',verJuego,false);
+		        $(juegos[i]).addClass("listas");
+		    }
+		}
+	});
+}
+
+function contenidoLayout () {
+	var dato_objeto = JSON.parse(llamarAjax($("#buscador").serialize(),'php/juegosMasPopulares.php'));
+	var contenedor = $('#layout div');
+	for (var i = 0; i < dato_objeto.length; i++) {
+		var div = '<h3>'+ dato_objeto[i].NOMBRE + '</h3>';
+		div +='<div id="' + dato_objeto[i].IDJUEGO + '">';
+        div += '<p>'+dato_objeto[i].DESCRIPCION+'</p></div>';
+        contenedor.append(div);
+	}
+	var iconos = {
+	   	header: "ui-icon-circle-arrow-e",
+	    activeHeader: "ui-icon-circle-arrow-s"
+	 };
+	contenedor.accordion({
+	    icons: iconos,
+		collapsible: true,
+		animate: 'swing',
+		classes: {
+			
 		}
 	});
 }
