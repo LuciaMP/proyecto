@@ -217,11 +217,24 @@ nav{
 	cursor: pointer;
     cursor: hand;
     margin: 15px 0px 15px 0px;
-    background-color: #BDBDBD;
+    background-color: #FFFFFF;
+    padding: 10px;
+    border-radius: 15px;
+    border: 2px solid #BDBDBD;
 }
 
 .listas:hover {
-	box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
+}
+
+.listas .caratula {
+	width: 20%;
+	min-width: 100px;
+}
+
+.listas .descripcion {
+	width: 80%;
+	float: right;
 }
 
 @media only screen and (min-width: 600px) {

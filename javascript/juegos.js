@@ -20,15 +20,11 @@ function crearLista(dato_objeto){
     var contenedor = $('#principal');
     contenedor.empty();
     for (var i = 0; i < dato_objeto.datos.length; i++) {
-        var div = '<div id="' + dato_objeto.datos[i].IDJUEGO + '">';
+        var div = '<div id="' + dato_objeto.datos[i].IDJUEGO + '" class="listas" onclick="verJuego(event)">';
         div +='<h2>'+ dato_objeto.datos[i].NOMBRE + '</h2>';
-        div += '<img src="' + dato_objeto.datos[i].CARATULA + '"">';  
+        div += '<img src="' + dato_objeto.datos[i].CARATULA + '" class="caratula">';  
+        div += '<div class="descripcion">'+dato_objeto.datos[i].DESCRIPCION+'<div>';
         contenedor.append(div);
-    }
-    var juegos = $("#principal div");
-    for (var i = 0; i < juegos.length; i++) {
-        juegos[i].addEventListener('click',verJuego,false);
-        $(juegos[i]).addClass("listas");
     }
     for (var i = 0; i < dato_objeto.paginas.length; i++) {
         var button = $(dato_objeto.paginas[i]);

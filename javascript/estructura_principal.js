@@ -1,3 +1,4 @@
+
 document.addEventListener('readystatechange', inicializar, false);
 function inicializar() {
 	if (document.readyState == 'complete') {
@@ -51,31 +52,35 @@ function accionPestanas(evento){
 }
 
 function buscar(){
-	$('#buscador').keyup(function(e) {
-		if(e.keyCode == 13) {
-			cambiarFondo("menu_juegos");
-			$('#principal').empty();
-			cargarDiv('#principal','../html/juegos.html');
-			var dato_objeto = JSON.parse(llamarAjax($("#buscador").serialize(),'php/busqueda.php'));
-			var contenedor = $('#principal');
-			$(contenedor).empty();
-			if (typeof dato_objeto[0].IDJUEGO == "undefined") {
-	            html = '<h3>'+dato_objeto[0]+'<h3>';
-	            contenedor.append(html);
-	        }else{
-	        	for (var i = 0; i < dato_objeto.length; i++) {
-					var div = '<div id="' + dato_objeto[i].IDJUEGO + '">';
-					div +='<h2>'+ dato_objeto[i].NOMBRE + '</h2>';
-	                div += '<img src="' + dato_objeto[i].CARATULA + '""></div>';
-	                contenedor.append(div);
-				}
-	        }
-			var juegos = $("#principal div");
-		    for (var i = 0; i < juegos.length; i++) {
-		        juegos[i].addEventListener('click',verJuego,false);
-		        $(juegos[i]).addClass("listas");
-		    }
+	$('#buscador').focusin(function(e) {
+		var parametros = {"pagina" : 0, "tabla" : "JUEGOS"};
+    	var dato_objeto = JSON.parse(llamarAjax(parametros,'php/paginacion.php'));
+    	var juegos = new Array(dato_objeto.datos.length);
+    	for (var i = 0; i < dato_objeto.datos.length; i++) {
+    		juegos[i] = dato_objeto.datos[i].NOMBRE;
 		}
+		$('#buscador').autocomplete({
+			source: juegos
+		})
+		$('#buscador').keyup(function(e) {
+			if (e.keyCode == 13) {
+				cambiarFondo("menu_juegos");
+				$('#principal').empty();
+				cargarDiv('#principal','html/juegos.html');
+				var dato_objeto2 = JSON.parse(llamarAjax($("#buscador").serialize(),'php/busqueda.php'));
+				if (typeof dato_objeto2[0].IDJUEGO == "undefined") {
+		            html = '<h3>'+dato_objeto2[0]+'<h3>';
+		            $('#principal').append(html);
+		        }else{
+		        	for (var i = 0; i < dato_objeto2.length; i++) {
+						var div = '<div id="' + dato_objeto2[i].IDJUEGO + '" class="listas" onclick="verJuego(event)">';
+						div +='<h2>'+ dato_objeto2[i].NOMBRE + '</h2>';
+		                div += '<img src="' + dato_objeto2[i].CARATULA + '""></div>';
+		                $('#principal').append(div);
+					}
+		        }
+			}
+		});
 	});
 }
 
