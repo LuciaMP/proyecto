@@ -62,7 +62,7 @@ function enviarComentario(evento) {
     evento.preventDefault();
     var parametros = {
         "id" : id,
-        "comentario" : $('#comentario').val()
+        "nuevo_comentario" : $('#nuevo_comentario').val()
     };
 
     var respuesta = llamarAjax(parametros,'php/comentarios.php');
@@ -76,18 +76,18 @@ function verComentarios(evento) {
     var datos_comentarios = JSON.parse(llamarAjax({"id" : id},'php/verComentarios.php'));
 
     var div = $('#comentarios');
-    $('.comentario').empty();
+    $('.comentario').remove();
     if (typeof datos_comentarios[0].IDJUEGO == "undefined") {
         html = '<h3>' + datos_comentarios[0] + '<h3>';
-        div.prepend(html);
+        div.append(html);
     }
     else{
         for(var i = 0; i < datos_comentarios.length; i++) {
             html = '<div id="'+datos_comentarios[i].IDCOMENTARIO+'" class="comentario">';
             html += '<p>'+ datos_comentarios[i].IDUSUARIO.slice(0, datos_comentarios[i].IDUSUARIO.indexOf("@")) +'  | '+ datos_comentarios[i].FECHA +'</p>';
             html += '<p>'+ datos_comentarios[i].COMENTARIO + '</p></div>';
-            html += '<hr>';
-            div.prepend(html);
+            $(html).insertBefore("#nuevo_comentario")
+            //div.append(html);
         }
     }
 }

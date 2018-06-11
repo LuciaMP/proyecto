@@ -74,7 +74,7 @@ function mostrarMensajes() {
         else {
             for(var i = 0; i < datos_mensajes.length; i++) {
                 html = '<div id="'+ datos_mensajes[i].HILO + '">';
-                html += '<p>'+ datos_mensajes[i].EMISOR + '</p>';
+                html += '<p>'+ datos_mensajes[i].RECEPTOR + '</p>';
                 html += '<p>'+ datos_mensajes[i].ASUNTO + '</p></div><hr>';
                 div.append(html);
             }
