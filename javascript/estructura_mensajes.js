@@ -98,8 +98,7 @@ function verMensaje(evento) {
     var html = '<p>'+ datos_mensajes[0].ASUNTO + '</p><hr>';
     div.append(html);
     for(var i = 0; i < datos_mensajes.length; i++) {
-        html = '<p>'+ datos_mensajes[i].EMISOR + '</p>';
-        html += '<p>'+ datos_mensajes[i].RECEPTOR + '</p>';
+        html = '<p>DE: '+ datos_mensajes[i].EMISOR + '</p>';
         html += '<p>'+ datos_mensajes[i].MENSAJE + '</p>';
         html += '<hr>';
         div.append(html);
