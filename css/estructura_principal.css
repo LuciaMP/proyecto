@@ -232,7 +232,12 @@ nav{
 	min-width: 100px;
 }
 
-.listas .descripcion {
+.imagen {
+	width: 100%;
+	min-width: 100px;
+}
+
+.listas .descripcion, .contenido {
 	width: 80%;
 	float: right;
 }
