@@ -29,7 +29,7 @@
     else{
         $hilo = $_POST['hilo'];
 
-        $sql = "INSERT INTO MENSAJES (ASUNTO, EMISOR, RECEPTOR, MENSAJE, HILO, FECHA) SELECT DISTINCT ASUNTO, EMISOR, RECEPTOR, '$mensaje', '$hilo', CURDATE() FROM MENSAJES WHERE HILO = '$hilo'";
+        $sql = "INSERT INTO MENSAJES (ASUNTO, EMISOR, RECEPTOR, MENSAJE, HILO, FECHA) SELECT DISTINCT ASUNTO, (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$emisor') AS EMISOR, RECEPTOR, '$mensaje', '$hilo', CURDATE() FROM MENSAJES WHERE HILO = '$hilo'";
 
         mysqli_query($conexion,$sql);
         if (mysqli_errno($conexion) == 0){
