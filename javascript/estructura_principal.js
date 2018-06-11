@@ -107,11 +107,6 @@ function contenidoLayout () {
 	});
 }
 
-function ocultar(){
-	$('#login').hide();
-	$('.ocultar').show();
-}
-
 function crearDesplegable(){
 	if(window.innerWidth <= 600 && document.getElementById("desplegable") == null){
 		var desplegable = document.createElement('ul');

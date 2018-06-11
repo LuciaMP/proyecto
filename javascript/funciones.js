@@ -55,3 +55,8 @@ function llamarAjax (parametros,url){
     });
     return datos;
 }
+
+function revelar(){
+	$('#login').hide();
+	$('.ocultar').show();
+}

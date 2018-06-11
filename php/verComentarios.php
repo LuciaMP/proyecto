@@ -5,7 +5,7 @@
     include('C:\xampp\seguridad\mysql.inc.php');
     mysqli_select_db($conexion,'proyecto') or die ('<p>Imposible conectar con la Base de Datos.</p>');
 
-    $sql = "SELECT * FROM COMENTARIOS WHERE IDJUEGO = '$idjuego'";
+    $sql = "SELECT IDCOMENTARIO,IDJUEGO,(SELECT DISTINCT USUARIOS.NICK FROM USUARIOS,COMENTARIOS WHERE USUARIOS.IDUSUARIO=COMENTARIOS.IDUSUARIO) AS IDUSUARIO,COMENTARIO,DATE_FORMAT(FECHA, '%d-%m-%Y') AS FECHA FROM COMENTARIOS WHERE IDJUEGO = '$idjuego'";
        
 	$resultado = mysqli_query($conexion,$sql);
 

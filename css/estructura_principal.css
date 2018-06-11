@@ -237,6 +237,11 @@ nav{
 	float: right;
 }
 
+#nuevo_comentario {
+	width: 100%;
+	height: 100px;
+}
+
 @media only screen and (min-width: 600px) {
 	#login, #logout{
 		width: 80px;

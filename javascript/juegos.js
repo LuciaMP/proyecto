@@ -42,6 +42,10 @@ function verJuego (evento) {
     var parametros = {"id" : id, "tabla" : "JUEGOS"};
     var datos_juegos = JSON.parse(llamarAjax(parametros,'php/busqueda.php'));
     
+    if ($("#log").length > 0) {
+        revelar();
+    }
+    
     $("form").attr("id",datos_juegos[0].IDJUEGO);
     $("#imagen_juego").attr("src",datos_juegos[0].CARATULA);
     $("#titulo_juego").text(datos_juegos[0].NOMBRE);
@@ -72,18 +76,18 @@ function verComentarios(evento) {
     var datos_comentarios = JSON.parse(llamarAjax({"id" : id},'php/verComentarios.php'));
 
     var div = $('#comentarios');
-    div.empty();
+    $('.comentario').empty();
     if (typeof datos_comentarios[0].IDJUEGO == "undefined") {
         html = '<h3>' + datos_comentarios[0] + '<h3>';
-        div.append(html);
+        div.prepend(html);
     }
     else{
         for(var i = 0; i < datos_comentarios.length; i++) {
-            html = '<p>'+ datos_comentarios[i].IDUSUARIO + '</p>';
-            html += '<p>'+ datos_comentarios[i].FECHA + '</p>';
-            html += '<p>'+ datos_comentarios[i].COMENTARIO + '</p>';
+            html = '<div id="'+datos_comentarios[i].IDCOMENTARIO+'" class="comentario">';
+            html += '<p>'+ datos_comentarios[i].IDUSUARIO.slice(0, datos_comentarios[i].IDUSUARIO.indexOf("@")) +'  | '+ datos_comentarios[i].FECHA +'</p>';
+            html += '<p>'+ datos_comentarios[i].COMENTARIO + '</p></div>';
             html += '<hr>';
-            div.append(html);
+            div.prepend(html);
         }
     }
 }

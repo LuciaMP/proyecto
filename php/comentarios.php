@@ -1,7 +1,7 @@
 <?php
     session_start();
     $usuario = $_SESSION['nick'];
-    $comentario = $_POST['comentario'];
+    $comentario = $_POST['nuevo_comentario'];
     $idjuego = $_POST['id'];
 
     //cadena de conexion 
