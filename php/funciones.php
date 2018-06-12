@@ -4,8 +4,8 @@
         if(isset($_SESSION['nick'])){
             echo '<script>$(document).ready(function (){
                 revelar();
-                let aux = "<input type=text id=log hidden/>";
-                $("head").append(aux);
+                let aux = "<p id=log>'.$_SESSION["nick"].'</p>";
+                $("#user_zona").append(aux);
             });</script>';
         } 
     } 
