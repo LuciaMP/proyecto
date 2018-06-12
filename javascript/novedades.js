@@ -21,7 +21,7 @@ function crearLista(dato_objeto){
         var div = '<div id="' + dato_objeto.datos[i].IDNOVEDAD + '" class="listas" onclick="verNovedad(event)">';
         div +='<h2>'+ dato_objeto.datos[i].TITULO + '</h2>';
         div += '<img src="' + dato_objeto.datos[i].IMAGEN + '" class="caratula">'; 
-        div +='<div class="contenido">'+ dato_objeto.datos[i].DESCRIPCION + '</div>';
+        div += '<div class="contenido">'+textoCortado(dato_objeto.datos[i].CONTENIDO)+'<div>';
         contenedor.append(div);
     }
 

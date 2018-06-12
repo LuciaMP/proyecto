@@ -20,7 +20,7 @@
         $sql = "INSERT INTO MENSAJES (ASUNTO, EMISOR, RECEPTOR, MENSAJE, HILO, FECHA) VALUES ('$asunto', (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$emisor'), (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$receptor'), '$mensaje', '$hilo', CURDATE())";
         mysqli_query($conexion,$sql);
         if (mysqli_errno($conexion) == 0){
-            echo 'El mensaje se envió exitosamente a '.$receptor.'.';
+            echo 'El mensaje se envió exitosamente a '.$_POST['receptor'].'.';
         }
         else {
             if(mysqli_errno($conexion) == 1048){
