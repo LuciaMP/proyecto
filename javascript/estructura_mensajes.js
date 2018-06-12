@@ -61,29 +61,25 @@ function enviarMensaje(evento) {
 }
 
 function mostrarMensajes() {
-    //var datos_mensajes = JSON.parse(llamarAjax(null,'../php/verMensajes.php'));
-
-    $.post("../php/verMensajes.php",function(datos) {
-        var datos_mensajes = JSON.parse(datos);
-        var div = $('#mensajes');
-        var html;
-        if (typeof datos_mensajes[0].HILO == "undefined") {
-            html = '<h3>'+datos_mensajes[0]+'<h3>';
+    var datos_mensajes = JSON.parse(llamarAjax(null,'../php/verMensajes.php'));
+    var div = $('#mensajes');
+    var html;
+    if (typeof datos_mensajes[0].HILO == "undefined") {
+        html = '<h3>'+datos_mensajes[0]+'<h3>';
+        div.append(html);
+    }
+    else {
+        for(var i = 0; i < datos_mensajes.length; i++) {
+            html = '<div id="'+ datos_mensajes[i].HILO + '">';
+            html += '<p>'+ datos_mensajes[i].EMISOR.slice(0, datos_mensajes[i].EMISOR.indexOf("@")) + '  | '+ datos_mensajes[i].FECHA +'</p>';
+            html += '<p>'+ datos_mensajes[i].ASUNTO + '</p></div><hr>';
             div.append(html);
         }
-        else {
-            for(var i = 0; i < datos_mensajes.length; i++) {
-                html = '<div id="'+ datos_mensajes[i].HILO + '">';
-                html += '<p>'+ datos_mensajes[i].EMISOR.slice(0, datos_mensajes[i].EMISOR.indexOf("@")) + '  | '+ datos_mensajes[i].FECHA +'</p>';
-                html += '<p>'+ datos_mensajes[i].ASUNTO + '</p></div><hr>';
-                div.append(html);
-            }
-            var mensajes = $("#mensajes div");
-            for (var i = 0; i < mensajes.length; i++) {
-                mensajes[i].addEventListener('click',verMensaje,false);
-            }
+        var mensajes = $("#mensajes div");
+        for (var i = 0; i < mensajes.length; i++) {
+            mensajes[i].addEventListener('click',verMensaje,false);
         }
-    });
+    }
 }
 
 function verMensaje(evento) {
