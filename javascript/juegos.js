@@ -79,15 +79,14 @@ function verComentarios(evento) {
     $('.comentario').remove();
     if (typeof datos_comentarios[0].IDJUEGO == "undefined") {
         html = '<h3>' + datos_comentarios[0] + '<h3>';
-        div.append(html);
+        $(html).insertBefore("#nuevo_comentario");
     }
     else{
         for(var i = 0; i < datos_comentarios.length; i++) {
             html = '<div id="'+datos_comentarios[i].IDCOMENTARIO+'" class="comentario">';
             html += '<p>'+ datos_comentarios[i].IDUSUARIO.slice(0, datos_comentarios[i].IDUSUARIO.indexOf("@")) +'  | '+ datos_comentarios[i].FECHA +'</p>';
             html += '<p>'+ datos_comentarios[i].COMENTARIO + '</p></div>';
-            $(html).insertBefore("#nuevo_comentario")
-            //div.append(html);
+            $(html).insertBefore("#nuevo_comentario");
         }
     }
 }
