@@ -78,7 +78,7 @@ function verComentarios(evento) {
     var div = $('#comentarios');
     $('.comentario').remove();
     if (typeof datos_comentarios[0].IDJUEGO == "undefined") {
-        html = '<h3>' + datos_comentarios[0] + '<h3>';
+        html = '<div class="comentario"><h3>' + datos_comentarios[0] + '<h3></div>';
         $(html).insertBefore("#nuevo_comentario");
     }
     else{
