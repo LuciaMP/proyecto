@@ -23,7 +23,7 @@ html{
 /* Estructura principal */
 .ajustes-estructura {
 	max-width: 1400px;
-	min-width: 300px;
+	min-width: 350px;
 	width: 80%;
 	margin: auto;
 	position: relative;
@@ -272,6 +272,13 @@ nav{
 #layout > h2 {
 	text-align: center;
 }
+
+#log {
+	float: right;
+    color: white;
+    margin: 10px 5px 5px 5px;
+}
+
 @media only screen and (min-width: 600px) {
 	#login, #logout{
 		width: 80px;
