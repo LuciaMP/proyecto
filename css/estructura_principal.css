@@ -105,10 +105,18 @@ nav{
 	color: #003886;
 }
 
+#buscador::placeholder {
+	color: transparent;
+}
+
 #buscador:focus{
 	width: 30%;
 	background-image: none;
 	outline: none;
+}
+
+#buscador:focus::placeholder {
+	color: grey;
 }
 
 #desplegable{
@@ -302,6 +310,10 @@ nav{
 		background-position: left;
 		padding: 0px 5px 0px 25px;
 		
+	}
+
+	#buscador::placeholder {
+		color: grey;
 	}
 
 	#buscador:focus{
