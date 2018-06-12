@@ -101,7 +101,7 @@ function verMensaje(evento) {
     }
 
     html = '<form action="#" method="POST" id="'+hilo+'" onsubmit="enviarMensaje(event);verMensaje(event)">';
-    html += '<textarea name="mensaje" id="mensaje" cols="45" rows="5"></textarea>';
+    html += '<textarea name="mensaje" id="mensaje" class="datos_largos" rows="10"></textarea>';
     html += '<input type="submit" name="enviar" id="enviar" class="cajas_datos botones" value="Enviar"></form>';
     div.append(html);
 }
