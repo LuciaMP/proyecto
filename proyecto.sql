@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-06-2018 a las 16:29:47
+-- Tiempo de generación: 12-06-2018 a las 17:43:09
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 7.2.5
 
@@ -33,7 +33,7 @@ CREATE TABLE `comentarios` (
   `IDJUEGO` int(4) NOT NULL,
   `IDUSUARIO` int(4) NOT NULL,
   `COMENTARIO` mediumtext COLLATE latin1_spanish_ci NOT NULL,
-  `FECHA` date NOT NULL
+  `FECHA` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
@@ -41,20 +41,21 @@ CREATE TABLE `comentarios` (
 --
 
 INSERT INTO `comentarios` (`IDCOMENTARIO`, `IDJUEGO`, `IDUSUARIO`, `COMENTARIO`, `FECHA`) VALUES
-(1, 1, 3, 'Hola', '2018-05-25'),
-(2, 1, 3, 'El juego mola jeje', '2018-05-25'),
-(3, 1, 3, 'Lo sÃ© jiji', '2018-05-25'),
-(4, 3, 3, 'Es el mejor juego!!!!!!', '2018-05-25'),
-(5, 10, 2, 'Prueba', '2018-05-28'),
-(6, 10, 2, 'Prueba2', '2018-05-28'),
-(7, 1, 3, 'Hola', '2018-05-30'),
-(8, 2, 2, 'A ver cuando lo sacan para ps4', '2018-06-01'),
-(9, 3, 2, 'Prueba', '2018-06-01'),
-(10, 2, 2, 'Prueba', '2018-06-01'),
-(11, 9, 2, 'Es como el Mortal Kombat', '2018-06-01'),
-(12, 9, 2, 'Pero este es mejor porque tiene superheroes', '2018-06-01'),
-(13, 9, 3, 'Jajaja', '2018-06-01'),
-(14, 1, 2, 'Prueba', '2018-06-12');
+(1, 1, 3, 'Hola', '2018-05-25 00:00:00'),
+(2, 1, 3, 'El juego mola jeje', '2018-05-25 00:00:00'),
+(3, 1, 3, 'Lo sÃ© jiji', '2018-05-25 00:00:00'),
+(4, 3, 3, 'Es el mejor juego!!!!!!', '2018-05-25 00:00:00'),
+(5, 10, 2, 'Prueba', '2018-05-28 00:00:00'),
+(6, 10, 2, 'Prueba2', '2018-05-28 00:00:00'),
+(7, 1, 3, 'Hola', '2018-05-30 00:00:00'),
+(8, 2, 2, 'A ver cuando lo sacan para ps4', '2018-06-01 00:00:00'),
+(9, 3, 2, 'Prueba', '2018-06-01 00:00:00'),
+(10, 2, 2, 'Prueba', '2018-06-01 00:00:00'),
+(11, 9, 2, 'Es como el Mortal Kombat', '2018-06-01 00:00:00'),
+(12, 9, 2, 'Pero este es mejor porque tiene superheroes', '2018-06-01 00:00:00'),
+(13, 9, 3, 'Jajaja', '2018-06-01 00:00:00'),
+(14, 1, 2, 'Prueba', '2018-06-12 00:00:00'),
+(15, 19, 2, 'Mola', '2018-06-12 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -85,7 +86,7 @@ INSERT INTO `juegos` (`IDJUEGO`, `NOMBRE`, `DESCRIPCION`, `VOTOS`, `PUNTUACION`,
 (6, 'Nioh', 'Nioh es un videojuego exclusivo de PlayStation 4, perteneciente al g&eacute;nero de rol y acci&oacute;n, pero con elementos caracter&iacute;sticos del \'Hack and Slash\', desarollado por Team Ninja y fuertemente inspirado en la saga Dark Souls de From Software y Ninja Gaiden. La aventura se ambienta en el Jap&oacute;n feudal y cuenta con la presencia de multitud de demonios y seres sobrenaturales del folclore de dicho pa&iacute;s. Su estilo de lucha y combate ser&aacute; &aacute;rido y dif&iacute;cil, invitando al jugador a prepararse concienzudamente en cada enfrentamiento.', 0, 0, 0, 'media/caratulas/nioh.jpg'),
 (7, 'Crash Bandicoot N. Sane Trilogy', 'Crash Bandicoot N Sane Trilogy es un videojuego de plataformas en 3D, desarrollado por el estudio Vicarious Visions y producido y distribuido por activision como videojuego exclusivo de PS4, hasta el momento. Se trata de una remasterizaci&oacute;n de los tres primeros juegos de la serie Crash Bandicoot aparecidos en la consola PlayStation a finales de los 90 y desarrollados por Naughty Dog, pero mejorados con gr&aacute;ficos totalmente renovados, cambios est&eacute;ticos y ciertas novedades jugables.', 0, 0, 0, 'media/caratulas/crash.jpg'),
 (8, 'Final Fantasy XV', 'Final Fantasy XV es un videojuego de acci&oacute;n y rol desarrollado por Square Enix, que en etapas tempranas de desarrollo se dio a conocer bajo el nombre de Final Fantasy versus XIII, para posteriormente pasar a formar parte como la decimoquinta entrega numerada de la saga. Adem&aacute;s sus acontecimientos est&aacute;n relacionados con la pel&iacute;cula Final Fantasy XV Kingslaive.', 0, 0, 0, 'media/caratulas/ffxv.jpg'),
-(9, 'Injustice 2', 'Injustice 2 para PS4 es el regreso del juego de lucha que enfrenta a todos los h&eacute;roes de DC entre s&iacute;. En esta ocasi&oacute;n vuelven luchadores como Batman, Superman o Wonder Woman, pero hay novedades como Batgirl. Se a&ntilde;aden nuevos supermovimientos y choques, pero la gran novedad es el sistema de subida de niveles y configuraci&oacute;n de los luchadores, que nos reta a seguir avanzando.', 2, 8, 4, 'media/caratulas/injustice.jpg'),
+(9, 'Injustice 2', 'Injustice 2 para PS4 es el regreso del juego de lucha que enfrenta a todos los h&eacute;roes de DC entre s&iacute;. En esta ocasi&oacute;n vuelven luchadores como Batman, Superman o Wonder Woman, pero hay novedades como Batgirl. Se a&ntilde;aden nuevos supermovimientos y choques, pero la gran novedad es el sistema de subida de niveles y configuraci&oacute;n de los luchadores, que nos reta a seguir avanzando.', 0, 0, 0, 'media/caratulas/injustice.jpg'),
 (10, 'NieR: Automata', 'NieR: Automata es un videojuego de acci&oacute;n - rol y aventura en tercera persona, que ha sido producido por Square Enix y desarrollado por Platinum Games para PlayStation 4 y PC. El juego se ambienta en una tierra devastada y mostrar&aacute; los intensos combates que tienen lugar entre las unidades androide Yorha, creadas por los humanos, contra una serie de seres biomec&aacute;nicos alien&iacute;genas que obligan a la humanidad a abandonar la Tierra y huir hacia la luna. El dise&ntilde;o de los personajes corre a cabo del creativo japon&eacute;s Akihiko Yoshida, conocido por haber participado regularmente en las entregas de Final Fantasy.', 0, 0, 0, 'media/caratulas/nier.jpg'),
 (11, 'Animal Crossing: New Leaf', 'Una de las sagas m&aacute;s populares de los &uacute;ltimos a&ntilde;os llega a la 3DS dando un giro total en experiencias y jugabilidad. En esta ocasi&oacute;n el jugador se convertir&aacute; en el alcalde y tendr&aacute; en sus manos un gran n&uacute;mero de dise&ntilde;os y posibilidades de personalizaci&oacute;n. Asimismo el t&iacute;tulo cuenta con un espacio jugable mucho mayor, un n&uacute;mero ingente de vecinos y m&aacute;s y mejores comercios. Una experiencia innovadora de juego en comunidad para que el jugador interactue con sus amigos en la vida real.', 0, 0, 0, 'media/caratulas/acnl.jpg'),
 (12, 'Pok&eacute;mon Ultrasol / Ultraluna', 'Pok&eacute;mon Ultrasol y Ultraluna, son dos videojuegos RPG ambientados en el mundo de Pok&eacute;mon , desarrollados por el estudio Game Freak y produciodos y distribuidos por Nintendo como juegos exclusivos de sus plataformas Nintendo 3DS y 2DS. Se trata de las revisiones ampliadas de Pok&eacute;mon Sol / Luna, pero contar&aacute;n con una historia totalmente nueva cuyos acontecimientos tambi&eacute;n se desarrollar&aacute;n en Alola, la tierra paradis&iacute;aca de Pok&eacute;mon y tendr&aacute;n que vez con el misterioso Pok&eacute;mon Necrozma y su capacidad de fusionarse con otros Pok&eacute;mon.', 0, 0, 0, 'media/caratulas/pus.jpg'),
@@ -111,7 +112,7 @@ CREATE TABLE `mensajes` (
   `RECEPTOR` int(4) NOT NULL,
   `MENSAJE` mediumtext COLLATE latin1_spanish_ci NOT NULL,
   `HILO` int(4) NOT NULL,
-  `FECHA` date NOT NULL
+  `FECHA` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
@@ -119,12 +120,17 @@ CREATE TABLE `mensajes` (
 --
 
 INSERT INTO `mensajes` (`IDMENSAJE`, `ASUNTO`, `EMISOR`, `RECEPTOR`, `MENSAJE`, `HILO`, `FECHA`) VALUES
-(1, 'Prueba', 1, 3, 'PRUEBA', 1, '2018-06-12'),
-(2, 'Prueba', 1, 3, 'PRUEBA1', 1, '2018-06-12'),
-(3, 'Prueba', 3, 1, 'PRUEBA2', 1, '2018-06-12'),
-(4, 'Hey', 3, 2, 'Brother', 2, '2018-06-12'),
-(5, 'Ultima prueba', 3, 3, 'PRUEBAAAAAAAAAA', 3, '2018-06-12'),
-(6, 'Prueba', 3, 2, 'sdadasdsa', 4, '2018-06-12');
+(1, 'Prueba', 1, 3, 'PRUEBA', 1, '2018-06-12 00:00:00'),
+(2, 'Prueba', 1, 3, 'PRUEBA1', 1, '2018-06-12 00:00:00'),
+(3, 'Prueba', 3, 1, 'PRUEBA2', 1, '2018-06-12 00:00:00'),
+(4, 'Hey', 3, 2, 'Brother', 2, '2018-06-12 00:00:00'),
+(5, 'Ultima prueba', 3, 3, 'PRUEBAAAAAAAAAA', 3, '2018-06-12 00:00:00'),
+(6, 'Prueba', 3, 2, 'sdadasdsa', 4, '2018-06-12 00:00:00'),
+(7, 'Prueba', 2, 3, 'Hola', 5, '2018-06-12 00:00:00'),
+(11, 'Prueba', 2, 3, 'Joder', 5, '2018-06-12 00:00:00'),
+(14, 'Prueba', 2, 3, 'Joder x2', 5, '2018-06-12 00:00:00'),
+(15, 'PRUEBA', 2, 1, 'JODER', 6, '2018-06-12 00:00:00'),
+(16, 'PRUEBA', 2, 1, 'JOLÃN', 6, '2018-06-12 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -256,13 +262,13 @@ ALTER TABLE `votaciones`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `IDCOMENTARIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `IDCOMENTARIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `mensajes`
 --
 ALTER TABLE `mensajes`
-  MODIFY `IDMENSAJE` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `IDMENSAJE` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restricciones para tablas volcadas
