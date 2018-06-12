@@ -60,3 +60,13 @@ function revelar(){
 	$('#login').hide();
 	$('.ocultar').show();
 }
+
+function textoCortado(texto) {
+	let textoArray = texto.split(" ");
+	if (textoArray.length > 60) {
+		textoArray.splice(60);
+		textoArray[61] = "..."
+		return textoArray.join(" ");
+	}
+	return texto;
+}

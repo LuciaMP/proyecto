@@ -221,6 +221,9 @@ nav{
     padding: 10px;
     border-radius: 15px;
     border: 2px solid #BDBDBD;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
 }
 
 .listas:hover {
@@ -229,17 +232,18 @@ nav{
 
 .listas .caratula {
 	width: 20%;
-	min-width: 100px;
 }
 
 .imagen {
 	width: 100%;
-	min-width: 100px;
+}
+
+.listas h2 {
+	width: 100%;
 }
 
 .listas .descripcion, .contenido {
 	width: 80%;
-	float: right;
 }
 
 #nuevo_comentario {
