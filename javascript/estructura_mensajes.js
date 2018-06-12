@@ -74,7 +74,7 @@ function mostrarMensajes() {
         else {
             for(var i = 0; i < datos_mensajes.length; i++) {
                 html = '<div id="'+ datos_mensajes[i].HILO + '">';
-                html += '<p>'+ datos_mensajes[i].RECEPTOR + '</p>';
+                html += '<p>'+ datos_mensajes[i].EMISOR.slice(0, datos_mensajes[i].EMISOR.indexOf("@")) + '  | '+ datos_mensajes[i].FECHA +'</p>';
                 html += '<p>'+ datos_mensajes[i].ASUNTO + '</p></div><hr>';
                 div.append(html);
             }
@@ -95,10 +95,10 @@ function verMensaje(evento) {
     var datos_mensajes = JSON.parse(llamarAjax(parametros,'../php/verMensajes.php'));
 
     var div = $('#mensajes');
-    var html = '<p>'+ datos_mensajes[0].ASUNTO + '</p><hr>';
+    var html = '<p>'+ datos_mensajes[0].ASUNTO + '  | '+ datos_mensajes[0].FECHA +'</p><hr>';
     div.append(html);
     for(var i = 0; i < datos_mensajes.length; i++) {
-        html = '<p>DE: '+ datos_mensajes[i].EMISOR + '</p>';
+        html = '<p>DE: '+ datos_mensajes[i].EMISOR.slice(0, datos_mensajes[i].EMISOR.indexOf("@")) + '  | '+ datos_mensajes[i].FECHA +'</p>';
         html += '<p>'+ datos_mensajes[i].MENSAJE + '</p>';
         html += '<hr>';
         div.append(html);

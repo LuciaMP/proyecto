@@ -23,18 +23,31 @@
             echo 'El mensaje se envió exitosamente a '.$receptor.'.';
         }
         else {
-            echo '<Error al enviar el mensaje. Error número: '.mysqli_errno($conexion).'.';
+            if(mysqli_errno($conexion) == 1048){
+                echo 'Error al enviar el mensaje. El usuario no existe.';
+            }
+            else{
+                echo 'Error al enviar el mensaje. Error número: '.mysqli_errno($conexion).'.';
+            }
         }   
     }
     else{
         $hilo = $_POST['hilo'];
 
-        $sql = "INSERT INTO MENSAJES (ASUNTO, EMISOR, RECEPTOR, MENSAJE, HILO, FECHA) SELECT DISTINCT ASUNTO, (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$emisor') AS EMISOR, (SELECT DISTINCT EMISOR FROM MENSAJES WHERE EMISOR != '$emisor' WHERE HILO = '$hilo') AS RECEPTOR, '$mensaje', '$hilo', CURDATE() FROM MENSAJES WHERE HILO = '$hilo'";
+        $sql = "SELECT DISTINCT EMISOR FROM MENSAJES WHERE EMISOR != (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$emisor')";
+
+        $resultado = mysqli_query($conexion,$sql);
+        
+        if(mysqli_num_rows($resultado) == 0){
+             $sql = "INSERT INTO MENSAJES (ASUNTO, EMISOR, RECEPTOR, MENSAJE, HILO, FECHA) SELECT DISTINCT ASUNTO, (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$emisor') AS EMISOR, (SELECT DISTINCT RECEPTOR FROM MENSAJES WHERE HILO = '$hilo') AS RECEPTOR, '$mensaje', '$hilo', CURDATE() FROM MENSAJES WHERE HILO = '$hilo'";
+        } 
+        else{
+            $sql = "INSERT INTO MENSAJES (ASUNTO, EMISOR, RECEPTOR, MENSAJE, HILO, FECHA) SELECT DISTINCT ASUNTO, (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$emisor') AS EMISOR, (SELECT DISTINCT EMISOR FROM MENSAJES WHERE EMISOR != (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$emisor') AND HILO = '$hilo') AS RECEPTOR, '$mensaje', '$hilo', CURDATE() FROM MENSAJES WHERE HILO = '$hilo'";
+        }
 
         mysqli_query($conexion,$sql);
         if (mysqli_errno($conexion) == 0){
             echo 'El mensaje se envió exitosamente.';
-            //echo $hilo;
         }
         else {
             echo 'Error al enviar el mensaje. Error número: '.mysqli_errno($conexion).'.';
