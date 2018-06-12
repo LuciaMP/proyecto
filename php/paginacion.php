@@ -2,6 +2,8 @@
     include('C:\xampp\seguridad\mysql.inc.php');
     mysqli_select_db($conexion,'proyecto') or die ('<p>Imposible conectar con la Base de Datos.</p>');
 
+    mysqli_set_charset($conexion, 'utf8');
+
     $tamanio_paginas = 3;
 
     $tabla = $_POST["tabla"];
