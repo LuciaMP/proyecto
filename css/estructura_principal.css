@@ -1,42 +1,3 @@
-/* Ajustes generales */
-html{
-	background-color: #003886;
-}
-
-*{
-	font-family: 'Acme';
-	box-sizing: border-box;
-}
-/* Tipos de letra */
-@font-face {
-    font-family: Acme;
-    src: url("../fonts/Acme-Regular.ttf");
-}
-
-.acme {
-	font-family: 'Acme';
-}
-
-.cour{
-	font-family: 'Courgette';
-}
-/* Estructura principal */
-.ajustes-estructura {
-	max-width: 1400px;
-	min-width: 350px;
-	width: 80%;
-	margin: auto;
-	position: relative;
-}
-
-header{
-	height: 165px;
-}
-
-main {
-	display: flex;
-}
-
 footer {
 	height: 125px;
 	border: 1px solid black;
@@ -280,7 +241,7 @@ nav{
 }
 
 @media only screen and (min-width: 600px) {
-	#login, #logout{
+	#login, #logout, #mensajes{
 		width: 80px;
 	}
 
@@ -361,7 +322,7 @@ nav{
 	    margin: 2px auto auto auto;
 	}
 
-	#login, #logout{
+	#login, #logout, #mensajes{
 		width: 100px;
 		height: 40px;
 		font-size: 13px;

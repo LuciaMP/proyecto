@@ -1,52 +1,11 @@
-/* Ajustes generales */
-html{
-	background-color: #003886;
-}
-
-*{
-	font-family: 'Acme';
-	box-sizing: border-box;
-}
-/* Tipos de letra */
-@font-face {
-    font-family: Acme;
-    src: url("../fonts/Acme-Regular.ttf");
-}
-
-@font-face {
-	font-family: Courgette;
-    src: url("../fonts/Courgette-Regular.ttf");
-}
-
-.acme {
-	font-family: 'acme';
-}
-
-.cour{
-	font-family: 'Courgette';
-}
-/* Estructura principal */
-.ajustes-estructura {
-	max-width: 1400px;
-	min-width: 300px;
-	width: 80%;
-	margin: auto;
-	position: relative;
-}
-
-header{
-	height: 125px;
-}
-
 main {
-	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 #logo{
 	
-	width: 275px;	
+	width: 200px;	
 }
 
 .pestanas{
@@ -91,11 +50,11 @@ input[type=date]::-webkit-inner-spin-button {
 @media only screen and (min-width: 768px) {
 	
 	#logo{
-		width: 341px;	
+		width: 230px;	
 	}
 
 	#contenedor{
-		width: 60%;
+		width: 65%;
 	}
 	
 	header{
