@@ -240,6 +240,14 @@ nav{
     margin: 10px 5px 5px 5px;
 }
 
+.leerMas {
+	cursor: pointer;
+	cursor: hand;
+	font-weight: bold;
+    text-decoration: underline;
+    font-size: 16px;
+}
+
 @media only screen and (min-width: 600px) {
 	#login, #logout, #mensajes{
 		width: 80px;

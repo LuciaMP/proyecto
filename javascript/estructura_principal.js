@@ -1,4 +1,3 @@
-
 document.addEventListener('readystatechange', inicializar, false);
 function inicializar() {
 	if (document.readyState == 'complete') {
@@ -90,7 +89,7 @@ function contenidoLayout () {
 	for (var i = 0; i < dato_objeto.length; i++) {
 		var div = '<h3>'+ dato_objeto[i].NOMBRE + '</h3>';
 		div +='<div id="' + dato_objeto[i].IDJUEGO + '">';
-        div += '<p>'+textoCortado(dato_objeto[i].DESCRIPCION)+'</p></div>';
+        div += '<p>'+textoCortado(dato_objeto[i].DESCRIPCION)+'<span class="leerMas" id="'+dato_objeto[i].IDJUEGO+'" onclick=cargarDiv("#principal","html/juegos.html");verJuego(event)>Leer más</span></p></div>';
         contenedor.append(div);
 	}
 	var iconos = {
