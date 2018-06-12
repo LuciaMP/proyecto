@@ -90,7 +90,7 @@ function contenidoLayout () {
 	for (var i = 0; i < dato_objeto.length; i++) {
 		var div = '<h3>'+ dato_objeto[i].NOMBRE + '</h3>';
 		div +='<div id="' + dato_objeto[i].IDJUEGO + '">';
-        div += '<p>'+dato_objeto[i].DESCRIPCION+'</p></div>';
+        div += '<p>'+textoCortado(dato_objeto[i].DESCRIPCION)+'</p></div>';
         contenedor.append(div);
 	}
 	var iconos = {
@@ -101,6 +101,7 @@ function contenidoLayout () {
 	    icons: iconos,
 		collapsible: true,
 		animate: 'swing',
+		heightStyle: "content",
 		classes: {
 			
 		}

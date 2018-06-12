@@ -224,6 +224,7 @@ nav{
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
+    justify-content: space-between;
 }
 
 .listas:hover {
@@ -243,7 +244,8 @@ nav{
 }
 
 .listas .descripcion, .contenido {
-	width: 80%;
+	width: 78%;
+	text-align: justify;
 }
 
 #nuevo_comentario {
@@ -259,6 +261,9 @@ nav{
     background-color: #EEEEEE;
 }
 
+#layout > h2 {
+	text-align: center;
+}
 @media only screen and (min-width: 600px) {
 	#login, #logout{
 		width: 80px;
