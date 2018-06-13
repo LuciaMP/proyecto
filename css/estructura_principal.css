@@ -257,6 +257,7 @@ nav{
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 .juego div:nth-child(1){
@@ -345,18 +346,6 @@ nav{
 
 	#buscador:focus{
 		background-image: url("../media/lupa.ico");
-	}
-
-	.juego {
-		flex-direction: row;
-	}
-
-	.juego div:nth-child(1){
-		width: 25%;
-	}
-
-	.juego div:nth-child(2){
-		width: 74%;
 	}
 
 	.listas .caratula {
@@ -464,6 +453,18 @@ nav{
 		height: 7.5%;
 		font-weight: bold;
 		background: #EEEEEE;
+	}
+
+	.juego {
+		flex-direction: row;
+	}
+
+	.juego div:nth-child(1){
+		width: 25%;
+	}
+
+	.juego div:nth-child(2){
+		width: 74%;
 	}
 
 }
