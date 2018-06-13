@@ -248,6 +248,21 @@ nav{
     font-size: 16px;
 }
 
+.juego {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.juego div:nth-child(1){
+	width: 100%;
+}
+
+.juego div:nth-child(2){
+	width: 100%;
+}
+
+
 @media only screen and (min-width: 600px) {
 	#login, #logout, #mensajes{
 		width: 80px;
@@ -294,6 +309,18 @@ nav{
 
 	#buscador:focus{
 		background-image: url("../media/lupa.ico");
+	}
+
+	.juego {
+		flex-direction: row;
+	}
+
+	.juego div:nth-child(1){
+		width: 25%;
+	}
+
+	.juego div:nth-child(2){
+		width: 74%;
 	}
 }
 

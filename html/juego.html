@@ -3,10 +3,12 @@
 <script type="text/javascript" src="javascript\rating.js"></script>
 
 <div>
-	<div>
-		<h1 id="titulo_juego"></h1>
+	<div class="juego">
 		<div>
 			<img id="imagen_juego" src="#" width="200px">
+		</div>
+		<div>
+			<h1 id="titulo_juego"></h1>
 			<p id="desc_juego"></p>
 			<div class="ratings">
 				<input type="radio" name="star" id="rating" value="1" />
@@ -17,12 +19,12 @@
 			</div>
 			<div id="puntuaciones">
 			</div>
-			</div>
+		</div>
 	</div>
-</div>
-<div id="comentarios" class="ocultar">
+	<div id="comentarios" class="ocultar"></div>
 	<form action="#" method="POST" onsubmit="enviarComentario(event);verComentarios(event)">
 	  	<textarea name="nuevo_comentario" id="nuevo_comentario"></textarea>
 	  	<input type="submit" name="comentar" id="comentar" value="Comentar" />
 	</form>
+</div>
 </div>
