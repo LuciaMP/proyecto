@@ -10,7 +10,6 @@ $(document).ready(function() {
             $("#guardar").attr("disabled","disabled");
         }
     });
-
 });
 
 function rellenarDatos() {

@@ -19,8 +19,8 @@ function crearLista(dato_objeto){
     contenedor.empty();
     for (var i = 0; i < dato_objeto.datos.length; i++) {
         var div = '<div id="' + dato_objeto.datos[i].IDNOVEDAD + '" class="listas" onclick="verNovedad(event)">';
-        div +='<h2>'+ dato_objeto.datos[i].TITULO + '</h2>';
-        div += '<img src="' + dato_objeto.datos[i].IMAGEN + '" class="caratula">'; 
+        div +='<h2 class="titulo">'+ dato_objeto.datos[i].TITULO + '</h2>';
+        div += '<img src="' + dato_objeto.datos[i].IMAGEN + '" class="imagen_novedad">'; 
         div += '<div class="contenido">'+textoCortado(dato_objeto.datos[i].CONTENIDO)+'<div>';
         contenedor.append(div);
     }
@@ -42,8 +42,8 @@ function verNovedad (evento) {
     var parametros = {"id" : id, "tabla" : "NOVEDADES"};
     var datos_novedades = JSON.parse(llamarAjax(parametros,'php/busqueda.php'));
 
-    $("#imagen_novedad").attr("src",datos_novedades[0].IMAGEN);
-    $("#imagen_novedad").attr("class","imagen");
+    $("#imagen_principal").attr("src",datos_novedades[0].IMAGEN);
+    $("#imagen_principal").attr("class","imagen");
     $("#titulo_novedad").text(datos_novedades[0].TITULO);
     $("#cont_novedad").text(datos_novedades[0].CONTENIDO);
 }

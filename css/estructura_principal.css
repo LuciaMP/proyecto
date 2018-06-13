@@ -202,19 +202,24 @@ nav{
 
 .listas .caratula {
 	width: 20%;
+	display: none;
 }
 
-.imagen {
+.listas .imagen_novedad {
 	width: 100%;
 }
 
-.listas h2 {
+.listas .titulo {
 	width: 100%;
 }
 
 .listas .descripcion, .contenido {
-	width: 78%;
+	width: 100%;
 	text-align: justify;
+}
+
+.listas .contenido {
+	margin-top: 15px;
 }
 
 #nuevo_comentario {
@@ -262,6 +267,37 @@ nav{
 	width: 100%;
 }
 
+.cuenta  {
+	display: flex;
+    flex-wrap: wrap;
+}
+
+.cuenta .datoGrande {
+	width: 100%;
+}
+
+.cuenta .datoPeque {
+	width: 50%;
+}
+
+.espaciado {
+	margin-top: 10px;
+}
+
+.cuenta .dato {
+	width: 100%;
+    height: 40px;
+}
+
+.cuenta .boton {
+	width: 20%;
+	height: 40px;
+
+}
+
+.cuenta .dato:disabled {
+	background-color: #BDBDBD;
+}
 
 @media only screen and (min-width: 600px) {
 	#login, #logout, #mensajes{
@@ -321,6 +357,14 @@ nav{
 
 	.juego div:nth-child(2){
 		width: 74%;
+	}
+
+	.listas .caratula {
+		display: block;
+	}
+
+	.listas .descripcion {
+		width: 78%;
 	}
 }
 
@@ -421,4 +465,5 @@ nav{
 		font-weight: bold;
 		background: #EEEEEE;
 	}
+
 }

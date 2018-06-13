@@ -21,7 +21,7 @@ function crearLista(dato_objeto){
     contenedor.empty();
     for (var i = 0; i < dato_objeto.datos.length; i++) {
         var div = '<div id="' + dato_objeto.datos[i].IDJUEGO + '" class="listas" onclick="verJuego(event)">';
-        div +='<h2>'+ dato_objeto.datos[i].NOMBRE + '</h2>';
+        div +='<h2 class="titulo">'+ dato_objeto.datos[i].NOMBRE + '</h2>';
         div += '<img src="' + dato_objeto.datos[i].CARATULA + '" class="caratula">';  
         div += '<div class="descripcion">'+textoCortado(dato_objeto.datos[i].DESCRIPCION)+'<div>';
         contenedor.append(div);
@@ -47,7 +47,7 @@ function verJuego (evento) {
     }
     
     $("form").attr("id",datos_juegos[0].IDJUEGO);
-    $("#imagen_juego").attr("src",datos_juegos[0].CARATULA);
+    $("#imagen_principal").attr("src",datos_juegos[0].CARATULA);
     $("#titulo_juego").text(datos_juegos[0].NOMBRE);
     $("#desc_juego").text(datos_juegos[0].DESCRIPCION);
     

@@ -2,39 +2,31 @@
 <form id="formulario_cuenta" action="#" method="POST">
     <fieldset>
         <legend>Datos de usuario:</legend>
-        <table>
-            <tr>
-                <td colspan="2"><label for="nick">Nombre de usuario: </label></td>
-                <td colspan="2"><input type="text" id="nick" name="nick" disabled /></td>
-            </tr>
-            <tr>
-                <td colspan="2"><label for="correo">Correo electrónico: </label></td>
-                <td colspan="2"><input type="email" id="correo" name="correo" /></td>
-            </tr>
-            <tr>
-                <td><label for="password">Contraseña: </label></td>
-                <td><input type="password" id="password" name="password" /></td>
-                <td><label for="fechan">Fecha de nacimiento: </label></td>
-                <td><input type="text" id="fechan" name="fechan" disabled /></td>
-            </tr>
-            <tr>
-                <td><label for="sexo">Sexo: </label></td>
-                <td><select name="sexo" id="sexo">
+        <div class="cuenta">
+                <label for="nick" class="espaciado datoGrande">Nombre de usuario: 
+                <input type="text" class="dato" id="nick" name="nick" disabled /></label>
+                <label for="correo" class="espaciado datoGrande">Correo electrónico: 
+                <input type="email" class="dato" id="correo" name="correo" /></label>
+                <label for="password" class="espaciado datoPeque">Contraseña: 
+                <input type="password" class="dato" id="password" name="password" /></label>
+                <label for="fechan" class="espaciado datoPeque">Fecha de nacimiento: 
+                <input type="text" class="dato" id="fechan" name="fechan" disabled /></label>
+                <label for="sexo" class="espaciado datoPeque">Sexo: 
+                <select name="sexo" id="sexo" class="dato">
                         <option value="F">Femenino</option>
                         <option value="M">Masculino</option>
                         <option value="O">Otro</option>
-                    </select></td>
-                <td><label for="ciudad">Ciudad: </label></td>
-                <td><select name="ciudad" id="ciudad">
+                    </select></label>
+                <label for="ciudad" class="espaciado datoPeque">Ciudad: 
+                <select name="ciudad" id="ciudad" class="dato">
                         <option value="Madrid">Madrid</option>
                         <option value="Barcelona">Barcelona</option>
                         <option value="Sevilla">Sevilla</option>
-                    </select></td>
+                    </select></label>
+
+                <input type="submit" class="espaciado boton" name="guardar" id="guardar" value="Guardar" disabled />
             </tr>
-            <tr>
-                <td><input type="submit" name="guardar" id="guardar" value="Guardar" disabled /></td>
-            </tr>
-        </table>
+        </div>
     </fieldset>
         
 </form>
