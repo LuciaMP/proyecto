@@ -300,6 +300,12 @@ nav{
 	background-color: #BDBDBD;
 }
 
+#imagen_principal {
+	width: 100%;
+	border: 10px solid #eeeeee;
+    border-radius: 10px;
+}
+
 @media only screen and (min-width: 600px) {
 	#login, #logout, #mensajes{
 		width: 80px;
