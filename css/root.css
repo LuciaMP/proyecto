@@ -36,3 +36,7 @@ header{
 main {
 	display: flex;
 }
+
+textarea {
+	resize: none;
+}

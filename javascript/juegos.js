@@ -42,19 +42,18 @@ function verJuego (evento) {
     var parametros = {"id" : id, "tabla" : "JUEGOS"};
     var datos_juegos = JSON.parse(llamarAjax(parametros,'php/busqueda.php'));
     
-    if ($("#log").length > 0) {
-        revelar();
-    }
-    
     $("form").attr("id",datos_juegos[0].IDJUEGO);
     $("#imagen_principal").attr("src",datos_juegos[0].CARATULA);
     $("#titulo_juego").text(datos_juegos[0].NOMBRE);
     $("#desc_juego").text(datos_juegos[0].DESCRIPCION);
     
     votar();
-
     verVotaciones(id);
     verComentarios(evento);
+    if ($("#log").length > 0) {
+        revelar();
+        
+    }
 }
 
 function enviarComentario(evento) {
