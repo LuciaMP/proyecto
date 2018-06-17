@@ -73,8 +73,9 @@ function buscar(){
 		        }else{
 		        	for (var i = 0; i < dato_objeto2.length; i++) {
 						var div = '<div id="' + dato_objeto2[i].IDJUEGO + '" class="listas" onclick="verJuego(event)">';
-						div +='<h2>'+ dato_objeto2[i].NOMBRE + '</h2>';
-		                div += '<img src="' + dato_objeto2[i].CARATULA + '""></div>';
+						div +='<h2 class="titulo">'+ dato_objeto2[i].NOMBRE + '</h2>';
+		                div += '<img src="' + dato_objeto2[i].CARATULA + '" class="caratula">';
+		                div += '<div class="descripcion">'+textoCortado(dato_objeto2[i].DESCRIPCION)+'</div></div>';
 		                $('#principal').append(div);
 					}
 		        }

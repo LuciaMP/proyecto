@@ -20,6 +20,10 @@ a{
 	color: black;
 }
 
+#principal > :nth-child(n){
+	margin: 15px 0px 15px 0px;
+}
+
 #user_zona{
 	position: relative;
 	height: 75%;
@@ -186,7 +190,6 @@ nav{
 .listas {
 	cursor: pointer;
     cursor: hand;
-    margin: 15px 0px 15px 0px;
     background-color: #FFFFFF;
     padding: 10px;
     border-radius: 15px;
@@ -233,7 +236,7 @@ nav{
 	border: 2px solid black;
     border-radius: 5px;
     padding: 0px 10px 0px 10px;
-    background-color: #EEEEEE;
+    background-color: #BDBDBD;
 }
 
 #layout > h2 {
@@ -261,12 +264,27 @@ nav{
 	flex-wrap: wrap;
 }
 
-.juego div:nth-child(1){
+.juego > div{
 	width: 100%;
+	background-color: #EEEEEE;
+    border-radius: 5px;
+    padding: 3PX;
+    border: 1px solid black;
 }
 
-.juego div:nth-child(2){
+.juego > :nth-child(n+1) > div{
 	width: 100%;
+	text-align: center;
+}
+
+.juego .ratings {
+	display: flex;
+    justify-content: center;
+}
+
+#imagen_principal {
+	width: 55%;
+    border-radius: 10px;
 }
 
 .cuenta  {
@@ -299,12 +317,6 @@ nav{
 
 .cuenta .dato:disabled {
 	background-color: #BDBDBD;
-}
-
-#imagen_principal {
-	width: 100%;
-	border: 10px solid #eeeeee;
-    border-radius: 10px;
 }
 
 @media only screen and (min-width: 600px) {
@@ -466,12 +478,16 @@ nav{
 		flex-direction: row;
 	}
 
-	.juego div:nth-child(1){
+	.juego > :nth-child(n+1){
 		width: 25%;
 	}
 
-	.juego div:nth-child(2){
+	.juego > :nth-child(n+2){
 		width: 74%;
+	}
+
+	#imagen_principal {
+		width: 100%;
 	}
 
 }

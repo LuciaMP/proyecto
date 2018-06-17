@@ -23,7 +23,7 @@ function crearLista(dato_objeto){
         var div = '<div id="' + dato_objeto.datos[i].IDJUEGO + '" class="listas" onclick="verJuego(event)">';
         div +='<h2 class="titulo">'+ dato_objeto.datos[i].NOMBRE + '</h2>';
         div += '<img src="' + dato_objeto.datos[i].CARATULA + '" class="caratula">';  
-        div += '<div class="descripcion">'+textoCortado(dato_objeto.datos[i].DESCRIPCION)+'<div>';
+        div += '<div class="descripcion">'+textoCortado(dato_objeto.datos[i].DESCRIPCION)+'</div></div>';
         contenedor.append(div);
     }
     for (var i = 0; i < dato_objeto.paginas.length; i++) {
