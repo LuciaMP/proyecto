@@ -1,10 +1,28 @@
 #datos {
 	background-color: #E0A92C;
 	overflow: auto;
+	border-radius: 0px 0px 20px 20px;
+}
+
+#mensajes div:nth-child(odd) {
+    background-color: #BDBDBD;
+}
+
+#mensajes div:nth-child(even) {
+	background-color: #EEEEEE;
+}
+
+#mensajes div:nth-child(n) {
+	padding: 1px;
 }
 
 .cajas_datos {
 	width: 100%;
 	float: left;
 	height: 65px;
+}
+
+hr{
+	border: 1px solid #003886;
+	margin: 0;
 }

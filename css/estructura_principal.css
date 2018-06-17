@@ -39,6 +39,7 @@ nav{
 
 #logomini{
 	display: none;
+	height: 100px;
 }
 
 #login, #logout, #mensajes{

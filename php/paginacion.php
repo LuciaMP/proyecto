@@ -4,7 +4,7 @@
 
     mysqli_set_charset($conexion, 'utf8');
 
-    $tamanio_paginas = 3;
+    $tamanio_paginas = 4;
 
     $tabla = $_POST["tabla"];
 
