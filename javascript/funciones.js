@@ -1,4 +1,6 @@
+// Documento con funciones globales que se pueden usar en cualquier parte
 
+// Carga un documento HTML pasado por parámetro, usando AJAX, en un elemento del DOM, también, pasado por parámentro
 function cargarDiv(div,url) {
 	$.ajax({
 		data:  {},
@@ -9,13 +11,11 @@ function cargarDiv(div,url) {
         	$(div).html(respuesta);
         }
     });
-    /*var php = '<?php include("../php/funciones.php"); logueado(); ?>';
-	$('#principal').append(php);*/
 }
-
+// Valida que los campos de un form no estén vacios
 function validarVacio(evento) {
 	var formulario = evento.target.id;
-    $(formulario+':input').change(function(){
+    $("#"+formulario+' input,'+"#"+formulario+' select').change(function(){
 	    $(this).css("background-color","white");
 	    if ($(this).attr("type") == "checkbox" || $(this).attr("type") == "radio") {
 	    	$(this).siblings("#requerido").remove();
@@ -41,7 +41,8 @@ function validarVacio(evento) {
 	});
 	return empty;
 }
-
+// Retorna datos que devuelve un méetodo AJAX. Por medio de parámentro se indica de donde debe
+// recoger los datos y que parámetros debe pasar, si fueran necesarios
 function llamarAjax (parametros,url){
     var datos;
     $.ajax({
@@ -55,12 +56,13 @@ function llamarAjax (parametros,url){
     });
     return datos;
 }
-
+// Revela elementos ocultos
 function revelar(){
 	$('#login').hide();
 	$('.ocultar').show();
 }
-
+// Recorta texto demasiado largo para visualizar de una mejor forma. Se pasa el texto por
+// parámetro para después ser retornado, acortado, si fuera necesario
 function textoCortado(texto) {
 	let textoArray = texto.split(" ");
 	if (textoArray.length > 60) {

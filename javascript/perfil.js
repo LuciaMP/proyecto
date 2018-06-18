@@ -1,3 +1,4 @@
+// Cuando el DOM este totalmente cargado
 $(document).ready(function() {
     rellenarDatos();
     $("input, select").change(function () {   
@@ -11,7 +12,7 @@ $(document).ready(function() {
         }
     });
 });
-
+// Asigna valores a los elementos del formulario, para visualizarlo
 function rellenarDatos() {
     var dato = JSON.parse(llamarAjax(null,'php/datosUsuario.php'));
     $("#nick").val(dato.NICK.slice(0, dato.NICK.indexOf("@")));
@@ -21,7 +22,8 @@ function rellenarDatos() {
     $("#sexo").val(dato.SEXO.toUpperCase());
     $("#ciudad").val(dato.CIUDAD.charAt(0).toUpperCase() + dato.CIUDAD.slice(1));
 }
-
+// Al pulsar el botón "guardar", recoge los datos de los elementos del
+// formulario, y los actualiza en la BBDD
 function modificarUsuario(evento){
     var texto = $("#guardar").val();
     var parametros = {
@@ -37,26 +39,9 @@ function modificarUsuario(evento){
     $("#nick").attr("disabled","disabled");
     $("#fechan").attr("disabled","disabled");
     $("#guardar").val(texto);
-    /*
-    $.ajax({
-            data:  parametros,
-            url:   'php/modificacionUsuario.php',
-            type:  'post',
-            beforeSend: function () {
-                $("#guardar").val("Procesando...");
-                $("#nick").removeAttr("disabled");
-                $("#fechan").removeAttr("disabled");
-            },
-            success:  function (respuesta) {
-                alert(respuesta);
-                $("#nick").attr("disabled","disabled");
-                $("#fechan").attr("disabled","disabled");
-                $("#guardar").val(texto);
-            }
-    });
-    */
 }
-
+// Valida los datos del formulario, comprobando si no esta vacío,
+// o si son datos incorrectos
 function validarDatos_perfil(evento){
     if(validarVacio(evento)){
         if(!$('#nick').val().match(/^[A-Za-z0-9_-]{5,20}$/)){

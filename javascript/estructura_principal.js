@@ -1,16 +1,19 @@
+// Almacena el estado de carga del DOM de la página
 document.addEventListener('readystatechange', inicializar, false);
 function inicializar() {
+	// Cuando se hayan cargado todo el DOM del HTML, ejecuta las funciones indicadas
 	if (document.readyState == 'complete') {
 		asignarEventoMenu();
         crearDesplegable();
         buscar();
         contenidoLayout();
+        // Controla el tamaño de la ventana para ajustar el menú principal
         window.onresize = function(){
 		  crearDesplegable();
         }
 	}
 }
-
+// Asigna los colores y los eventos para los elementos del menú principal
 function asignarEventoMenu(){
     var x=document.getElementById('menu').getElementsByTagName('li');
     for(i=0;i<x.length;i++){
@@ -23,9 +26,11 @@ function asignarEventoMenu(){
 		x[i].addEventListener('click',cambiarFondo,false);
 		x[i].addEventListener('click',accionPestanas,false);
 	}
+	// Al inciar carga novedades.html
 	cargarDiv('#principal','html/novedades.html');	
 }
-
+// Cuando se dispara el evento click, en los elementos del menú principal
+// esta función cambia los colores de los elementos, para distinguir la referencia
 function cambiarFondo(evento){
 	var x=document.getElementById('menu').getElementsByTagName('li');
     for(i=0;i<x.length;i++){
@@ -38,7 +43,8 @@ function cambiarFondo(evento){
     	$("#"+evento).css("background-color","#E0A92C");
     }
 }
-
+// Cuando se dispara el evento click, en los elementos del menú principal
+// esta función carga los elementos correspondientes en el contenedor
 function accionPestanas(evento){
 	var x=document.getElementById('menu').getElementsByTagName('li');
 	evento.preventDefault();
@@ -49,41 +55,43 @@ function accionPestanas(evento){
     }
     cargarDiv('#principal',evento.target.parentNode.getAttribute('href'));
 }
-
+// Funcionalidad del buscador
 function buscar(){
-	$('#buscador').focusin(function(e) {
+	// Carga todo los elementos en un array al poner el foco sobre el buscador
+	$('#buscador').focus(function(e) {
 		var parametros = {"pagina" : 0, "tabla" : "JUEGOS"};
     	var dato_objeto = JSON.parse(llamarAjax(parametros,'php/paginacion.php'));
     	var juegos = new Array(dato_objeto.datos.length);
     	for (var i = 0; i < dato_objeto.datos.length; i++) {
     		juegos[i] = dato_objeto.datos[i].NOMBRE;
 		}
+		// Se carga el array de elementos con la función que proporciona la libreria de Jquery
 		$('#buscador').autocomplete({
 			source: juegos
 		})
-		$('#buscador').keyup(function(e) {
-			if (e.keyCode == 13) {
-				cambiarFondo("menu_juegos");
-				$('#principal').empty();
-				cargarDiv('#principal','html/juegos.html');
-				var dato_objeto2 = JSON.parse(llamarAjax($("#buscador").serialize(),'php/busqueda.php'));
-				if (typeof dato_objeto2[0].IDJUEGO == "undefined") {
-		            html = '<h3>'+dato_objeto2[0]+'<h3>';
-		            $('#principal').append(html);
-		        }else{
-		        	for (var i = 0; i < dato_objeto2.length; i++) {
-						var div = '<div id="' + dato_objeto2[i].IDJUEGO + '" class="listas" onclick="verJuego(event)">';
-						div +='<h2 class="titulo">'+ dato_objeto2[i].NOMBRE + '</h2>';
-		                div += '<img src="' + dato_objeto2[i].CARATULA + '" class="caratula">';
-		                div += '<div class="descripcion">'+textoCortado(dato_objeto2[i].DESCRIPCION)+'</div></div>';
-		                $('#principal').append(div);
-					}
-		        }
-			}
-		});
+	});
+	// Al pulsar "ENTER" visualiza los datos que ha devuelto busqueda.php
+	$('#buscador').keypress(function(e) {
+		if (e.keyCode == 13) {
+			cambiarFondo("menu_juegos");
+			$('#principal').empty();
+			var dato_objeto2 = JSON.parse(llamarAjax($("#buscador").serialize(),'php/busqueda.php'));
+			if (typeof dato_objeto2[0].IDJUEGO == "undefined") {
+	            var html = '<h2>'+dato_objeto2[0]+'</h2>';
+	            $('#principal').append(html);
+	        }else{
+	        	for (var i = 0; i < dato_objeto2.length; i++) {
+					var div = '<div id="' + dato_objeto2[i].IDJUEGO + '" class="listas" onclick="verJuego(event)">';
+					div +='<h2 class="titulo">'+ dato_objeto2[i].NOMBRE + '</h2>';
+	                div += '<img src="' + dato_objeto2[i].CARATULA + '" class="caratula">';
+	                div += '<div class="descripcion">'+textoCortado(dato_objeto2[i].DESCRIPCION)+'</div></div>';
+	                $('#principal').append(div);
+				}
+	        }
+		}
 	});
 }
-
+// Visualiza los elementos mas populares en el Layout
 function contenidoLayout () {
 	var dato_objeto = JSON.parse(llamarAjax($("#buscador").serialize(),'php/juegosMasPopulares.php'));
 	var contenedor = $('#layout div');
@@ -97,6 +105,7 @@ function contenidoLayout () {
 	   	header: "ui-icon-circle-arrow-e",
 	    activeHeader: "ui-icon-circle-arrow-s"
 	 };
+	 // Uso de la librería Jquery para efecto acordeon
 	contenedor.accordion({
 	    icons: iconos,
 		collapsible: true,
@@ -107,7 +116,8 @@ function contenidoLayout () {
 		}
 	});
 }
-
+// Teniendo en cuenta el tamaño de la venta, contrae el menú en 
+// un desplegable, o lo despliega de una forma normal
 function crearDesplegable(){
 	if(window.innerWidth <= 600 && document.getElementById("desplegable") == null){
 		var desplegable = document.createElement('ul');

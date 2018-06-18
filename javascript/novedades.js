@@ -1,19 +1,20 @@
+// Lo primero que se ejecuta cuando recibe la llamada del HTML
 $(function() {
     mostrarNovedadPrimeraVez();
 });
-
+// Recoge la primera página de novedades
 function mostrarNovedadPrimeraVez() {
     var parametros = {"pagina" : 1, "tabla" : "NOVEDADES"};
     var dato_objeto = JSON.parse(llamarAjax(parametros,'php/paginacion.php'));
     crearLista(dato_objeto);
 }
-
+// Recoge la página indicada al llamar a la función, usado al pulsar el botón y cambiar de página
 function mostrarNovedades(event){
     var parametros = {"pagina" : event.target.value, "tabla" : "NOVEDADES"};
     var dato_objeto = JSON.parse(llamarAjax(parametros,'php/paginacion.php'));
     crearLista(dato_objeto);
 }
-
+// Genera el DOM con los datos del JSON que recibe
 function crearLista(dato_objeto){
     var contenedor = $('#principal');
     contenedor.empty();
@@ -35,7 +36,8 @@ function crearLista(dato_objeto){
         botones[i].addEventListener('click', mostrarNovedades, false);
     }
 }
-
+// Recoge el ID del elemento que es pasado por parámetro al ejecutarse un evento.
+// El ID coincide con el ID de la novedad al que hace referencia, y visualiza sus datos.
 function verNovedad (evento) {
     cargarDiv('#principal','html/novedad.html');
     var id = evento.target.id || evento.target.parentElement.id;
