@@ -1,5 +1,7 @@
+// Almacena el estado de carga del DOM de la página
 document.addEventListener('readystatechange', inicializar, false);
 function inicializar() {
+	// Cuando se hayan cargado todo el DOM del HTML, ejecuta la función indicada
 	if (document.readyState == 'complete') {
 		asignarEventoMenu();
         crearDesplegable();

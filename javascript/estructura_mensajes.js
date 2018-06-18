@@ -1,12 +1,14 @@
+// Almacena el estado de carga del DOM de la página
 document.addEventListener('readystatechange', inicializar, false);
 function inicializar() {
+    // Cuando se hayan cargado todo el DOM del HTML, ejecuta la función indicada
 	if (document.readyState == 'complete') {
 		activarPestanas();
         cargarDiv('#datos','mensajes.html');
         mostrarMensajes();
 	}
 }
-
+// Agrega un evento click a cada elemento del menú principal y pinta el primero de ellos
 function activarPestanas(){
     x=document.getElementById('contenedor').getElementsByTagName('button');
     for(i=0;i<x.length;i++){
@@ -16,7 +18,8 @@ function activarPestanas(){
         x[i].addEventListener('click',accionPestanas,false);
     }   
 }
-
+// Recoge el click de los elementos del menú, les cambia el color para que quede clara la referencia
+// y carga en el contenedor principal, el contenido al que hace referencia el elemento
 function accionPestanas(evento){
     for(i=0;i<x.length;i++){
         x[i].style.backgroundColor = '#EEEEEE';
@@ -37,10 +40,11 @@ function accionPestanas(evento){
             cargarDiv('#datos','mensajes.html');
     }
 }
-
+// Registra el mensaje en la BBDD
 function enviarMensaje(evento) {
     var hilo = evento.target.id;
     evento.preventDefault();
+    // El mensaje abre un hilo nuevo o es la respuesta de un hilo ya creado
     if(hilo == 'formulario_mensajes_nuevos'){
         var parametros = {
             "receptor" : $('#receptor').val(),
@@ -59,7 +63,7 @@ function enviarMensaje(evento) {
     alert(respuesta);
     $('form').trigger("reset");
 }
-
+// Visualiza los mensajes del usuario
 function mostrarMensajes() {
     var datos_mensajes = JSON.parse(llamarAjax(null,'../php/verMensajes.php'));
     var div = $('#mensajes');
@@ -81,7 +85,8 @@ function mostrarMensajes() {
         }
     }
 }
-
+// Visualiza todos los mensajes que tiene el hilo al que se hace referencia por medio del ID
+// que devuelve el evento
 function verMensaje(evento) {
     var hilo = evento.target.id || evento.target.parentElement.id;
     $('#mensajes').empty();
