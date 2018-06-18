@@ -69,10 +69,12 @@ function mostrarMensajes() {
         div.append(html);
     }
     else {
+        html = '<h3 class="center">Conversaciones</h3>';
+        div.append(html);
         for(var i = 0; i < datos_mensajes.length; i++) {
             html = '<div id="'+ datos_mensajes[i].HILO + '"><hr>';
-            html += '<p>'+ datos_mensajes[i].EMISOR.slice(0, datos_mensajes[i].EMISOR.indexOf("@")) + '  | '+ datos_mensajes[i].FECHA +'</p>';
-            html += '<p>'+ datos_mensajes[i].ASUNTO + '</p></div>';
+            html += '<p>Conversación iniciada por <b>'+ datos_mensajes[i].EMISOR.slice(0, datos_mensajes[i].EMISOR.indexOf("@")) + '</b> el día '+ datos_mensajes[i].FECHA +'</p>';
+            html += '<p>Asunto: '+ datos_mensajes[i].ASUNTO + '</p></div>';
             div.append(html);
         }
         var mensajes = $("#mensajes div");
@@ -91,11 +93,12 @@ function verMensaje(evento) {
     var datos_mensajes = JSON.parse(llamarAjax(parametros,'../php/verMensajes.php'));
 
     var div = $('#mensajes');
-    var html = '<p>'+ datos_mensajes[0].ASUNTO + '  | '+ datos_mensajes[0].FECHA +'</p><hr>';
+    var html = '<h3>Asunto: '+ datos_mensajes[0].ASUNTO + '  | '+ datos_mensajes[0].FECHA +'</h3><hr>';
     div.append(html);
     for(var i = 0; i < datos_mensajes.length; i++) {
-        html = '<p>DE: '+ datos_mensajes[i].EMISOR.slice(0, datos_mensajes[i].EMISOR.indexOf("@")) + '  | '+ datos_mensajes[i].FECHA +'</p>';
-        html += '<p>'+ datos_mensajes[i].MENSAJE + '</p>';
+        html = '<div id="'+ datos_mensajes[i].IDMENSAJE + '">';
+        html += '<p>DE: '+ datos_mensajes[i].EMISOR.slice(0, datos_mensajes[i].EMISOR.indexOf("@")) + '  | '+ datos_mensajes[i].FECHA +'</p>';
+        html += '<p>'+ datos_mensajes[i].MENSAJE + '</p></div>';
         html += '<hr>';
         div.append(html);
     }
