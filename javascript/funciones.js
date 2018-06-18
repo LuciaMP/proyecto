@@ -15,7 +15,7 @@ function cargarDiv(div,url) {
 // Valida que los campos de un form no estén vacios
 function validarVacio(evento) {
 	var formulario = evento.target.id;
-    $(formulario+':input').change(function(){
+    $("#"+formulario+' input,'+"#"+formulario+' select').change(function(){
 	    $(this).css("background-color","white");
 	    if ($(this).attr("type") == "checkbox" || $(this).attr("type") == "radio") {
 	    	$(this).siblings("#requerido").remove();
