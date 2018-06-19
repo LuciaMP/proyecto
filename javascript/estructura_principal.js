@@ -29,7 +29,7 @@ function asignarEventoMenu(){
 	// Al inciar carga novedades.html
 	cargarDiv('#principal','html/novedades.html');	
 }
-// Cuando se dispara el evento click, en los elementos del menú principal
+// Cuando se dispara el evento click, en los elementos del menú principal o con referencia directa
 // esta función cambia los colores de los elementos, para distinguir la referencia
 function cambiarFondo(evento){
 	var x=document.getElementById('menu').getElementsByTagName('li');
@@ -98,7 +98,7 @@ function contenidoLayout () {
 	for (var i = 0; i < dato_objeto.length; i++) {
 		var div = '<h3>'+ dato_objeto[i].NOMBRE + '</h3>';
 		div +='<div id="' + dato_objeto[i].IDJUEGO + '">';
-        div += '<p>'+textoCortado(dato_objeto[i].DESCRIPCION)+'<span class="leerMas" id="'+dato_objeto[i].IDJUEGO+'" onclick=cargarDiv("#principal","html/juegos.html");verJuego(event)>Leer más</span></p></div>';
+        div += '<p>'+textoCortado(dato_objeto[i].DESCRIPCION)+'<span class="leerMas" id="'+dato_objeto[i].IDJUEGO+'" onclick=cargarDiv("#principal","html/juegos.html");verJuego(event);cambiarFondo("menu_juegos");>Leer más</span></p></div>';
         contenedor.append(div);
 	}
 	var iconos = {
