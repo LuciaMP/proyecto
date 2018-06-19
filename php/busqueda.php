@@ -9,7 +9,7 @@
         // Almacenamos en una variable el 'buscador'.
         $busqueda = $_POST["buscador"];
     }
-    // Si no existe.
+    // Si no existe buscador.
     else {
         // Almacenamos en una variable el 'id'.
         $busqueda = $_POST["id"];
@@ -21,14 +21,15 @@
     if ($busqueda != ''){ 
         // Si existe buscador.
         if (isset($_POST["buscador"])) {
-            // Creamos una sentencia seleccionando de la tabla JUEGOS los juegos en los que su nombre sean como los de la variable busqueda con límite de 20.
+            // Creamos una sentencia seleccionando de la tabla JUEGOS los juegos en los que su nombre sea como los de la variable busqueda con límite de 20.
             $sql = "SELECT * FROM JUEGOS WHERE NOMBRE LIKE '%$busqueda%' LIMIT 20";
         }
-        // Si no, si la tabla es JUEGOS.
+        // Si no existe buscador, si la tabla es JUEGOS.
         else if($tabla == "JUEGOS"){
             // Creamos una sentencia seleccionando de la tabla JUEGOS el juego igual a la variable busqueda (id).
             $sql = "SELECT * FROM JUEGOS WHERE IDJUEGO = '$busqueda'";
         }
+        // Si no (la tabla sería NOVEDADES).
         else{
             // Creamos una sentencia seleccionando de la tabla NOVEDADES la novedad igual a la variable busqueda (id).
             $sql = "SELECT * FROM NOVEDADES WHERE IDNOVEDAD = '$busqueda'";

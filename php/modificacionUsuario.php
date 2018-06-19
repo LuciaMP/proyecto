@@ -17,7 +17,7 @@
 	// Ejecutamos la consulta.
     mysqli_query($conexion,$sql) or die('<p>Error al ejecutar sentencia SQL.</p>');
 
-    // Si se ejecuta correctamente mostramos un mensaje indicándolo.
+    // Si se ejecuta correctamente mostramos un mensaje indicando que se han modificado los datos.
     if (mysqli_errno($conexion) == 0) {
         echo 'Datos de usuario modificados con éxito.';
     }

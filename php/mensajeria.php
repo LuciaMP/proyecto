@@ -31,7 +31,7 @@
         // Ejecutamos la sentencia.
         mysqli_query($conexion,$sql);
 
-        // Si se ejecuta correctamente indicamos que se ha inviado el mensaje con un mensaje.
+        // Si se ejecuta correctamente indicamos que se ha inviado el mensaje.
         if (mysqli_errno($conexion) == 0){
             echo 'El mensaje se envió exitosamente a '.$_POST['receptor'].'.';
         }
@@ -59,7 +59,7 @@
         
         // Si la sentencia devuelve 0 resultados, significa que no hay otro emisor distinto al que inicio el hilo de mensajes.
         if(mysqli_num_rows($resultado) == 0){
-            // Creamos una sentencia para insertar en la tabla MENSAJES un nuevo mensaje en el mismo hilo, en el que el emisor será el mismo que inició el hilo y el receptor el será distinto al emisor.
+            // Creamos una sentencia para insertar en la tabla MENSAJES un nuevo mensaje en el mismo hilo, en el que el emisor será el mismo que inició el hilo y el receptor será distinto al emisor.
             $sql = "INSERT INTO MENSAJES (ASUNTO, EMISOR, RECEPTOR, MENSAJE, HILO, FECHA) SELECT DISTINCT ASUNTO, (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$emisor') AS EMISOR, (SELECT DISTINCT RECEPTOR FROM MENSAJES WHERE HILO = '$hilo') AS RECEPTOR, '$mensaje', '$hilo', NOW() FROM MENSAJES WHERE HILO = '$hilo'";
         } 
         // Si no devuelve cero.
@@ -71,7 +71,7 @@
         // Ejecutamos la sentencia.
         mysqli_query($conexion,$sql);
 
-        // Si se ejecuta correctamente indicamos que se ha inviado el mensaje con un mensaje.
+        // Si se ejecuta correctamente indicamos que se ha inviado el mensaje.
         if (mysqli_errno($conexion) == 0){
             echo 'El mensaje se envió exitosamente.';
         }

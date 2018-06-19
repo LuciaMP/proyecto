@@ -33,7 +33,7 @@
     // Si existe hilo.
     else{
         
-        // Recogemos la variable.
+        // Recogemos los datos enviados.
         $hilo = $_POST['hilo'];
 
         // Creamos la sentencia para seleccionar de la tabla MENSAJES los mensajes del mismo hilo ordenados por fecha.

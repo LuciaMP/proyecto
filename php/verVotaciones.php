@@ -13,7 +13,7 @@
     // Guardamos el resultado que devuelve la sentencia.
 	$resultado = mysqli_query($conexion,$sql);
 
-    // Creamos un objeto donde almacenaremos los datos del usuario.
+    // Creamos un objeto donde almacenaremos los datos del juego.
     $datos = new stdClass();
     $registro = mysqli_fetch_assoc($resultado);
     $datos = $registro;

@@ -17,7 +17,7 @@
   	if(mysqli_num_rows($resultado) == 0){
         $datos[] = "No hay comentarios.";
     } 
-    // Si no, almacenamos los comentarios en un array.
+    // Si no devuelve 0, almacenamos los comentarios en un array.
     else{
         while ($registro = mysqli_fetch_assoc($resultado)) { 
             $datos[] = $registro;

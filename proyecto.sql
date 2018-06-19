@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-06-2018 a las 00:41:23
+-- Tiempo de generación: 19-06-2018 a las 22:49:48
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 7.2.5
 
@@ -57,7 +57,7 @@ CREATE TABLE `juegos` (
 --
 
 INSERT INTO `juegos` (`IDJUEGO`, `NOMBRE`, `DESCRIPCION`, `VOTOS`, `PUNTUACION`, `NOTA`, `CARATULA`) VALUES
-(1, 'Mario Kart 8 Deluxe', 'Mario Kart 8 Deluxe es una remasterizaciÃ³n para Nintendo Switch de este exitoso y aclamado juego de Wii U. LlegarÃ¡ a las tiendas el 28 de abril y, ademÃ¡s de ofrecer mejores grÃ¡ficos, tambiÃ©n contarÃ¡ con nuevos personajes, ajustes jugables y un renovado Modo Batalla. De esta forma, Mario Kart 8 Deluxe tendrÃ¡ 48 circuitos (los 32 del original mÃ¡s los 16 de los DLC) y 40 personajes, cinco de ellos nuevos. Estos son Inkling chico e Inkling chica de Splatoon, el Rey Boo, Huesitos y Bowsy, asÃ­ como nuevas piezas con las que configurar nuestros vehÃ­culos.', 1, 4, 4, 'media/caratulas/mk8d.jpg'),
+(1, 'Mario Kart 8 Deluxe', 'Mario Kart 8 Deluxe es una remasterizaciÃ³n para Nintendo Switch de este exitoso y aclamado juego de Wii U. LlegarÃ¡ a las tiendas el 28 de abril y, ademÃ¡s de ofrecer mejores grÃ¡ficos, tambiÃ©n contarÃ¡ con nuevos personajes, ajustes jugables y un renovado Modo Batalla. De esta forma, Mario Kart 8 Deluxe tendrÃ¡ 48 circuitos (los 32 del original mÃ¡s los 16 de los DLC) y 40 personajes, cinco de ellos nuevos. Estos son Inkling chico e Inkling chica de Splatoon, el Rey Boo, Huesitos y Bowsy, asÃ­ como nuevas piezas con las que configurar nuestros vehÃ­culos.', 0, 0, 0, 'media/caratulas/mk8d.jpg'),
 (2, 'Playerunknown\'s Battlegrounds', 'Playerunknown\'s Battlegrounds es un videojuego de acciÃ³n multijugador que nos trasladarÃ¡ a una enorme extensiÃ³n de terreno en el que el objetivo primario serÃ¡ bÃ¡sico: sobrevivir y matar a nuestros competidores. Enmarcado dentro de la modalidad battle royale, en el juego ganarÃ¡ el Ãºltimo jugador que quede en pie sobre el escenario. Para ello podemos usar cientos de armas que iremos encontrarnos, cooperar con otros jugadores hasta el mismo final o equiparnos con lo que encontremos.', 0, 0, 0, 'media/caratulas/pubg.jpg'),
 (3, 'Fire Emblem: Awakening', 'Fire Emblem: Awakening nos presenta un tÃ­tulo de estrategia por turnos en el que guiaremos un ejÃ©rcito a travÃ©s de grandes batallas. AdemÃ¡s de los combates el juego tambiÃ©n cuenta con una gran apuesta a nivel relacional en la que deberemos interactuar con el resto de personajes del juego. En el inicio de la historia el jugador se encontrarÃ¡ en un estado de amnesia total y abandonado al borde de un camino. A partir de ahÃ­ el protagonista empezarÃ¡ a conocer una realidad cargada de misterios mientras ayuda a Chrom y los custodios de Ylisse.', 0, 0, 0, 'media/caratulas/fea.png'),
 (4, 'Fire Emblem Fates', 'Fire Emblem Fates es la duodÃ©cima entrega de la serie principal de Fire Emblem - decimocuarta incluyendo los remakes - y la segunda en ser desarrollada para Nintendo 3DS despuÃ©s de Fire Emblem: Awakening. Dos reinos se encuentran al borde de la guerra y debes decidir de quÃ© lado estÃ¡s en \'Fire Emblem Fates\'. Como prÃ­ncipe Hoshidan criado por la realeza Nohrian, te encuentras entre dos familias. El camino que elijas determinarÃ¡ tu destino y el de tu ejÃ©rcito. Dirige a tus tropas con precisiÃ³n experta y establece fuertes relaciones en este ambicioso juego de estrategia por turnos. ', 0, 0, 0, 'media/caratulas/fef.png'),

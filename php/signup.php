@@ -16,7 +16,7 @@
 	$sql = "SELECT * FROM USUARIOS WHERE NICK = '$nick'";
 
     // Guardamos el resultado que devuelve la sentencia.
-	$resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla USUARIOS.</p>');
+	$resultado = mysqli_query($conexion,$sql) OR DIE ('<p>Error al Consultar la Tabla Usuarios.</p>');
 
     // Si la sentencia no devuelve 0 resultados, significa que el usuario ya existe, por lo tanto le redirigimos de nuevo a la página.
 	if (mysqli_num_rows($resultado) != 0) {
@@ -25,7 +25,7 @@
                 window.location.href = "../html/estructura_login.html";
                 </script>';
 	}
-    // Si no, procedemos a creer el usuario.
+    // Si no, procedemos a crear el usuario.
 	else{
         // Creamos una sentencia para calcular el IDUSUARIO.
         $sql = "SELECT IFNULL(MAX(IDUSUARIO),0)+1 FROM USUARIOS";
@@ -56,7 +56,7 @@
             // Ejecutamos la sentencia.
             mysqli_query($conexion,$sql);
 
-            // Asignamos el role PERMISOS_USUARIOS al usuario.
+            // Creamos una sentencia para asignarle el role PERMISOS_USUARIOS al usuario.
             $sql = "SET DEFAULT ROLE PERMISOS_USUARIOS FOR " .$nick;
             
             // Ejecutamos la sentencia.
@@ -69,7 +69,7 @@
                     window.location.href = "../html/estructura_login.html";
                     </script>';
             }
-            // Si no, se mostrará un mensaje y se redirigirá a la página.
+            // Si no se ejecuta correctamente, se mostrará un mensaje y se redirigirá a la página.
             else{
                 echo '<script>
                     alert("Error al conceder privilegios.");
@@ -77,7 +77,7 @@
                     </script>';
             }
         }
-        // Si no, se mostrará un mensaje y se redirigirá a la página.
+        // Si no se ejecuta correctamente, se mostrará un mensaje y se redirigirá a la página.
         else {
             echo '<script>
                 alert("Error al crear el usuario. Error número: '.mysqli_errno($conexion).'");

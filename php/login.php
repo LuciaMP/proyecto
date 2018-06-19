@@ -1,6 +1,6 @@
 <?php
 
-	// Recogemos las variables.
+	// Recogemos los datos enviados.
 	$nick = strtolower($_REQUEST['nick']).'@localhost';
 	$password = $_REQUEST['password'];
 

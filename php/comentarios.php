@@ -18,7 +18,7 @@
     // Ejecutamos la sentencia.
     mysqli_query($conexion,$sql);
 
-    // Si se ejecuta correctamente mostramos un mensaje indicándolo.
+    // Si se ejecuta correctamente mostramos un mensaje indicando que se publicó el comentario.
     if (mysqli_errno($conexion) == 0){
         echo 'El comentario se publicó correctamente.';
     }

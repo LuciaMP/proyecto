@@ -30,14 +30,13 @@
             // Ejecutamos la sentencia.
             mysqli_query($conexion,$sql);
 
-
             // Creamos la sentencia para modificar en la tabla JUEGOS el número de VOTOS, la PUNTUACION y la NOTA del juego que se está votando.
             $sql = "UPDATE JUEGOS SET VOTOS = VOTOS+1, PUNTUACION = PUNTUACION+'$voto', NOTA = PUNTUACION/VOTOS WHERE IDJUEGO = '$idjuego'";
             
             // Ejecutamos la sentencia.
             mysqli_query($conexion,$sql);
 
-            // Si se ejecuta correctamente mostramos un mensaje indicándolo.
+            // Si se ejecuta correctamente mostramos un mensaje indicando que se ha contabilizado el voto.
             if (mysqli_errno($conexion) == 0){
                 echo 'Voto contabilizado.';
             }
@@ -46,13 +45,13 @@
                 echo 'Error al votar. Error número: '.mysqli_errno($conexion).'.';
             }   
         }
-        // Si no, se indica que ya se ha votado.
+        // Si no devuelve 0 resultados, se indica que ya se ha votado.
         else{
             echo 'Ya has votado este juego.';
         }
 
     }
-    // Si no existe, significa que no se ha iniciado sesión y se indica con un mensaje.
+    // Si no existe nick, significa que no se ha iniciado sesión y se indica con un mensaje.
     else {
         echo "Debes iniciar sesión para poder votar.";
     }

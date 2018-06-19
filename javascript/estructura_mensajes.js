@@ -71,7 +71,7 @@ function mostrarMensajes() {
     html = '<h3 class="center">Conversaciones</h3>';
     div.append(html);
     if (typeof datos_mensajes[0].HILO == "undefined") {
-        html = '<h3>'+datos_mensajes[0]+'<h3>';
+        html = '<hr><h3>'+datos_mensajes[0]+'<h3>';
         div.append(html);
     }
     else {
