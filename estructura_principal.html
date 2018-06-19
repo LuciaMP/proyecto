@@ -6,7 +6,7 @@
 		<meta charset="ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="css\root.css">	
 		<link rel="stylesheet" type="text/css" href="css\estructura_principal.css">	
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="css/fontawesome-all.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="css\jquery-ui.css">
 		<link rel="stylesheet" type="text/css" href="css\jquery-ui.structure.css">	
 		<link rel="stylesheet" type="text/css" href="css\jquery-ui.theme.css">		
@@ -26,7 +26,7 @@
 					<img src="media\logos\logo.png" id="logo" alt="Logo Principal">
 				</a>
 				<a href="php\logout.php"><button id="logout" class="ocultar">LOG OUT</button></a>
-				<a href="html\estructura_mensajes.html" class="ocultar"><button id="mensajes"><i class="fa fa-envelope" style="font-size:18px"></i></button></a>
+				<a href="html\estructura_mensajes.html" class="ocultar"><button id="mensajes"><i class="fas fa-envelope" style="font-size: 21px"></i></button></a>
 				<a href="html\estructura_login.html"><button id="login">Entra o Regístrate</button></a>
 			</div>
 			<nav id="nav">
@@ -56,10 +56,10 @@
 		</div>
 		<div id="footer_centro">
 			<ul id="menu_footer">
-				<li><a href="#">Conócenos</a></li>
+				<li><a href="#" onclick="cargarDiv('#principal','html/conocenos.html');cambiarFondo('menu_conocenos');">Conócenos</a></li>
 				<li><a href="html\estructura_login.html">Log-In</a></li>
 				<li><a href="html\estructura_login.html">Sign-Up</a></li>
-				<li><a href="#" onclick="cargarDiv('#principal','html/juegos.html')">Juegos</a></li>
+				<li><a href="#" onclick="cargarDiv('#principal','html/juegos.html');cambiarFondo('menu_juegos');">Juegos</a></li>
 			</ul>
 		</div>
 		<div id="footer_derecha">
