@@ -68,16 +68,16 @@ function mostrarMensajes() {
     var datos_mensajes = JSON.parse(llamarAjax(null,'../php/verMensajes.php'));
     var div = $('#mensajes');
     var html;
+    html = '<h3 class="center">Conversaciones</h3>';
+    div.append(html);
     if (typeof datos_mensajes[0].HILO == "undefined") {
         html = '<h3>'+datos_mensajes[0]+'<h3>';
         div.append(html);
     }
     else {
-        html = '<h3 class="center">Conversaciones</h3>';
-        div.append(html);
         for(var i = 0; i < datos_mensajes.length; i++) {
-            html = '<div id="'+ datos_mensajes[i].HILO + '"><hr>';
-            html += '<p>Conversación iniciada por <b>'+ datos_mensajes[i].EMISOR.slice(0, datos_mensajes[i].EMISOR.indexOf("@")) + '</b> el día '+ datos_mensajes[i].FECHA +'</p>';
+            html = '<div id="'+ datos_mensajes[i].HILO + '" style="cursor:hand;cursor:pointer;"><hr>';
+            html += '<p>Conversación iniciada por '+ datos_mensajes[i].EMISOR.slice(0, datos_mensajes[i].EMISOR.indexOf("@")) + ' el día '+ datos_mensajes[i].FECHA +'</p>';
             html += '<p>Asunto: '+ datos_mensajes[i].ASUNTO + '</p></div>';
             div.append(html);
         }

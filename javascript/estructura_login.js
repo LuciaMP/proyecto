@@ -30,9 +30,11 @@ function accionPestanas(evento){
     switch (pos) {
         case 0:
             cargarDiv('#datos','login.html');
+            $('#registrar').val('Iniciar Sesión');
             break;
         case 1:
             cargarDiv('#datos','signup.html');
+            $('#registrar').val('Registrarse');
             break;
         default:
             cargarDiv('#datos','login.html');

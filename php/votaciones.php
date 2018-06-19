@@ -3,6 +3,10 @@
     // Reanudamos la sesión.
     session_start();
 
+    // Cadena de conexión.
+    include('C:\xampp\seguridad\mysql.inc.php');
+    mysqli_select_db($conexion,'proyecto') or die ('<p>Imposible conectar con la Base de Datos.</p>');
+
     // Si existe nick.
     if (isset($_SESSION['nick'])) {
 
@@ -10,10 +14,6 @@
         $usuario = $_SESSION['nick'];
         $idjuego = $_POST["idjuego"];
         $voto = $_POST["voto"];
-
-        // Cadena de conexión.
-        include('C:\xampp\seguridad\mysql.inc.php');
-        mysqli_select_db($conexion,'proyecto') or die ('<p>Imposible conectar con la Base de Datos.</p>');
 
         // Creamos la sentencia seleccionando de la tabla VOTACIONES la votación que coincida con el IDUSUARIO e IDJUEGO para comprobar si ya ha votado ese juego.
         $sql = "SELECT * FROM VOTACIONES WHERE IDUSUARIO = (SELECT IDUSUARIO FROM USUARIOS WHERE NICK = '$usuario') AND IDJUEGO = '$idjuego'";
@@ -50,6 +50,7 @@
         else{
             echo 'Ya has votado este juego.';
         }
+
     }
     // Si no existe, significa que no se ha iniciado sesión y se indica con un mensaje.
     else {
